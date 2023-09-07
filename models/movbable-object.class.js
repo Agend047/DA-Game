@@ -11,7 +11,6 @@ class MovableObject {
         this.pos_y = pos_y;
         this.width = width;
         this.height = height;
-
     }
 
     loadImage(path) {

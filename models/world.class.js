@@ -1,10 +1,13 @@
 class World {
     character = new Character(100, 100);
     enemys = [
-        new Chicken(200, 100,),
-        new Chicken(300, 200,),
-        new Chicken(400, 300,),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
     ];
+    clouds = [
+        new Cloud(),
+    ]
 
     ctx;
     canvas;
@@ -22,16 +25,22 @@ class World {
         this.ctx.drawImage(this.character.img, this.character.pos_x, this.character.pos_y, this.character.width, this.character.height)
 
         this.enemys.forEach(enemy => {
+            enemy.pos_x = enemy.pos_x - 0.5;
             this.ctx.drawImage(enemy.img, enemy.pos_x, enemy.pos_y, enemy.width, enemy.height)
+        })
+
+        this.clouds.forEach(cloud => {
+            cloud.pos_x = cloud.pos_x - 0.1;
+            this.ctx.drawImage(cloud.img, cloud.pos_x, cloud.pos_y, cloud.width, cloud.height)
         })
 
         //calling draw again
         let self = this;
         setTimeout(function () {
             requestAnimationFrame(function () {
-                self.draw();
+                //   self.draw();
             })
-        }, 10000
+        }, 33
         )
 
         // for (chick of this.enemys) {

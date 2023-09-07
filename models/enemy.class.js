@@ -11,10 +11,11 @@ class Enemy extends MovableObject {
 }
 
 class Chicken extends Enemy {
-    width = 130;
+    width = 100;
     height = 80;
 
-    constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+    constructor() {
+        let getX = (200 + Math.random() * 450)
+        super(getX, 200).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
     }
 }
