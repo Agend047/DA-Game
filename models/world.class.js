@@ -1,9 +1,9 @@
 class World {
-    character = new Character(100, 100, 100, 150);
+    character = new Character(100, 100);
     enemys = [
-        new Enemy(200, 100, 150, 100),
-        new Enemy(300, 200, 150, 100),
-        new Enemy(400, 300, 150, 100),
+        new Enemy(200, 100, 130, 80),
+        new Enemy(300, 200, 130, 80),
+        new Enemy(400, 300, 130, 80),
     ];
 
     ctx;
