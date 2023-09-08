@@ -1,21 +1,8 @@
 /** SuperClass for Charakter and Enemys, he can interact with */
-class MovableObject {
-    pos_x;
-    pos_y;
-    width;
-    height;
-    // img;
+class MovableObject extends GameObject {
 
     constructor(pos_x, pos_y, width, height,) {
-        this.pos_x = pos_x;
-        this.pos_y = pos_y;
-        this.width = width;
-        this.height = height;
-    }
-
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path
+        super(pos_x, pos_y, width, height,)
     }
 
     moveRight() {

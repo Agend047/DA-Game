@@ -1,7 +1,7 @@
 /** the Playable Character */
 class Character extends MovableObject {
 
-    height = 150;
+    height = 180;
     width = 100;
 
     constructor(pos_x, pos_y,) {

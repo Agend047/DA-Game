@@ -1,5 +1,19 @@
 class World {
-    character = new Character(100, 100);
+
+    air = new GameObject(0, 0, 720, 480, 'img/5_background/layers/air.png')
+
+    backgroundObjects = [
+        new Background(0, 'img/5_background/layers/3_third_layer/1.png'),
+        new Background(720, 'img/5_background/layers/3_third_layer/2.png'),
+
+        new Background(0, 'img/5_background/layers/2_second_layer/1.png'),
+        new Background(720, 'img/5_background/layers/2_second_layer/2.png'),
+
+        new Background(0, 'img/5_background/layers/1_first_layer/1.png'),
+        new Background(720, 'img/5_background/layers/1_first_layer/2.png'),
+    ];
+
+    character = new Character(100, 300);
 
     enemys = [
         new Chicken(),
@@ -9,10 +23,6 @@ class World {
 
     clouds = [
         new Cloud(),
-    ];
-
-    backgroundObjects = [
-        new Background('img/5_background/layers/1_first_layer/full.png'),
     ];
 
     ctx;
@@ -28,12 +38,7 @@ class World {
         console.log('Kommt...')
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.addToMap(this.character)
-
-        this.enemys.forEach(enemy => {
-            enemy.pos_x = enemy.pos_x - 0.5;
-            this.addToMap(enemy)
-        })
+        this.addToMap(this.air)
 
         this.clouds.forEach(cloud => {
             cloud.pos_x = cloud.pos_x - 0.1;
@@ -42,8 +47,16 @@ class World {
 
         this.backgroundObjects.forEach(background => {
             this.addToMap(background);
-
         })
+
+        this.addToMap(this.character)
+
+        this.enemys.forEach(enemy => {
+            enemy.pos_x = enemy.pos_x - 0.5;
+            this.addToMap(enemy)
+        })
+
+
 
         //calling draw again
         let self = this;

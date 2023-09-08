@@ -16,6 +16,7 @@ class Chicken extends Enemy {
 
     constructor() {
         let getX = (200 + Math.random() * 450)
-        super(getX, 200).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        let getY = (370 + Math.random() * 20)
+        super(getX, getY).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
     }
 }
