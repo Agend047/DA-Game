@@ -1,13 +1,19 @@
 class World {
     character = new Character(100, 100);
+
     enemys = [
         new Chicken(),
         new Chicken(),
         new Chicken(),
     ];
+
     clouds = [
         new Cloud(),
-    ]
+    ];
+
+    backgroundObjects = [
+        new Background('img/5_background/layers/1_first_layer/full.png'),
+    ];
 
     ctx;
     canvas;
@@ -22,29 +28,38 @@ class World {
         console.log('Kommt...')
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.ctx.drawImage(this.character.img, this.character.pos_x, this.character.pos_y, this.character.width, this.character.height)
+        this.addToMap(this.character)
 
         this.enemys.forEach(enemy => {
             enemy.pos_x = enemy.pos_x - 0.5;
-            this.ctx.drawImage(enemy.img, enemy.pos_x, enemy.pos_y, enemy.width, enemy.height)
+            this.addToMap(enemy)
         })
 
         this.clouds.forEach(cloud => {
             cloud.pos_x = cloud.pos_x - 0.1;
-            this.ctx.drawImage(cloud.img, cloud.pos_x, cloud.pos_y, cloud.width, cloud.height)
+            this.addToMap(cloud);
+        })
+
+        this.backgroundObjects.forEach(background => {
+            this.addToMap(background);
+
         })
 
         //calling draw again
         let self = this;
         setTimeout(function () {
             requestAnimationFrame(function () {
-                //   self.draw();
+                self.draw();
             })
-        }, 33
+        }, 1000
         )
+    }
 
-        // for (chick of this.enemys) {
-        //     this.ctx.drawImage(this.chick.img, this.chick.pos_x, this.chick.pos_y, this.chick.width, this.chick.height)
-        // }
+    /** 
+     * @param {Object} mo The MovableObject, we want to draw.
+     */
+    addToMap(mo) {
+        this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
     }
 }
+
