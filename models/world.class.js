@@ -13,7 +13,7 @@ class World {
         new Background(720, 400, 'img/5_background/layers/1_first_layer/2.png'),
     ];
 
-    character = new Character(100, 280);
+    character = new Character(100, 165);
 
     enemys = [
         new Chicken(),
