@@ -5,5 +5,13 @@ class Cloud extends MovableObject {
     constructor() {
         let getX = (Math.random() * 420)
         super(getX, 1).loadImage('img/5_background/layers/4_clouds/1.png');
+
+        this.cloudMoving()
+    }
+
+    cloudMoving() {
+        setInterval(() => {
+            this.pos_x -= 0.1
+        }, 33)
     }
 }
