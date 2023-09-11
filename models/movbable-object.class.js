@@ -27,11 +27,14 @@ class MovableObject extends GameObject {
                 this.gravitySpeed += this.gravityAcceleration;
             } else {
                 this.gravitySpeed = 0;
+                if (this.pos_y > 165) {
+                    this.pos_y = 165
+                }
             }
         }, 33)
     }
 
     isAboveGround() {
-        return this.pos_y < 180;
+        return this.pos_y < 140;
     }
 }
