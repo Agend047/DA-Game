@@ -3,7 +3,7 @@ class Enemy extends MovableObject {
 
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,)
-
+        this.move();
     }
 
     strike() {
@@ -12,7 +12,7 @@ class Enemy extends MovableObject {
 
     move() {
         setInterval(() => {
-            this.moveLeft();
+            this.moveLeft(); //Shall be able to move left & right!
         }, 33);
     }
 }
@@ -26,7 +26,6 @@ class Chicken extends Enemy {
         let getX = (200 + Math.random() * 450)
         let getY = (340 + Math.random() * 20)
         super(getX, getY).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
-
         this.speed = 0.2 + (Math.random() * 0.25);
     }
 }
