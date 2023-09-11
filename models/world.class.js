@@ -13,7 +13,7 @@ class World {
         new Background(720, 400, 'img/5_background/layers/1_first_layer/2.png'),
     ];
 
-    character = new Character(100, 165);
+    character = new Character(100, 0);
 
     enemys = [
         new Chicken(),
@@ -27,23 +27,33 @@ class World {
 
     ctx;
     canvas;
+    keyboard;
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
     }
 
+    setWorld() {
+        this.character.world = this.world;
+    }
+
+    /**
+     * Drawing all the objets into the Canvas, and calling draw again after a timeout to animate.
+     */
     draw() {
-        console.log('Kommt...')
+        // console.log('Kommt...')
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.addToMap(this.air)
 
-        this.addArrayToMap(this.clouds) // cloud.pos_x = cloud.pos_x - 0.1;
+        this.addArrayToMap(this.clouds)
         this.addArrayToMap(this.backgroundObjects)
         this.addToMap(this.character)
-        this.addArrayToMap(this.enemys)  // enemy.pos_x = enemy.pos_x - 0.5;
+        this.addArrayToMap(this.enemys)
 
 
         let self = this;  //calling draw again
@@ -51,7 +61,7 @@ class World {
             requestAnimationFrame(function () {
                 self.draw();
             })
-        }, 1000
+        }, 33
         )
     }
 

@@ -1,17 +1,116 @@
 let canvas;
-let ctx
+let ctx;
+let keyboard = new Keyboard();
 
-let world;;
+let world;
 
 
 function init() {
     canvas = document.getElementById('mainCanvas');
-    world = new World(canvas);
+    world = new World(canvas, keyboard);
 
     console.log('My Char is: ', world.character)
 }
 
 
+window.addEventListener('keypress', (e) => {
+    switch (e.keyCode) {
+
+        case 37: //ArrowLeft
+            keyboard.LEFT = true;
+            break;
+        case 65: //A
+            keyboard.LEFT = true;
+            break;
+        case 97: //a
+            keyboard.LEFT = true;
+            break;
+
+        case 38: //ArrowUp
+            keyboard.UP = true;
+            break;
+        case 87: //W
+            keyboard.UP = true;
+            break;
+        case 119: //w
+            keyboard.UP = true;
+            break;
+
+        case 39: //ArrowRight
+            keyboard.RIGHT = true;
+            break;
+        case 68: //D
+            keyboard.RIGHT = true;
+            break;
+        case 100: //d
+            keyboard.RIGHT = true;
+            break;
+
+        case 40: //ArrowDown
+            keyboard.DOWN = true;
+            break;
+        case 83: //S
+            keyboard.DOWN = true;
+            break;
+        case 115: //s
+            keyboard.DOWN = true;
+            break;
+
+        case 32: //Space
+            keyboard.SPACE = true;
+    }
+
+    console.log(e.keyCode)
+    console.log(keyboard)
+})
+
+
+
+window.addEventListener('keyup', (e) => {
+    switch (e.keyCode) {
+        case 37: //ArrowLeft
+            keyboard.LEFT = false;
+            break;
+        case 65: //A
+            keyboard.LEFT = false;
+            break;
+        case 97: //a
+            keyboard.LEFT = false;
+            break;
+
+        case 38: //ArrowUp
+            keyboard.UP = true;
+            break;
+        case 87: //W
+            keyboard.UP = false;
+            break;
+        case 119: //w
+            keyboard.UP = false;
+            break;
+
+        case 39: //ArrowRight
+            keyboard.RIGHT = false;
+            break;
+        case 68: //D
+            keyboard.RIGHT = false;
+            break;
+        case 100: //d
+            keyboard.RIGHT = false;
+            break;
+
+        case 40: //ArrowDown
+            keyboard.DOWN = false;
+            break;
+        case 83: //S
+            keyboard.DOWN = false;
+            break;
+        case 115: //s
+            keyboard.DOWN = false;
+            break;
+    }
+    console.log(e.keyCode)
+    console.log(keyboard)
+})
 
 
 /**
