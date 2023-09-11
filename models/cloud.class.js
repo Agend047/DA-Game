@@ -3,9 +3,9 @@ class Cloud extends MovableObject {
     height = 400;
     speed = 0.05;
 
-    constructor() {
-        let getX = (Math.random() * 420)
-        super(getX, 1).loadImage('img/5_background/layers/4_clouds/1.png');
+    constructor(min_x, path) {
+        let getX = min_x + (Math.random() * 80)
+        super(getX, 1).loadImage(path);
 
 
         this.moveLeft()

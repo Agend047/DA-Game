@@ -20,8 +20,8 @@ class Chicken extends Enemy {
     height = 100;
     speed;
 
-    constructor() {
-        let getX = (200 + Math.random() * 450)
+    constructor(mayX) {
+        let getX = (mayX + Math.random() * 450)
         let getY = (340 + Math.random() * 20)
         super(getX, getY).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.speed = 0.2 + (Math.random() * 0.25);

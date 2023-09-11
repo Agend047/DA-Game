@@ -1,39 +1,9 @@
 class World {
 
-    backgroundObjects = [
-        new Background(0, 480, 'img/5_background/layers/air.png'),
-        new Background(719, 480, 'img/5_background/layers/air.png'),
-        new Background(1438, 480, 'img/5_background/layers/air.png'),
-        new Background(2157, 480, 'img/5_background/layers/air.png'),
-
-        new Background(0, 400, 'img/5_background/layers/3_third_layer/1.png'),
-        new Background(720, 400, 'img/5_background/layers/3_third_layer/2.png'),
-        new Background(1440, 400, 'img/5_background/layers/3_third_layer/1.png'),
-        new Background(2160, 400, 'img/5_background/layers/3_third_layer/2.png'),
-
-        new Background(0, 400, 'img/5_background/layers/2_second_layer/1.png'),
-        new Background(720, 400, 'img/5_background/layers/2_second_layer/2.png'),
-        new Background(1440, 400, 'img/5_background/layers/2_second_layer/1.png'),
-        new Background(2160, 400, 'img/5_background/layers/2_second_layer/2.png'),
-
-        new Background(0, 400, 'img/5_background/layers/1_first_layer/1.png'),
-        new Background(720, 400, 'img/5_background/layers/1_first_layer/2.png'),
-        new Background(1440, 400, 'img/5_background/layers/1_first_layer/1.png'),
-        new Background(2160, 400, 'img/5_background/layers/1_first_layer/2.png'),
-    ];
-
     character = new Character(100, 0);
-
-    enemys = [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-    ];
-
-    clouds = [
-        new Cloud(),
-    ];
-
+    enemys = level1.enemys;
+    clouds = level1.clouds;
+    backgroundObjects = level1.backgroundObjects;
     ctx;
     canvas;
     keyboard;
@@ -56,13 +26,12 @@ class World {
      * Drawing all the objets into the Canvas, and calling draw again after a timeout to animate.
      */
     draw() {
-        // console.log('Kommt...')
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.ctx.translate(this.camera_x, 0)
 
-        this.addArrayToMap(this.clouds)
         this.addArrayToMap(this.backgroundObjects)
+        this.addArrayToMap(this.clouds)
         this.addArrayToMap(this.enemys)
         this.addToMap(this.character)
 
