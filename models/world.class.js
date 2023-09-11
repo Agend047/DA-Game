@@ -1,16 +1,25 @@
 class World {
 
-    air = new GameObject(0, 0, 720, 480, 'img/5_background/layers/air.png')
-
     backgroundObjects = [
+        new Background(0, 480, 'img/5_background/layers/air.png'),
+        new Background(719, 480, 'img/5_background/layers/air.png'),
+        new Background(1438, 480, 'img/5_background/layers/air.png'),
+        new Background(2157, 480, 'img/5_background/layers/air.png'),
+
         new Background(0, 400, 'img/5_background/layers/3_third_layer/1.png'),
         new Background(720, 400, 'img/5_background/layers/3_third_layer/2.png'),
+        new Background(1440, 400, 'img/5_background/layers/3_third_layer/1.png'),
+        new Background(2160, 400, 'img/5_background/layers/3_third_layer/2.png'),
 
         new Background(0, 400, 'img/5_background/layers/2_second_layer/1.png'),
         new Background(720, 400, 'img/5_background/layers/2_second_layer/2.png'),
+        new Background(1440, 400, 'img/5_background/layers/2_second_layer/1.png'),
+        new Background(2160, 400, 'img/5_background/layers/2_second_layer/2.png'),
 
         new Background(0, 400, 'img/5_background/layers/1_first_layer/1.png'),
         new Background(720, 400, 'img/5_background/layers/1_first_layer/2.png'),
+        new Background(1440, 400, 'img/5_background/layers/1_first_layer/1.png'),
+        new Background(2160, 400, 'img/5_background/layers/1_first_layer/2.png'),
     ];
 
     character = new Character(100, 0);
@@ -51,9 +60,6 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.ctx.translate(this.camera_x, 0)
-
-
-        this.addToMap(this.air)
 
         this.addArrayToMap(this.clouds)
         this.addArrayToMap(this.backgroundObjects)
