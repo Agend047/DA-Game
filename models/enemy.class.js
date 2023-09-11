@@ -3,12 +3,18 @@ class Enemy extends MovableObject {
 
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,)
-        this.moveLeft();
+
     }
 
     strike() {
         console.log('ATTACK!!')
     };
+
+    move() {
+        setInterval(() => {
+            this.moveLeft();
+        }, 33);
+    }
 }
 
 class Chicken extends Enemy {

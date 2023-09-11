@@ -12,8 +12,26 @@ function init() {
     console.log('My Char is: ', world.character)
 }
 
+/**
+ * Helper function, that allows me to use intervalls for an amount of uses.
+ * @param {Function} callback the function, i want to delay
+ * @param {Number} delay Interval delay in MS
+ * @param {Number} repetitions max number of Intervalls
+ */
+function setIntervalX(callback, delay, repetitions) {
+    var x = 0;
+    var intervalID = window.setInterval(function () {
 
-window.addEventListener('keypress', (e) => {
+        callback();
+
+        if (++x === repetitions) {
+            window.clearInterval(intervalID);
+        }
+    }, delay);
+}
+
+
+window.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
 
         case 37: //ArrowLeft
@@ -59,12 +77,7 @@ window.addEventListener('keypress', (e) => {
         case 32: //Space
             keyboard.SPACE = true;
     }
-
-    console.log(e.keyCode)
-    console.log(keyboard)
 })
-
-
 
 window.addEventListener('keyup', (e) => {
     switch (e.keyCode) {
@@ -79,7 +92,7 @@ window.addEventListener('keyup', (e) => {
             break;
 
         case 38: //ArrowUp
-            keyboard.UP = true;
+            keyboard.UP = false;
             break;
         case 87: //W
             keyboard.UP = false;
@@ -108,8 +121,6 @@ window.addEventListener('keyup', (e) => {
             keyboard.DOWN = false;
             break;
     }
-    console.log(e.keyCode)
-    console.log(keyboard)
 })
 
 

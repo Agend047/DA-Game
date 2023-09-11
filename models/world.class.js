@@ -37,8 +37,9 @@ class World {
         this.setWorld();
     }
 
+    // Handing the World attributes to another class. (for example, to Character)
     setWorld() {
-        this.character.world = this.world;
+        this.character.world = this;
     }
 
     /**
@@ -52,8 +53,8 @@ class World {
 
         this.addArrayToMap(this.clouds)
         this.addArrayToMap(this.backgroundObjects)
-        this.addToMap(this.character)
         this.addArrayToMap(this.enemys)
+        this.addToMap(this.character)
 
 
         let self = this;  //calling draw again

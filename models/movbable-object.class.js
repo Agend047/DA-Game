@@ -9,13 +9,15 @@ class MovableObject extends GameObject {
     }
 
     moveRight() {
-        console.log('Move right')
+        // setInterval(() => {
+        this.pos_x += this.speed;
+        // }, 33)
     };
 
     moveLeft() {
-        setInterval(() => {
-            this.pos_x -= this.speed;
-        }, 33)
+        // setInterval(() => {
+        this.pos_x -= this.speed;
+        // }, 33)
     };
 
     applyGravity() {
