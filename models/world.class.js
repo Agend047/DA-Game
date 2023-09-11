@@ -28,6 +28,7 @@ class World {
     ctx;
     canvas;
     keyboard;
+    camera_x = 100;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -49,12 +50,18 @@ class World {
         // console.log('Kommt...')
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
+        this.ctx.translate(this.camera_x, 0)
+
+
         this.addToMap(this.air)
 
         this.addArrayToMap(this.clouds)
         this.addArrayToMap(this.backgroundObjects)
         this.addArrayToMap(this.enemys)
         this.addToMap(this.character)
+
+        this.ctx.translate(-this.camera_x, 0)
+
 
 
         let self = this;  //calling draw again
