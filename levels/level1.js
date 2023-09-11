@@ -37,4 +37,6 @@ const level1 = new Level(
         new Background(719 * 2, 500, 'img/5_background/layers/1_first_layer/1.png'),
         new Background(719 * 3, 500, 'img/5_background/layers/1_first_layer/2.png'),
     ],
+
+    level_end_x = (719 * 4)
 )

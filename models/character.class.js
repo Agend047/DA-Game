@@ -3,7 +3,7 @@ class Character extends MovableObject {
 
     height = 280;
     width = 120;
-    speed = 12;
+    speed = 80 //12;
     jumpSpeed = 8;
     world;
 
@@ -32,13 +32,17 @@ class Character extends MovableObject {
      */
     control() {
         setInterval(() => {
-            if (this.world.keyboard.LEFT) {
-                this.pos_x -= this.speed;
-                this.world.camera_x = -this.pos_x + 100;
-            }
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
                 this.pos_x += this.speed;
-                this.world.camera_x = -this.pos_x + 100;
+                if (this.world.camera_x > - (world.actualLevel.level_end_x - 720) && this.pos_x > 120) {
+                    this.world.camera_x = -this.pos_x + 120;
+                }
+            }
+            if (this.world.keyboard.LEFT && this.pos_x > 0) {
+                this.pos_x -= this.speed;
+                if (this.world.camera_x < 0 && this.pos_x < (world.actualLevel.level_end_x - 720)) {
+                    this.world.camera_x = -this.pos_x + 120;
+                }
             }
             if (this.world.keyboard.UP) {
                 this.jump();

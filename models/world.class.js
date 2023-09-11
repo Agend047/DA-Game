@@ -1,9 +1,10 @@
 class World {
 
-    character = new Character(100, 140);
-    enemys = level1.enemys;
-    clouds = level1.clouds;
-    backgroundObjects = level1.backgroundObjects;
+    actualLevel = level1;
+    character = new Character(120, 140);
+    enemys = this.actualLevel.enemys;
+    clouds = this.actualLevel.clouds;
+    backgroundObjects = this.actualLevel.backgroundObjects;
     ctx;
     canvas;
     keyboard;
