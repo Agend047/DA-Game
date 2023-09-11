@@ -8,16 +8,16 @@ class MovableObject extends GameObject {
         super(pos_x, pos_y, width, height,)
     }
 
-    moveRight() {
-        // setInterval(() => {
-        this.pos_x += this.speed;
-        // }, 33)
+    moveLeft() {
+        setInterval(() => {
+            this.pos_x -= this.speed;
+        }, 33)
     };
 
-    moveLeft() {
-        // setInterval(() => {
-        this.pos_x -= this.speed;
-        // }, 33)
+    moveRight() {
+        setInterval(() => {
+            this.pos_x += this.speed;
+        }, 33)
     };
 
     applyGravity() {

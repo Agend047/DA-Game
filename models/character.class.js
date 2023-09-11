@@ -24,10 +24,10 @@ class Character extends MovableObject {
     control() {
         setInterval(() => {
             if (this.world.keyboard.LEFT) {
-                this.moveLeft();
+                this.pos_x -= this.speed;
             }
             if (this.world.keyboard.RIGHT) {
-                this.moveRight();
+                this.pos_x += this.speed;
             }
             if (this.world.keyboard.UP) {
                 this.jump();
