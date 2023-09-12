@@ -11,7 +11,10 @@ class Enemy extends MovableObject {
     };
 
     move() {
-        this.moveLeft(); //Shall be able to move left & right! 
+        setInterval(() => {
+            this.moveLeft(); //Shall be able to move left & right! 
+        }, 33);
+
     }
 }
 

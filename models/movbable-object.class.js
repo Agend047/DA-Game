@@ -8,18 +8,14 @@ class MovableObject extends GameObject {
         super(pos_x, pos_y, width, height,)
     }
 
-    //constant moving for enemys to the left side
-    moveLeft() {
-        setInterval(() => {
-            this.pos_x -= this.speed;
-        }, 33)
-    };
-
     //Constant moving for enemys to right side.
     moveRight() {
-        setInterval(() => {
-            this.pos_x += this.speed;
-        }, 33)
+        this.pos_x += this.speed;
+    };
+
+    //constant moving for enemys to the left side
+    moveLeft() {
+        this.pos_x -= this.speed;
     };
 
     /** 
