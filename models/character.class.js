@@ -3,7 +3,7 @@ class Character extends MovableObject {
 
     height = 280;
     width = 120;
-    speed = 80 //12;
+    speed = 12;
     jumpSpeed = 8;
     world;
 
@@ -13,9 +13,27 @@ class Character extends MovableObject {
         this.control();
     }
 
+    /**Moving Char according to speed, 
+     * and checking camera placement to move camera. So hopefully theres no visible black screen on the right side.*/
+    charMoveRight() {
+        this.pos_x += this.speed;
+        if (this.world.camera_x > - (world.actualLevel.level_end_x - 720) && this.pos_x > 120) {
+            this.world.camera_x = -this.pos_x + 120;
+        }
+    }
+
+    /**Moving Char according to speed, 
+     * and checking camera placement to move camera for no visible black Screen on the left side. */
+    charMoveLeft() {
+        this.pos_x -= this.speed;
+        if (this.world.camera_x < 0 && this.pos_x < (world.actualLevel.level_end_x - 720)) {
+            this.world.camera_x = -this.pos_x + 120;
+        }
+    }
+
     /**
      * If Char stands on ground, gravity gets reversed, and he jumps.
-     * While holding the UP-button, the lower part will make gravity speed rise slower- Resulting in higher jumps, when key keeps pressed.
+     * While holding the UP-button, the lower part will make gravity speed rise slower- Resulting in higher jumps, when user keeps the up-key pressed.
      */
     jump() {
         if (this.gravitySpeed == 0 && !this.isAboveGround()) {
@@ -33,16 +51,10 @@ class Character extends MovableObject {
     control() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
-                this.pos_x += this.speed;
-                if (this.world.camera_x > - (world.actualLevel.level_end_x - 720) && this.pos_x > 120) {
-                    this.world.camera_x = -this.pos_x + 120;
-                }
+                this.charMoveRight();
             }
-            if (this.world.keyboard.LEFT && this.pos_x > 0) {
-                this.pos_x -= this.speed;
-                if (this.world.camera_x < 0 && this.pos_x < (world.actualLevel.level_end_x - 720)) {
-                    this.world.camera_x = -this.pos_x + 120;
-                }
+            if (this.world.keyboard.LEFT && this.pos_x > 10) {
+                this.charMoveLeft();
             }
             if (this.world.keyboard.UP) {
                 this.jump();

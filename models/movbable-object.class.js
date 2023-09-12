@@ -8,18 +8,25 @@ class MovableObject extends GameObject {
         super(pos_x, pos_y, width, height,)
     }
 
+    //constant moving for enemys to the left side
     moveLeft() {
         setInterval(() => {
             this.pos_x -= this.speed;
         }, 33)
     };
 
+    //Constant moving for enemys to right side.
     moveRight() {
         setInterval(() => {
             this.pos_x += this.speed;
         }, 33)
     };
 
+    /** 
+     * To simulate gravity, everything above the ground will change position towards ground.
+     * Speed is increasing by 'gravityAcceleration'
+     * Else will make sure that Character wont be positioned to far from moving-area.
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.gravitySpeed < 0) {
@@ -33,6 +40,20 @@ class MovableObject extends GameObject {
             }
         }, 33)
     }
+
+    /**
+     * If Char stands on ground, gravity gets reversed, and he jumps.
+     * While holding the UP-button, the lower part will make gravity speed rise slower- Resulting in higher jumps, when user keeps the up-key pressed.
+     */
+    jump() {
+        if (this.gravitySpeed == 0 && !this.isAboveGround()) {
+            this.gravitySpeed = -20;
+            this.pos_y += this.jumpSpeed;
+        }
+        else if (this.gravitySpeed < 0) {
+            this.gravitySpeed -= 0.55;
+        }
+    };
 
     isAboveGround() {
         return this.pos_y < 140;
