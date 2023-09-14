@@ -33,11 +33,13 @@ class Chicken extends Enemy {
     }
 }
 
-class Orc extends Enemy {
+class OrcWarrior extends Enemy {
     width = 100;
     height = 200;
+    frameRate = 5;
+
 
     constructor(min_x) {
-        super(min_x).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        super(min_x).loadImage('img/enemys_orcs/orc_warrior/Idle.png');
     }
 }

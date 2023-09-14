@@ -1,4 +1,4 @@
-class Background extends MovableObject {
+class Background extends GameObject {
 
     constructor(pos_x, height, imagePath) {
         super(pos_x, 0, 720, height).loadImage(imagePath);

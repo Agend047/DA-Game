@@ -3,9 +3,14 @@ class MovableObject extends GameObject {
 
     gravitySpeed = 0;
     gravityAcceleration = 1.5;
+    frameRate = 1;
+    currentFrame = 0;
+    frameBuffer = 3;
+    elapsedFrames = 0;
 
-    constructor(pos_x, pos_y, width, height,) {
-        super(pos_x, pos_y, width, height,)
+    constructor(pos_x, pos_y, frameRate, imageSrc) {
+        super(pos_x, pos_y,)
+        this.frameRate = frameRate;
     }
 
     //Constant moving for enemys to right side.
@@ -51,7 +56,27 @@ class MovableObject extends GameObject {
         }
     };
 
+    /**
+     * Simple check, if something is still above the ground
+     * @returns true or false
+     */
     isAboveGround() {
         return this.pos_y < 140;
     }
+
+    /**
+     * Support function for Sprotes:
+     * On the one Hand, takes care that the animated Sprites wont move to quickly by counting 'elapsedFrames' (and resetting, on a to high value)
+     * Secoundly and mainly, sets currentFrame back to 0, when last frame is played.
+     */
+    updateFrames() {
+        this.elapsedFrames++
+        if (this.elapsedFrames % this.frameBuffer === 0) {
+            if (this.elapsedFrames >= 302) { this.elapsedFrames = 0 }
+            if (this.currentFrame < this.frameRate - 1) {
+                this.currentFrame++
+            } else { this.currentFrame = 0 }
+        }
+    }
+
 }

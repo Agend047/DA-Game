@@ -1,10 +1,10 @@
 /** the Playable Character */
 class Character extends MovableObject {
 
-    height = 280;
-    width = 120;
-    speed = 12;
-    jumpSpeed = 8;
+    // height = 280;
+    // width = 120;
+    // speed = 12;
+    // jumpSpeed = 8;
     world;
 
     constructor(pos_x, pos_y,) {
@@ -62,9 +62,10 @@ class Acco extends Character {
     width = 120;
     speed = 10;
     jumpSpeed = 8;
+    frameRate = 8;
 
     constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        super(pos_x, pos_y,).loadImage('img/heroes/Acco/Idle.png');
 
     }
 
@@ -75,9 +76,11 @@ class Eleria extends Character {
     width = 120;
     speed = 14;
     jumpSpeed = 10;
+    frameRate = 6;
+
 
     constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        super(pos_x, pos_y,).loadImage('img/heroes/Eleria/Idle.png');
 
     }
 
@@ -88,9 +91,11 @@ class Kazim extends Character {
     width = 120;
     speed = 12;
     jumpSpeed = 9;
+    frameRate = 6;
+
 
     constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        super(pos_x, pos_y,).loadImage('img/heroes/Kazim/Idle.png');
 
     }
 

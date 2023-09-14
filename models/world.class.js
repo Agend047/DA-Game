@@ -1,7 +1,7 @@
 class World {
 
     actualLevel = level1;
-    character = new Acco(120, 100);
+    character = new Kazim(120, 100);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
@@ -34,7 +34,8 @@ class World {
         this.addArrayToMap(this.backgroundObjects)
         this.addArrayToMap(this.clouds)
         this.addArrayToMap(this.enemys)
-        this.addToMap(this.character)
+
+        this.drawSprite(this.character)
 
         this.ctx.translate(-this.camera_x, 0)
 
@@ -67,6 +68,33 @@ class World {
         this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
     }
 
+    /**
+     * For Sprites:
+     * A Cropbox gets generated and jumps over the Sprite, to simulate an animation.
+     * @param {Object} mo The MovableObject, we want to draw.
+     */
+    drawSprite(mo) {
+        mo.updateFrames()
+        const cropbox = {
+            position: {
+                x: (mo.currentFrame * (mo.img.width / mo.frameRate)),
+                y: 0,
+            },
+            width: mo.img.width / mo.frameRate, //mo.frameRate
+            height: mo.img.height,
+        }
 
+        this.ctx.drawImage(
+            mo.img,
+            cropbox.position.x,
+            cropbox.position.y,
+            cropbox.width,
+            cropbox.height,
+            mo.pos_x,
+            mo.pos_y,
+            mo.width,
+            mo.height,
+        )
+    }
 }
 
