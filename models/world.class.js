@@ -1,7 +1,7 @@
 class World {
 
     actualLevel = level1;
-    character = new Character(120, 140);
+    character = new Acco(120, 100);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;

@@ -31,8 +31,6 @@ class Character extends MovableObject {
         }
     }
 
-
-
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
@@ -54,6 +52,46 @@ class Character extends MovableObject {
 
             }
         }, 33)
+    }
+
+}
+
+
+class Acco extends Character {
+    height = 280;
+    width = 120;
+    speed = 10;
+    jumpSpeed = 8;
+
+    constructor(pos_x, pos_y,) {
+        super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+
+    }
+
+}
+
+class Eleria extends Character {
+    height = 280;
+    width = 120;
+    speed = 14;
+    jumpSpeed = 10;
+
+    constructor(pos_x, pos_y,) {
+        super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+
+    }
+
+}
+
+class Kazim extends Character {
+    height = 280;
+    width = 120;
+    speed = 12;
+    jumpSpeed = 9;
+
+    constructor(pos_x, pos_y,) {
+        super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+
     }
 
 }

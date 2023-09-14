@@ -1,10 +1,8 @@
 /** SuperClass for Charakter and Enemys, he can interact with */
 class MovableObject extends GameObject {
 
-
     gravitySpeed = 0;
     gravityAcceleration = 1.5;
-
 
     constructor(pos_x, pos_y, width, height,) {
         super(pos_x, pos_y, width, height,)
@@ -45,7 +43,7 @@ class MovableObject extends GameObject {
      */
     jump() {
         if (this.gravitySpeed == 0 && !this.isAboveGround()) {
-            this.gravitySpeed = -20;
+            this.gravitySpeed -= this.jumpSpeed * 2.2;
             this.pos_y += this.jumpSpeed;
         }
         else if (this.gravitySpeed < 0) {
