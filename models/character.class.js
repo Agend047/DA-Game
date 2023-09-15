@@ -88,7 +88,7 @@ class Acco extends Character {
         },
         meele1: {
             imageSrc: 'img/heroes/Acco/Attack_1.png',
-            frameRate: 4,
+            frameRate: 6,
             frameBuffer: 2,
         },
         meele2: {
