@@ -118,6 +118,9 @@ window.addEventListener('keyup', (e) => {
         case 115: //s
             keyboard.DOWN = false;
             break;
+
+        case 32: //Space
+            keyboard.SPACE = false;
     }
 })
 
