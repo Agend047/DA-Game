@@ -62,7 +62,20 @@ class World {
      * @param {Object} mo The MovableObject, we want to draw.
      */
     addToMap(mo) {
+        if (mo.otherdirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);
+            mo.pos_x = mo.pos_x * -1;
+        }
+
         this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
+
+        if (mo.otherdirection) {
+            mo.pos_x = mo.pos_x * -1;
+
+            this.ctx.restore();
+        }
     }
 
     /**
@@ -90,6 +103,13 @@ class World {
             width: mo.img.width / mo.frameRate, //mo.frameRate
             height: mo.img.height,
         }
+
+        if (mo.otherdirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);
+            mo.pos_x = mo.pos_x * -1;
+        }
         this.ctx.drawImage(
             mo.img,
             cropbox.position.x,
@@ -101,6 +121,12 @@ class World {
             mo.width,
             mo.height,
         )
+
+        if (mo.otherdirection) {
+            mo.pos_x = mo.pos_x * -1;
+
+            this.ctx.restore();
+        }
     }
 }
 

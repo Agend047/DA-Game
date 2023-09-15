@@ -42,6 +42,7 @@ class Character extends MovableObject {
             }
             if (this.world.keyboard.LEFT && this.pos_x > 10) {
                 this.charMoveLeft();
+                this.loadImageSprite(this.animations.run)
             }
             if (this.world.keyboard.UP) {
                 this.jump();
