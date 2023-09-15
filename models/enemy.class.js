@@ -3,9 +3,8 @@ class Enemy extends MovableObject {
 
     speed;
 
-    constructor(min_x) {
+    constructor(min_x, getY) {
         let getX = (min_x + Math.random() * 450)
-        let getY = (210 + Math.random() * 20)
 
         super(getX, getY,)
         this.speed = 0.2 + (Math.random() * 0.25);
@@ -16,9 +15,15 @@ class Enemy extends MovableObject {
         console.log('ATTACK!!')
     };
 
-    move() {
+    move(input) {
         setInterval(() => {
-            this.moveLeft(); //Shall be able to move left & right! 
+            if (!input) {
+                this.moveLeft(); //Shall be able to move left & right! 
+                this.loadImageSprite(this.animations.walk)
+            } else {
+                this.moveLeft(); //Shall be able to move left & right! 
+                this.loadImageSprite(this.animations.walk)
+            }
         }, 33);
 
     }
@@ -34,8 +39,8 @@ class Chicken extends Enemy {
 }
 
 class OrcWarrior extends Enemy {
-    width = 100;
-    height = 200;
+    width = 110;
+    height = 220;
 
     speed = 1;
     jumpSpeed = 8;
@@ -71,22 +76,24 @@ class OrcWarrior extends Enemy {
         walk: {
             imageSrc: 'img/enemys_orcs/orc_warrior/Walk.png',
             frameRate: 7,
-            frameBuffer: 2,
+            frameBuffer: 4,
         },
     }
 
     constructor(min_x) {
-        super(min_x)
+        let getY = (190 + Math.random() * 20)
+
+        super(min_x, getY)
         this.loadImageSprite(this.animations.idle)
     }
 }
 
 
 class OrcBerserker extends Enemy {
-    width = 100;
-    height = 200;
+    width = 140;
+    height = 260;
 
-    speed = 0.1;
+    speed = 0.3;
     jumpSpeed = 8;
     frameRate = 8;
 
@@ -120,12 +127,35 @@ class OrcBerserker extends Enemy {
         walk: {
             imageSrc: 'img/enemys_orcs/orc_berserker/Walk.png',
             frameRate: 7,
-            frameBuffer: 2,
+            frameBuffer: 4,
         },
     }
 
     constructor(min_x) {
-        super(min_x)
+        let getY = (150 + Math.random() * 20)
+
+        super(min_x, getY)
         this.loadImageSprite(this.animations.idle)
+        // this.hunt()
+    }
+
+    hunt() {
+        setTimeout(() => {
+            setInterval(() => {
+                if (this.isPlayerLeft()) {
+                    this.move()
+                } else {
+                    this.move('right')
+                    console.log('right')
+                }
+
+            }, 1000);
+        }, 1000);
+    }
+
+    isPlayerLeft() {
+        let playerX = world.character.pos_x
+        let orcX = this.pos_x
+        return playerX < orcX ? true : false
     }
 }
