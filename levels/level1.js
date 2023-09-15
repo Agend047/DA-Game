@@ -1,8 +1,8 @@
 const level1 = new Level(
     [
-        new Chicken(200),
-        new Chicken(200),
-        new Chicken(200),
+        new OrcWarrior(200),
+        new OrcWarrior(200),
+        new OrcWarrior(200),
     ],
 
     [

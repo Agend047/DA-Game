@@ -8,6 +8,7 @@ class MovableObject extends GameObject {
     frameBuffer = 3;
     elapsedFrames = 0;
     img;
+    otherdirection = false;
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
         super(pos_x, pos_y,)
@@ -25,11 +26,13 @@ class MovableObject extends GameObject {
     //Constant moving for enemys to right side.
     moveRight() {
         this.pos_x += this.speed;
+        // this.loadImageSprite(this.animations.run)
     };
 
     //constant moving for enemys to the left side
     moveLeft() {
         this.pos_x -= this.speed;
+        // this.loadImageSprite(this.animations.run)
     };
 
     /** 

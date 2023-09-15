@@ -38,21 +38,21 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
                 this.charMoveRight();
-                this.loadImageSprite(this.animations.run)
             }
             if (this.world.keyboard.LEFT && this.pos_x > 10) {
                 this.charMoveLeft();
-                this.loadImageSprite(this.animations.run)
             }
             if (this.world.keyboard.UP) {
                 this.jump();
                 this.loadImageSprite(this.animations.jump)
             }
             if (this.world.keyboard.DOWN) {
-                this.loadImageSprite(this.animations.idle)
             }
             if (this.world.keyboard.SPACE) {
                 this.loadImageSprite(this.animations.meele1)
+            }
+            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE) {
+                this.loadImageSprite(this.animations.idle)
             }
         }, 33)
     }
@@ -85,8 +85,13 @@ class Acco extends Character {
         },
         meele1: {
             imageSrc: 'img/heroes/Acco/Attack_1.png',
-            frameRate: 6,
-            frameBuffer: 3,
+            frameRate: 4,
+            frameBuffer: 2,
+        },
+        meele2: {
+            imageSrc: 'img/heroes/Acco/Attack_2.png',
+            frameRate: 4,
+            frameBuffer: 2,
         },
     }
 

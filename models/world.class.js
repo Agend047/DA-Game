@@ -1,7 +1,7 @@
 class World {
 
     actualLevel = level1;
-    character = new Kazim(120, 100);
+    character = new Acco(120, 100);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
@@ -30,10 +30,10 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.ctx.translate(this.camera_x, 0)
-
         this.addArrayToMap(this.backgroundObjects)
         this.addArrayToMap(this.clouds)
-        this.addArrayToMap(this.enemys)
+
+        this.addSpriteArrayToMap(this.enemys)
 
         this.drawSprite(this.character)
 
@@ -60,13 +60,20 @@ class World {
         })
     }
 
-
     /** 
      * @param {Object} mo The MovableObject, we want to draw.
      */
     addToMap(mo) {
         this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
     }
+
+
+    addSpriteArrayToMap(objects) {
+        objects.forEach(o => {
+            this.drawSprite(o)
+        })
+    }
+
 
     /**
      * For Sprites:
@@ -83,7 +90,6 @@ class World {
             width: mo.img.width / mo.frameRate, //mo.frameRate
             height: mo.img.height,
         }
-
         this.ctx.drawImage(
             mo.img,
             cropbox.position.x,
