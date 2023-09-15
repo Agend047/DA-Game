@@ -8,22 +8,17 @@ class Enemy extends MovableObject {
 
         super(getX, getY,)
         this.speed = 0.2 + (Math.random() * 0.25);
-        this.move();
     }
 
     strike() {
         console.log('ATTACK!!')
     };
 
-    move(input) {
+    move() {
         setInterval(() => {
-            if (!input) {
-                this.moveLeft(); //Shall be able to move left & right! 
-                this.loadImageSprite(this.animations.walk)
-            } else {
-                this.moveLeft(); //Shall be able to move left & right! 
-                this.loadImageSprite(this.animations.walk)
-            }
+            this.moveLeft(); //Shall be able to move left & right! 
+            this.loadImageSprite(this.animations.walk)
+
         }, 33);
 
     }
@@ -85,6 +80,8 @@ class OrcWarrior extends Enemy {
 
         super(min_x, getY)
         this.loadImageSprite(this.animations.idle)
+        this.move();
+
     }
 }
 
@@ -93,7 +90,7 @@ class OrcBerserker extends Enemy {
     width = 140;
     height = 260;
 
-    speed = 0.3;
+    speed = 0.4;
     jumpSpeed = 8;
     frameRate = 8;
 
@@ -136,20 +133,26 @@ class OrcBerserker extends Enemy {
 
         super(min_x, getY)
         this.loadImageSprite(this.animations.idle)
-        // this.hunt()
+        this.hunt()
     }
 
     hunt() {
         setTimeout(() => {
             setInterval(() => {
                 if (this.isPlayerLeft()) {
-                    this.move()
+                    let hunting = setInterval(() => {
+                        this.moveLeft();
+                        this.loadImageSprite(this.animations.walk)
+                    }, 33);
                 } else {
-                    this.move('right')
-                    console.log('right')
+                    let hunting = setInterval(() => {
+                        this.moveRight();
+                        this.loadImageSprite(this.animations.walk)
+                    }, 33);
                 }
+                try { clearInterval(hunting) } catch { return }
 
-            }, 1000);
+            }, 600);
         }, 1000);
     }
 

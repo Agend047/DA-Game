@@ -26,13 +26,11 @@ class MovableObject extends GameObject {
     //Constant moving for enemys to right side.
     moveRight() {
         this.pos_x += this.speed;
-        this.loadImageSprite(this.animations.run)
     };
 
     //constant moving for enemys to the left side
     moveLeft() {
         this.pos_x -= this.speed;
-        //this.loadImageSprite(this.animations.run)
     };
 
     /** 

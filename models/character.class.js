@@ -38,6 +38,7 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
                 this.charMoveRight();
+                this.loadImageSprite(this.animations.run)
             }
             if (this.world.keyboard.LEFT && this.pos_x > 10) {
                 this.charMoveLeft();
