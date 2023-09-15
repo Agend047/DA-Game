@@ -38,18 +38,21 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
                 this.charMoveRight();
+                this.loadImageSprite(this.animations.run)
             }
             if (this.world.keyboard.LEFT && this.pos_x > 10) {
                 this.charMoveLeft();
+                this.loadImageSprite(this.animations.run)
             }
             if (this.world.keyboard.UP) {
                 this.jump();
+                this.loadImageSprite(this.animations.jump)
             }
             if (this.world.keyboard.DOWN) {
-
+                this.loadImageSprite(this.animations.idle)
             }
             if (this.world.keyboard.SPACE) {
-
+                this.loadImageSprite(this.animations.meele1)
             }
         }, 33)
     }
@@ -64,9 +67,33 @@ class Acco extends Character {
     jumpSpeed = 8;
     frameRate = 8;
 
-    constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/heroes/Acco/Idle.png');
+    animations = {
+        idle: {
+            imageSrc: 'img/heroes/Acco/Idle.png',
+            frameRate: 8,
+            frameBuffer: 3,
+        },
+        run: {
+            imageSrc: 'img/heroes/Acco/Run.png',
+            frameRate: 8,
+            frameBuffer: 3,
+        },
+        jump: {
+            imageSrc: 'img/heroes/Acco/Jump.png',
+            frameRate: 8,
+            frameBuffer: 3,
+        },
+        meele1: {
+            imageSrc: 'img/heroes/Acco/Attack_1.png',
+            frameRate: 6,
+            frameBuffer: 3,
+        },
+    }
 
+    constructor(pos_x, pos_y,) {
+
+        super(pos_x, pos_y,)
+        this.loadImageSprite(this.animations.idle)
     }
 
 }
@@ -78,10 +105,32 @@ class Eleria extends Character {
     jumpSpeed = 10;
     frameRate = 6;
 
+    animations = {
+        idle: {
+            imageSrc: 'img/heroes/Eleria/Idle.png',
+            frameRate: 6,
+            frameBuffer: 3,
+        },
+        run: {
+            imageSrc: 'img/heroes/Eleria/Run.png',
+            frameRate: 8,
+            frameBuffer: 3,
+        },
+        jump: {
+            imageSrc: 'img/heroes/Eleria/Jump.png',
+            frameRate: 9,
+            frameBuffer: 3,
+        },
+        meele1: {
+            imageSrc: 'img/heroes/Eleria/Attack_1.png',
+            frameRate: 4,
+            frameBuffer: 3,
+        },
+    }
 
     constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/heroes/Eleria/Idle.png');
-
+        super(pos_x, pos_y,);
+        this.loadImageSprite(this.animations.idle)
     }
 
 }
@@ -93,9 +142,34 @@ class Kazim extends Character {
     jumpSpeed = 9;
     frameRate = 6;
 
+    animations = {
+        idle: {
+            imageSrc: 'img/heroes/Kazim/Idle.png',
+            frameRate: 6,
+            frameBuffer: 3,
+        },
+        run: {
+            imageSrc: 'img/heroes/Kazim/Run.png',
+            frameRate: 8,
+            frameBuffer: 3,
+        },
+        jump: {
+            imageSrc: 'img/heroes/Kazim/Jump.png',
+            frameRate: 11,
+            frameBuffer: 3,
+        },
+        meele1: {
+            imageSrc: 'img/heroes/Kazim/Attack_1.png',
+            frameRate: 10,
+            frameBuffer: 2,
+        },
+    }
+
 
     constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/heroes/Kazim/Idle.png');
+        super(pos_x, pos_y,);
+
+        this.loadImageSprite(this.animations.idle)
 
     }
 

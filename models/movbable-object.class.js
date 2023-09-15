@@ -7,10 +7,19 @@ class MovableObject extends GameObject {
     currentFrame = 0;
     frameBuffer = 3;
     elapsedFrames = 0;
+    img;
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
         super(pos_x, pos_y,)
         this.frameRate = frameRate;
+    }
+
+    loadImageSprite(key) {
+        this.img = new Image;
+        this.img.src = key.imageSrc;
+
+        this.frameRate = key.frameRate;
+        this.frameBuffer = key.frameBuffer;
     }
 
     //Constant moving for enemys to right side.
