@@ -51,7 +51,10 @@ class Character extends MovableObject {
             if (this.world.keyboard.SPACE) {
                 this.loadImageSprite(this.animations.meele1)
             }
-            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE) {
+            if (this.world.keyboard.G) {
+                this.loadImageSprite(this.animations.range)
+            }
+            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
                 this.loadImageSprite(this.animations.idle)
             }
         }, 33)
@@ -62,7 +65,7 @@ class Character extends MovableObject {
 
 class Acco extends Character {
     height = 280;
-    width = 120;
+    width = 140;
     speed = 10;
     jumpSpeed = 8;
     frameRate = 8;
@@ -104,8 +107,8 @@ class Acco extends Character {
 }
 
 class Eleria extends Character {
-    height = 280;
     width = 120;
+    height = 280;
     speed = 14;
     jumpSpeed = 10;
     frameRate = 6;
@@ -130,6 +133,11 @@ class Eleria extends Character {
             imageSrc: 'img/heroes/Eleria/Attack_1.png',
             frameRate: 4,
             frameBuffer: 3,
+        },
+        range: {
+            imageSrc: 'img/heroes/Eleria/Shot_1.png',
+            frameRate: 14,
+            frameBuffer: 2,
         },
     }
 
@@ -168,13 +176,18 @@ class Kazim extends Character {
             frameRate: 10,
             frameBuffer: 2,
         },
+        range: {
+            imageSrc: 'img/heroes/Kazim/Attack_3FULL.png',
+            frameRate: 7,
+            frameBuffer: 3,
+        },
     }
 
 
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,);
 
-        this.loadImageSprite(this.animations.idle)
+        this.loadImageSprite(this.animations.range)
 
     }
 

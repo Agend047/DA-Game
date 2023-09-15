@@ -74,6 +74,12 @@ window.addEventListener('keydown', (e) => {
 
         case 32: //Space
             keyboard.SPACE = true;
+            break
+
+        case 71: //g
+            keyboard.G = true;
+            break
+
     }
 })
 
@@ -121,6 +127,11 @@ window.addEventListener('keyup', (e) => {
 
         case 32: //Space
             keyboard.SPACE = false;
+
+        case 71: //g
+            keyboard.G = false;
+            break
+
     }
 })
 

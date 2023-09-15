@@ -1,7 +1,7 @@
 class World {
 
     actualLevel = level1;
-    character = new Acco(120, 100);
+    character = new Eleria(120, 100);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
@@ -39,8 +39,6 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0)
 
-
-
         let self = this;  //calling draw again
         setTimeout(function () {
             requestAnimationFrame(function () {
@@ -67,13 +65,15 @@ class World {
         this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
     }
 
-
+    /**
+     * Sprites use theyre own function. Sprite Arrays need to be filled differently from non-Sprite Images.
+     * @param {Array} objects the Array of Sprite-Elements, we want to add
+     */
     addSpriteArrayToMap(objects) {
         objects.forEach(o => {
             this.drawSprite(o)
         })
     }
-
 
     /**
      * For Sprites:
