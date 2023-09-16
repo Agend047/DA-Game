@@ -22,7 +22,7 @@ function init() {
 function setIntervalX(callback, delay, repetitions) {
     var x = 0;
     var intervalID = setInterval(function () {
-        callback;
+        callback
         if (++x === repetitions) {
             clearInterval(intervalID);
         }

@@ -29,7 +29,7 @@ class MovableObject extends GameObject {
 
         this.frameRate = key.frameRate;
         this.frameBuffer = key.frameBuffer;
-        this.lastloaded = key
+        this.lastloaded = key;
     }
 
     /**
@@ -70,7 +70,7 @@ class MovableObject extends GameObject {
                     this.pos_y = 165
                 }
             }
-        }, 33)
+        }, this.globeDelay)
     }
 
     /**
@@ -102,6 +102,10 @@ class MovableObject extends GameObject {
      */
     updateFrames() {
         this.newAnimation ? this.elapsedFrames = 0 : 0;
+
+        // if (this.newAnimation) {
+        //     debugger
+        // }
 
         this.elapsedFrames++
         if (this.elapsedFrames % this.frameBuffer === 0) {
