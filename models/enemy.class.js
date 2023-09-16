@@ -19,7 +19,7 @@ class Enemy extends MovableObject {
             this.moveLeft(); //Shall be able to move left & right! 
             this.loadImageSprite(this.animations.walk)
 
-        }, 33);
+        }, this.globeDelay);
 
     }
 }
@@ -90,7 +90,7 @@ class OrcBerserker extends Enemy {
     width = 140;
     height = 260;
 
-    speed = 0.4;
+    speed = 1;
     jumpSpeed = 8;
     frameRate = 8;
 
@@ -136,29 +136,63 @@ class OrcBerserker extends Enemy {
         this.hunt()
     }
 
+    /**
+     * The Orc will follow the Player arround the Map.
+     * The first timeout is technically needed, otherwise the used variables may still be undefined.
+     */
     hunt() {
         setTimeout(() => {
             setInterval(() => {
                 if (this.isPlayerLeft()) {
-                    let hunting = setInterval(() => {
-                        this.moveLeft();
-                        this.loadImageSprite(this.animations.walk)
-                    }, 33);
+                    this.huntLeft()
                 } else {
-                    let hunting = setInterval(() => {
-                        this.moveRight();
-                        this.loadImageSprite(this.animations.walk)
-                    }, 33);
+                    this.huntRight()
                 }
-                try { clearInterval(hunting) } catch { return }
-
-            }, 600);
+            }, 16000);
         }, 1000);
     }
 
+    /**
+     * Looking for the Player position, so the red Orcs can follow the player.
+     * @returns true if player is on the left side, or false, if hes on the right side.
+     */
     isPlayerLeft() {
         let playerX = world.character.pos_x
         let orcX = this.pos_x
         return playerX < orcX ? true : false
+    }
+
+    /**
+     * A function for Enemys, that follow the player. They shall follow for a while, untill he hunted enough,
+     * then wait and Idle. Then the next hunt function gets started.
+     */
+    huntLeft() {
+        let i = 0;
+        let timer = setInterval(() => {
+            i++
+            this.moveLeft();
+            this.loadImageSprite(this.animations.walk)
+            if (i === 200) {
+                clearInterval(timer)
+                this.loadImageSprite(this.animations.idle)
+            }
+        }, this.globeDelay);
+    }
+
+    /**
+     * A function for Enemys, that follow the player. They shall follow for a while, untill he hunted enough,
+     * then wait and Idle. Then the next hunt function gets started.
+     */
+    huntRight() {
+        let i = 0;
+        let timer = setInterval(() => {
+            i++
+            this.moveRight();
+            this.loadImageSprite(this.animations.walk)
+            if (i === 200) {
+                clearInterval(timer)
+                this.loadImageSprite(this.animations.idle)
+            }
+        }, this.globeDelay);
     }
 }
