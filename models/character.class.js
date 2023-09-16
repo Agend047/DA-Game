@@ -52,6 +52,7 @@ class Character extends MovableObject {
             }
             if (this.world.keyboard.SPACE) {
                 this.loadImageSprite(this.animations.meele1)
+
             }
             if (this.world.keyboard.G) {
                 this.loadImageSprite(this.animations.range)
@@ -92,11 +93,13 @@ class Acco extends Character {
             imageSrc: 'img/heroes/Acco/Attack_1.png',
             frameRate: 6,
             frameBuffer: 2,
+            unbreackable: true,
         },
         meele2: {
             imageSrc: 'img/heroes/Acco/Attack_2.png',
             frameRate: 4,
             frameBuffer: 2,
+            unbreackable: true,
         },
     }
 
@@ -135,11 +138,15 @@ class Eleria extends Character {
             imageSrc: 'img/heroes/Eleria/Attack_1.png',
             frameRate: 4,
             frameBuffer: 3,
+            unbreackable: true,
+
         },
         range: {
             imageSrc: 'img/heroes/Eleria/Shot_1.png',
             frameRate: 14,
             frameBuffer: 2,
+            unbreackable: true,
+
         },
     }
 
@@ -177,11 +184,15 @@ class Kazim extends Character {
             imageSrc: 'img/heroes/Kazim/Attack_1.png',
             frameRate: 10,
             frameBuffer: 2,
+            unbreackable: true,
+
         },
         range: {
             imageSrc: 'img/heroes/Kazim/Attack_3FULL.png',
             frameRate: 7,
             frameBuffer: 3,
+            unbreackable: true,
+
         },
     }
 
