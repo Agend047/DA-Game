@@ -56,7 +56,7 @@ class Character extends MovableObject {
                 this.world.keyboard.UP = false;
                 this.world.keyboard.DOWN = false;
                 this.world.keyboard.SPACE = false;
-                this.loadImageSprite(this.animations.range)
+                this.attackIntervall(this.animations.range)
 
             } else {
 
@@ -73,26 +73,26 @@ class Character extends MovableObject {
                     this.loadImageSprite(this.animations.jump)
                 }
                 if (this.world.keyboard.DOWN) {
+
                 }
                 if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
                     this.loadImageSprite(this.animations.idle)
                 }
             }
-        }, 33)
+        }, this.globeDelay)
     }
 
-    attackIntervall(meele1) {
-        var x = 0;
-        var intervalID = setInterval(function () {
 
-            this.loadImageSprite(meele1)
-
-            if (++x === (meele1.frameRate * meele1.frameBuffer)) {
-                clearInterval(intervalID);
+    attackIntervall(attack) {
+        let i = 0;
+        let interval = setInterval(() => {
+            this.loadImageSprite(attack)
+            if (++i === attack.frameRate * attack.frameBuffer) {
+                clearInterval(interval)
+                this.loadImageSprite(this.animations.idle)
             }
         }, this.globeDelay);
     }
-
 }
 
 
