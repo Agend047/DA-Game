@@ -9,18 +9,37 @@ class MovableObject extends GameObject {
     elapsedFrames = 0;
     img;
     otherdirection = false;
+    lastloaded;
+    newAnimation;
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
         super(pos_x, pos_y,)
         this.frameRate = frameRate;
     }
 
+
+    /**
+     * Creates a new Image we want to draw later, and sets needed propertys of that image for the Object
+     * @param {Object} key The Animation that shall be played
+     */
     loadImageSprite(key) {
+        this.checkNewAnimation(key)
         this.img = new Image;
         this.img.src = key.imageSrc;
 
         this.frameRate = key.frameRate;
         this.frameBuffer = key.frameBuffer;
+        this.lastloaded = key
+    }
+
+    /**
+     * To play animations from the start, this sets a variable to true or false.
+     * @param {Object} key The Animation that shall be played
+     */
+    checkNewAnimation(key) {
+        if (key.showFull && this.lastloaded !== key) {
+            this.newAnimation = true
+        } else { this.newAnimation = false }
     }
 
     //Constant moving for enemys to right side.
@@ -82,9 +101,10 @@ class MovableObject extends GameObject {
      * Secoundly and mainly, sets currentFrame back to 0, when last frame is played.
      */
     updateFrames() {
+        this.newAnimation ? this.elapsedFrames = 0 : 0;
+
         this.elapsedFrames++
         if (this.elapsedFrames % this.frameBuffer === 0) {
-            if (this.elapsedFrames >= 302) { this.elapsedFrames = 0 }
             if (this.currentFrame < this.frameRate - 1) {
                 this.currentFrame++
             } else { this.currentFrame = 0 }

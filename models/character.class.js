@@ -34,33 +34,63 @@ class Character extends MovableObject {
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
+
     control() {
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
-                this.charMoveRight();
-                this.loadImageSprite(this.animations.run)
-            }
-            if (this.world.keyboard.LEFT && this.pos_x > 10) {
-                this.charMoveLeft();
-                this.loadImageSprite(this.animations.run)
-            }
-            if (this.world.keyboard.UP) {
-                this.jump();
-                this.loadImageSprite(this.animations.jump)
-            }
-            if (this.world.keyboard.DOWN) {
-            }
-            if (this.world.keyboard.SPACE) {
-                this.loadImageSprite(this.animations.meele1)
 
-            }
-            if (this.world.keyboard.G) {
+            if (this.world.keyboard.SPACE) {
+                this.world.keyboard.RIGHT = false;
+                this.world.keyboard.LEFT = false;
+                this.world.keyboard.UP = false;
+                this.world.keyboard.DOWN = false;
+                this.world.keyboard.G = false;
+
+                // setIntervalX(this.loadImageSprite(this.animations.meele1), this.globeDelay, (this.animations.meele1.frameRate * this.animations.meele1.frameBuffer))
+
+                this.attackIntervall(this.animations.meele1)
+
+
+            } else if (this.world.keyboard.G) {
+                this.world.keyboard.RIGHT = false;
+                this.world.keyboard.LEFT = false;
+                this.world.keyboard.UP = false;
+                this.world.keyboard.DOWN = false;
+                this.world.keyboard.SPACE = false;
                 this.loadImageSprite(this.animations.range)
-            }
-            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
-                this.loadImageSprite(this.animations.idle)
+
+            } else {
+
+                if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
+                    this.charMoveRight();
+                    this.loadImageSprite(this.animations.run)
+                }
+                if (this.world.keyboard.LEFT && this.pos_x > 10) {
+                    this.charMoveLeft();
+                    this.loadImageSprite(this.animations.run)
+                }
+                if (this.world.keyboard.UP) {
+                    this.jump();
+                    this.loadImageSprite(this.animations.jump)
+                }
+                if (this.world.keyboard.DOWN) {
+                }
+                if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
+                    this.loadImageSprite(this.animations.idle)
+                }
             }
         }, 33)
+    }
+
+    attackIntervall(meele1) {
+        var x = 0;
+        var intervalID = setInterval(function () {
+
+            this.loadImageSprite(meele1)
+
+            if (++x === (meele1.frameRate * meele1.frameBuffer)) {
+                clearInterval(intervalID);
+            }
+        }, this.globeDelay);
     }
 
 }
@@ -93,14 +123,19 @@ class Acco extends Character {
             imageSrc: 'img/heroes/Acco/Attack_1.png',
             frameRate: 6,
             frameBuffer: 2,
-            unbreackable: true,
+            showFull: true,
         },
         meele2: {
             imageSrc: 'img/heroes/Acco/Attack_2.png',
             frameRate: 4,
             frameBuffer: 2,
-            unbreackable: true,
+            showFull: true,
         },
+        // range: { //Idle Animation, Acco does not have a ranged attack!
+        //     imageSrc: 'img/heroes/Acco/Idle.png',
+        //     frameRate: 8,
+        //     frameBuffer: 3,
+        // },
     }
 
     constructor(pos_x, pos_y,) {
@@ -138,15 +173,14 @@ class Eleria extends Character {
             imageSrc: 'img/heroes/Eleria/Attack_1.png',
             frameRate: 4,
             frameBuffer: 3,
-            unbreackable: true,
+            showFull: true,
 
         },
         range: {
             imageSrc: 'img/heroes/Eleria/Shot_1.png',
             frameRate: 14,
             frameBuffer: 2,
-            unbreackable: true,
-
+            showFull: true,
         },
     }
 
@@ -184,14 +218,14 @@ class Kazim extends Character {
             imageSrc: 'img/heroes/Kazim/Attack_1.png',
             frameRate: 10,
             frameBuffer: 2,
-            unbreackable: true,
+            showFull: true,
 
         },
         range: {
             imageSrc: 'img/heroes/Kazim/Attack_3FULL.png',
             frameRate: 7,
             frameBuffer: 3,
-            unbreackable: true,
+            showFull: true,
 
         },
     }
