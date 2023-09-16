@@ -1,6 +1,6 @@
 class World {
     actualLevel = level1;
-    character = new Acco(120, 100);
+    character = new Eleria(120, 100);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
@@ -84,7 +84,7 @@ class World {
      * @param {Object} mo The MovableObject, we want to draw.
      */
     drawSprite(mo) {
-        mo.updateFrames()
+        mo.updateFrames();
         const cropbox = {
             position: {
                 x: (mo.currentFrame * (mo.img.width / mo.frameRate)),
@@ -92,9 +92,9 @@ class World {
             },
             width: mo.img.width / mo.frameRate, //mo.frameRate
             height: mo.img.height,
-        }
+        };
 
-        this.readyForMirror(mo)
+        this.readyForMirror(mo);
 
         this.ctx.drawImage(
             mo.img,
@@ -106,9 +106,9 @@ class World {
             mo.pos_y,
             mo.width,
             mo.height,
-        )
+        );
 
-        this.reverseMirroring(mo)
+        this.reverseMirroring(mo);
     }
 
     /**

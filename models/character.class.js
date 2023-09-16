@@ -38,35 +38,31 @@ class Character extends MovableObject {
     control() {
         setInterval(() => {
 
+            if (this.showFull && this.elapsedFrames < this.frameRate - 1) return
+
             if (this.world.keyboard.SPACE) {
-                this.world.keyboard.RIGHT = false;
-                this.world.keyboard.LEFT = false;
-                this.world.keyboard.UP = false;
-                this.world.keyboard.DOWN = false;
-                this.world.keyboard.G = false;
-
-                // setIntervalX(this.loadImageSprite(this.animations.meele1), this.globeDelay, (this.animations.meele1.frameRate * this.animations.meele1.frameBuffer))
-
+                this.currentFrame = 0;
+                // this.loadImageSprite(this.animations.meele1)
                 this.attackIntervall(this.animations.meele1)
 
-
             } else if (this.world.keyboard.G) {
-                this.world.keyboard.RIGHT = false;
-                this.world.keyboard.LEFT = false;
-                this.world.keyboard.UP = false;
-                this.world.keyboard.DOWN = false;
-                this.world.keyboard.SPACE = false;
+                this.currentFrame = 0;
+                // this.loadImageSprite(this.animations.range)
                 this.attackIntervall(this.animations.range)
 
             } else {
 
                 if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
                     this.charMoveRight();
-                    this.loadImageSprite(this.animations.run)
+                    if (!this.isAboveGround()) {
+                        this.loadImageSprite(this.animations.run)
+                    }
                 }
                 if (this.world.keyboard.LEFT && this.pos_x > 10) {
                     this.charMoveLeft();
-                    this.loadImageSprite(this.animations.run)
+                    if (!this.isAboveGround()) {
+                        this.loadImageSprite(this.animations.run)
+                    }
                 }
                 if (this.world.keyboard.UP) {
                     this.jump();
@@ -76,13 +72,19 @@ class Character extends MovableObject {
 
                 }
                 if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
-                    this.loadImageSprite(this.animations.idle)
+
+                    if (!this.isAboveGround()) {
+                        this.loadImageSprite(this.animations.idle)
+                    }
                 }
             }
         }, this.globeDelay)
     }
 
 
+    /**
+     * Helper function, plays the needed attack animation
+     */
     attackIntervall(attack) {
         let i = 0;
         let interval = setInterval(() => {
@@ -101,7 +103,6 @@ class Acco extends Character {
     width = 140;
     speed = 10;
     jumpSpeed = 8;
-    frameRate = 8;
 
     animations = {
         idle: {
@@ -151,7 +152,6 @@ class Eleria extends Character {
     height = 280;
     speed = 14;
     jumpSpeed = 10;
-    frameRate = 6;
 
     animations = {
         idle: {
@@ -196,7 +196,6 @@ class Kazim extends Character {
     width = 120;
     speed = 12;
     jumpSpeed = 9;
-    frameRate = 6;
 
     animations = {
         idle: {
@@ -226,7 +225,6 @@ class Kazim extends Character {
             frameRate: 7,
             frameBuffer: 3,
             showFull: true,
-
         },
     }
 

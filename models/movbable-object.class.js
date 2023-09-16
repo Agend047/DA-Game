@@ -3,14 +3,15 @@ class MovableObject extends GameObject {
 
     gravitySpeed = 0;
     gravityAcceleration = 1.5;
-    frameRate = 1;
-    currentFrame = 0;
-    frameBuffer = 3;
-    elapsedFrames = 0;
-    img;
-    otherdirection = false;
-    lastloaded;
-    newAnimation;
+    frameRate = 1; //Number of frames on the Sprite
+    currentFrame = 0; //Frame on the Sprite
+    frameBuffer = 3; //delay on frames
+    elapsedFrames = 0; //sum of all frames, since we move over this sprite
+    img; //gets filled with the Image
+    otherdirection = false; //Used, if something moves to the left
+    lastloaded; // 
+    newAnimation; /** NOT SURE IF STILL NEEDED */
+    showFull; //Used for attack animations, wich have to be shown completly without interruption
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
         super(pos_x, pos_y,)
@@ -30,6 +31,8 @@ class MovableObject extends GameObject {
         this.frameRate = key.frameRate;
         this.frameBuffer = key.frameBuffer;
         this.lastloaded = key;
+
+        if (key.showFull) { this.showFull = key.showFull } else { this.showFull = false }
     }
 
     /**
@@ -102,11 +105,6 @@ class MovableObject extends GameObject {
      */
     updateFrames() {
         this.newAnimation ? this.elapsedFrames = 0 : 0;
-
-        // if (this.newAnimation) {
-        //     debugger
-        // }
-
         this.elapsedFrames++
         if (this.elapsedFrames % this.frameBuffer === 0) {
             if (this.currentFrame < this.frameRate - 1) {
@@ -114,5 +112,4 @@ class MovableObject extends GameObject {
             } else { this.currentFrame = 0 }
         }
     }
-
 }
