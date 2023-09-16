@@ -1,5 +1,4 @@
 class World {
-
     actualLevel = level1;
     character = new Acco(120, 100);
     enemys = this.actualLevel.enemys;
@@ -44,7 +43,7 @@ class World {
             requestAnimationFrame(function () {
                 self.draw();
             })
-        }, 33
+        }, IndexDelay
         )
     }
 
@@ -62,20 +61,11 @@ class World {
      * @param {Object} mo The MovableObject, we want to draw.
      */
     addToMap(mo) {
-        if (mo.otherdirection) {
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);
-            mo.pos_x = mo.pos_x * -1;
-        }
+        this.readyForMirror(mo)
 
         this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
 
-        if (mo.otherdirection) {
-            mo.pos_x = mo.pos_x * -1;
-
-            this.ctx.restore();
-        }
+        this.reverseMirroring(mo)
     }
 
     /**
@@ -104,12 +94,8 @@ class World {
             height: mo.img.height,
         }
 
-        if (mo.otherdirection) {
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);
-            mo.pos_x = mo.pos_x * -1;
-        }
+        this.readyForMirror(mo)
+
         this.ctx.drawImage(
             mo.img,
             cropbox.position.x,
@@ -122,11 +108,34 @@ class World {
             mo.height,
         )
 
+        this.reverseMirroring(mo)
+    }
+
+    /**
+     * Helper function. If an Object has to be placed facing the left side, this will turn the ctx, so we can draw the image.
+     * @param {O} mo MovableObject, we want to draw. 
+     */
+    readyForMirror(mo) {
+        if (mo.otherdirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);
+            mo.pos_x = mo.pos_x * -1;
+        }
+    }
+
+    /**
+    * Turning the ctx to the right direction, so everything looks fine.
+    * @param {O} mo MovableObject, we want to draw. 
+    */
+    reverseMirroring(mo) {
         if (mo.otherdirection) {
             mo.pos_x = mo.pos_x * -1;
-
             this.ctx.restore();
         }
     }
+
 }
+
+
 

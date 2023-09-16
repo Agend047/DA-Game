@@ -1,8 +1,9 @@
 let canvas;
 let ctx;
 let keyboard = new Keyboard();
-
+let IndexDelay = 33;
 let world;
+
 
 
 function init() {
@@ -20,13 +21,14 @@ function init() {
  */
 function setIntervalX(callback, delay, repetitions) {
     var x = 0;
-    var intervalID = window.setInterval(function () {
+    var intervalID = setInterval(function () {
         callback;
         if (++x === repetitions) {
-            window.clearInterval(intervalID);
+            clearInterval(intervalID);
         }
     }, delay);
 }
+
 
 
 window.addEventListener('keydown', (e) => {

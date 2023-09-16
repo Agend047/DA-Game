@@ -1,8 +1,10 @@
 class GameObject {
+    globeDelay = 33;
     pos_x;
     pos_y;
     width;
     height;
+
 
     constructor(pos_x, pos_y, width, height, path) {
         this.pos_x = pos_x;
