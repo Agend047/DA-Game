@@ -4,7 +4,7 @@ class MovableObject extends GameObject {
     gravitySpeed = 0;
     gravityAcceleration = 1.5;
     frameRate = 1; //Number of frames on the Sprite
-    currentFrame = 0; //Frame on the Sprite
+    currentFrame; //Frame on the Sprite
     frameBuffer = 3; //delay on frames
     elapsedFrames = 0; //sum of all frames, since we move over this sprite
     img; //gets filled with the Image
@@ -100,11 +100,11 @@ class MovableObject extends GameObject {
 
     /**
      * Support function for Sprotes:
-     * On the one Hand, takes care that the animated Sprites wont move to quickly by counting 'elapsedFrames' (and resetting, on a to high value)
+     * On the one Hand, takes care that the animated Sprites wont move to quickly by counting 'elapsedFrames'
      * Secoundly and mainly, sets currentFrame back to 0, when last frame is played.
      */
     updateFrames() {
-        this.newAnimation ? this.elapsedFrames = 0 : 0;
+        if (this.newAnimation) { this.elapsedFrames = 0 }
         this.elapsedFrames++
         if (this.elapsedFrames % this.frameBuffer === 0) {
             if (this.currentFrame < this.frameRate - 1) {

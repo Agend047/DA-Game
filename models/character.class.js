@@ -34,47 +34,55 @@ class Character extends MovableObject {
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
-
+    counter = 0
     control() {
         setInterval(() => {
 
-            if (this.showFull && this.elapsedFrames < this.frameRate - 1) return
+            if (this.showFull && this.currentFrame < this.frameRate) {
+                return
+            }
+            else {
+                if (this.showFull) { console.log('Nope ', this.elapsedFrames, " should not be smaller then: ", this.frameRate - 1) }
 
-            if (this.world.keyboard.SPACE) {
-                this.currentFrame = 0;
-                // this.loadImageSprite(this.animations.meele1)
-                this.attackIntervall(this.animations.meele1)
 
-            } else if (this.world.keyboard.G) {
-                this.currentFrame = 0;
-                // this.loadImageSprite(this.animations.range)
-                this.attackIntervall(this.animations.range)
+                if (this.world.keyboard.SPACE) {
+                    this.currentFrame = 0;
+                    this.elapsedFrames = 0;
+                    // this.loadImageSprite(this.animations.meele1)
+                    this.attackIntervall(this.animations.meele1)
 
-            } else {
+                } else if (this.world.keyboard.G) {
+                    this.currentFrame = 0;
+                    this.elapsedFrames = 0;
+                    // this.loadImageSprite(this.animations.range)
+                    this.attackIntervall(this.animations.range)
 
-                if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
-                    this.charMoveRight();
-                    if (!this.isAboveGround()) {
-                        this.loadImageSprite(this.animations.run)
+                } else {
+
+                    if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
+                        this.charMoveRight();
+                        if (!this.isAboveGround()) {
+                            this.loadImageSprite(this.animations.run)
+                        }
                     }
-                }
-                if (this.world.keyboard.LEFT && this.pos_x > 10) {
-                    this.charMoveLeft();
-                    if (!this.isAboveGround()) {
-                        this.loadImageSprite(this.animations.run)
+                    if (this.world.keyboard.LEFT && this.pos_x > 10) {
+                        this.charMoveLeft();
+                        if (!this.isAboveGround()) {
+                            this.loadImageSprite(this.animations.run)
+                        }
                     }
-                }
-                if (this.world.keyboard.UP) {
-                    this.jump();
-                    this.loadImageSprite(this.animations.jump)
-                }
-                if (this.world.keyboard.DOWN) {
+                    if (this.world.keyboard.UP) {
+                        this.jump();
+                        this.loadImageSprite(this.animations.jump)
+                    }
+                    if (this.world.keyboard.DOWN) {
 
-                }
-                if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
+                    }
+                    if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
 
-                    if (!this.isAboveGround()) {
-                        this.loadImageSprite(this.animations.idle)
+                        if (!this.isAboveGround()) {
+                            this.loadImageSprite(this.animations.idle)
+                        }
                     }
                 }
             }
@@ -84,12 +92,14 @@ class Character extends MovableObject {
 
     /**
      * Helper function, plays the needed attack animation
+     * MUST BE DELETED. MANY THINGS HAVE TO BE CHANGED! LIKE IN THE VIDEO!
      */
     attackIntervall(attack) {
         let i = 0;
         let interval = setInterval(() => {
             this.loadImageSprite(attack)
             if (++i === attack.frameRate * attack.frameBuffer) {
+                console.log('cleared at: ', i)
                 clearInterval(interval)
                 this.loadImageSprite(this.animations.idle)
             }
@@ -148,7 +158,7 @@ class Acco extends Character {
 }
 
 class Eleria extends Character {
-    width = 120;
+    width = 140;
     height = 280;
     speed = 14;
     jumpSpeed = 10;
@@ -193,7 +203,7 @@ class Eleria extends Character {
 
 class Kazim extends Character {
     height = 280;
-    width = 120;
+    width = 140;
     speed = 12;
     jumpSpeed = 9;
 
@@ -232,7 +242,7 @@ class Kazim extends Character {
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,);
 
-        this.loadImageSprite(this.animations.range)
+        this.loadImageSprite(this.animations.idle)
 
     }
 
