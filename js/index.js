@@ -3,7 +3,7 @@ let ctx;
 let keyboard = new Keyboard();
 let IndexDelay = 33;
 let world;
-
+let heroBall = [Acco, Eleria, Kazim]
 
 
 function init() {
@@ -11,6 +11,12 @@ function init() {
     world = new World(canvas, keyboard);
 
     console.log('My Char is: ', world.character)
+}
+
+function createHero(heroNumber) {
+    localStorage.setItem('heroNumber', JSON.stringify(heroNumber));
+
+    window.location.reload();
 }
 
 /**

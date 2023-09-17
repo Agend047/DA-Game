@@ -1,6 +1,6 @@
 class World {
     actualLevel = level1;
-    character = new Acco(120, 100);
+    character = this.setHero(120, 100);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
@@ -17,14 +17,30 @@ class World {
         this.setWorld();
     }
 
+    /**
+    *Getting set Hero from local Storage, just used for developing Phase 
+    * @param {Number} x Position on 
+    * @param {Number} y
+    * @returns
+    */
+    setHero(x, y) {
+        let numberFromStorage
+        numberFromStorage = localStorage.getItem('heroNumber')
+        if (numberFromStorage) {
+            let heroNumber = JSON.parse(numberFromStorage)
+            return new heroBall[heroNumber](x, y);
+        }
+        else
+            return new heroBall[0](x, y);
+    }
+
+
     // Handing the World attributes to another class. (for example, to Character)
     setWorld() {
         this.character.world = this;
     }
 
-    /**
-     * Drawing all the objets into the Canvas, and calling draw again after a timeout to animate.
-     */
+    /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
