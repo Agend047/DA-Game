@@ -29,9 +29,50 @@
     <canvas id="mainCanvas" width="720" height="480">
     </canvas>
 
-    <button class="heroChoice" onclick="createHero(0)">Acco</button>
-    <button class="heroChoice" onclick="createHero(1)">Eleria</button>
-    <button class="heroChoice" onclick="createHero(2)">Kazim</button>
+    <span class="overDiv">
+        <h3> Choose your Hero!</h3>
+        <span class="buttonDiv">
+            <button class="heroChoice acco" onclick="createHero(0)">
+                <p>Acco</p>
+            </button>
+            <button class="heroChoice eleria" onclick="createHero(1)">
+                <p>Eleria</p>
+            </button>
+            <button class="heroChoice kazim" onclick="createHero(2)">
+                <p>Kazim</p>
+            </button>
+        </span>
+    </span>
+
+    <span class="constructions">
+        <h3>Instructions</h3>
+        <table>
+            <tr>
+                <th>Keyboard</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>W</td>
+                <td>Jump</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>Move left</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>Move right</td>
+            </tr>
+            <tr>
+                <td>Space</td>
+                <td>Meele Attack</td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td>Range Attack (Only Eleria & Kazim)</td>
+            </tr>
+        </table>
+    </span>
 </body>
 
 </html>
