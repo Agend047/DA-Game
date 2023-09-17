@@ -42,20 +42,17 @@ class Character extends MovableObject {
                 return
             }
             else {
-                if (this.showFull) { console.log('Nope ', this.elapsedFrames, " should not be smaller then: ", this.frameRate - 1) }
-
-
                 if (this.world.keyboard.SPACE) {
                     this.currentFrame = 0;
                     this.elapsedFrames = 0;
-                    // this.loadImageSprite(this.animations.meele1)
                     this.attackIntervall(this.animations.meele1)
 
                 } else if (this.world.keyboard.G) {
-                    this.currentFrame = 0;
-                    this.elapsedFrames = 0;
-                    // this.loadImageSprite(this.animations.range)
-                    this.attackIntervall(this.animations.range)
+                    if (this.animations.range) {
+                        this.currentFrame = 0;
+                        this.elapsedFrames = 0;
+                        this.attackIntervall(this.animations.range)
+                    }
 
                 } else {
 
@@ -91,15 +88,13 @@ class Character extends MovableObject {
 
 
     /**
-     * Helper function, plays the needed attack animation
-     * MUST BE DELETED. MANY THINGS HAVE TO BE CHANGED! LIKE IN THE VIDEO!
+     * Helper function, plays the needed attack animation.
+     * After animation was played completly, will end the intervall..
      */
     attackIntervall(attack) {
-        let i = 0;
         let interval = setInterval(() => {
             this.loadImageSprite(attack)
-            if (++i === attack.frameRate * attack.frameBuffer) {
-                console.log('cleared at: ', i)
+            if (this.currentFrame == this.frameRate - 1) {
                 clearInterval(interval)
                 this.loadImageSprite(this.animations.idle)
             }
@@ -146,6 +141,7 @@ class Acco extends Character {
         //     imageSrc: 'img/heroes/Acco/Idle.png',
         //     frameRate: 8,
         //     frameBuffer: 3,
+        //     showFull: false
         // },
     }
 

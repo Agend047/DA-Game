@@ -1,6 +1,6 @@
 class World {
     actualLevel = level1;
-    character = new Eleria(120, 100);
+    character = new Acco(120, 100);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
