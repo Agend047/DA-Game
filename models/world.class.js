@@ -1,6 +1,6 @@
 class World {
-    actualLevel = level1;
-    character = this.setHero(120, 100);
+    actualLevel = level2;
+    character = this.setHero(120, 240);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
@@ -107,9 +107,9 @@ class World {
         this.readyForMirror(mo);
 
         mo.drawSpritePic(this.ctx);
-        mo.drawHitbox(this.ctx);
+        //  mo.drawHitbox(this.ctx);
         if (mo instanceof Enemy) {
-            mo.drawAggroArea(this.ctx)
+            //   mo.drawAggroArea(this.ctx)
         }
 
         this.reverseMirroring(mo);

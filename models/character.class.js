@@ -169,7 +169,7 @@ class Eleria extends Character {
 
     //Hitbox Modificators:
     hbmX = 40;
-    hbmY = 125;
+    hbmY = 125; d
     hbmW = (-90)
     hbmH = (-140)
 
@@ -180,24 +180,24 @@ class Eleria extends Character {
             frameBuffer: 3,
         },
         run: {
-            imageSrc: 'img/heroes/Eleria/Run.png',
+            imageSrc: 'img/heroes/Eleria_new/Walk.png',
             frameRate: 8,
             frameBuffer: 3,
         },
         jump: {
-            imageSrc: 'img/heroes/Eleria/Jump.png',
+            imageSrc: 'img/heroes/Eleria_new/Jump.png',
             frameRate: 9,
             frameBuffer: 3,
         },
         meele1: {
-            imageSrc: 'img/heroes/Eleria/Attack_1.png',
+            imageSrc: 'img/heroes/Eleria_new/Attack_1.png',
             frameRate: 4,
             frameBuffer: 3,
             showFull: true,
 
         },
         range: {
-            imageSrc: 'img/heroes/Eleria/Shot_1.png',
+            imageSrc: 'img/heroes/Eleria_new/Shot_1.png',
             frameRate: 14,
             frameBuffer: 1,
             showFull: true,
