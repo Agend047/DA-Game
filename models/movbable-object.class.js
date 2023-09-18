@@ -99,8 +99,6 @@ class MovableObject extends GameObject {
     }
 
 
-
-
     /**
      * Support function for Sprotes:
      * On the one Hand, takes care that the animated Sprites wont move to quickly by counting 'elapsedFrames'
@@ -152,8 +150,6 @@ class MovableObject extends GameObject {
             height: this.img.height,
         };
     }
-
-
 
     /**
      * Draws a Box arround the movable Element.

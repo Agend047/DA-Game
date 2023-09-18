@@ -3,6 +3,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: darkgrey;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 canvas {
