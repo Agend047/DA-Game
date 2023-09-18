@@ -108,6 +108,9 @@ class World {
 
         mo.drawSpritePic(this.ctx);
         mo.drawHitbox(this.ctx);
+        if (mo instanceof Enemy) {
+            mo.drawAggroArea(this.ctx)
+        }
 
         this.reverseMirroring(mo);
     }
