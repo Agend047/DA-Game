@@ -199,7 +199,7 @@ class Eleria extends Character {
         range: {
             imageSrc: 'img/heroes/Eleria/Shot_1.png',
             frameRate: 14,
-            frameBuffer: 2,
+            frameBuffer: 1,
             showFull: true,
         },
     }
