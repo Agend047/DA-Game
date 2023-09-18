@@ -22,6 +22,18 @@ class Enemy extends MovableObject {
         }, this.globeDelay);
 
     }
+
+    /**
+   * Defines an area arround enemys, in wich they shall start attacking
+   * @param {HTMLElement} ctx The Canvas Element, we draw on.
+   */
+    drawAggroArea(ctx) {
+        ctx.beginPath()
+        ctx.lineWidth = '5';
+        ctx.strokeStyle = 'red';
+        ctx.rect(this.pos_x, this.pos_y + this.hbmY, this.width, this.height + this.hbmH,);
+        ctx.stroke();
+    }
 }
 
 class Chicken extends Enemy {
@@ -85,9 +97,8 @@ class OrcWarrior extends Enemy {
         let getY = (190 + Math.random() * 20)
 
         super(min_x, getY)
-        this.loadImageSprite(this.animations.walk)
+        this.loadImageSprite(this.animations.idle)
         //  this.move();
-
     }
 }
 
