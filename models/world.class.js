@@ -21,7 +21,7 @@ class World {
     *Getting set Hero from local Storage, just used for developing Phase 
     * @param {Number} x Position on 
     * @param {Number} y
-    * @returns
+    * @returns 
     */
     setHero(x, y) {
         let numberFromStorage
@@ -96,33 +96,18 @@ class World {
 
     /**
      * For Sprites:
-     * A Cropbox gets generated and jumps over the Sprite, to simulate an animation.
+     * Draws the needed Picture of the correct Sprite in the right direction on the screen.
+     * 
+     * If everything is correct, it will simulate an animation by showing different Pictures after each other.
      * @param {Object} mo The MovableObject, we want to draw.
      */
     drawSprite(mo) {
         mo.updateFrames();
-        const cropbox = {
-            position: {
-                x: (mo.currentFrame * (mo.img.width / mo.frameRate)),
-                y: 0,
-            },
-            width: mo.img.width / mo.frameRate, //mo.frameRate
-            height: mo.img.height,
-        };
 
         this.readyForMirror(mo);
 
-        this.ctx.drawImage(
-            mo.img,
-            cropbox.position.x,
-            cropbox.position.y,
-            cropbox.width,
-            cropbox.height,
-            mo.pos_x,
-            mo.pos_y,
-            mo.width,
-            mo.height,
-        );
+        mo.drawSpritePic(this.ctx);
+        mo.drawHitbox(this.ctx);
 
         this.reverseMirroring(mo);
     }
@@ -139,6 +124,8 @@ class World {
             mo.pos_x = mo.pos_x * -1;
         }
     }
+
+
 
     /**
     * Turning the ctx to the right direction, so everything looks fine.

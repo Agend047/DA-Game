@@ -98,6 +98,9 @@ class MovableObject extends GameObject {
         return this.pos_y < 140;
     }
 
+
+
+
     /**
      * Support function for Sprotes:
      * On the one Hand, takes care that the animated Sprites wont move to quickly by counting 'elapsedFrames'
@@ -112,4 +115,56 @@ class MovableObject extends GameObject {
             } else { this.currentFrame = 0 }
         }
     }
+
+
+    /**
+     * Using a Cropbox, we get the Image we want to draw it from the Sprite.
+     * @param {HTMLElement} ctx The Canvas Element, we draw on.
+     */
+    drawSpritePic(ctx) {
+
+        const cropbox = this.createCropbox();
+
+        ctx.drawImage(
+            this.img,
+            cropbox.position.x,
+            cropbox.position.y,
+            cropbox.width,
+            cropbox.height,
+            this.pos_x,
+            this.pos_y,
+            this.width,
+            this.height,
+        );
+    }
+
+    /**
+     * A Cropbox gets generated and moves over the Sprite. 
+     * @returns the Cropboxes Position on the Sprite and the weize of it. 
+     */
+    createCropbox() {
+        return {
+            position: {
+                x: (this.currentFrame * (this.img.width / this.frameRate)),
+                y: 0,
+            },
+            width: this.img.width / this.frameRate,
+            height: this.img.height,
+        };
+    }
+
+
+
+    /**
+     * Draws a Box arround the movable Element.
+     * @param {HTMLElement} ctx The Canvas Element, we draw on.
+     */
+    drawHitbox(ctx) {
+        ctx.beginPath()
+        ctx.lineWidth = '5';
+        ctx.strokeStyle = 'blue';
+        ctx.rect(this.pos_x + this.hbmX, this.pos_y + this.hbmY, this.width + this.hbmW, this.height + this.hbmH,);
+        ctx.stroke();
+    }
+
 }
