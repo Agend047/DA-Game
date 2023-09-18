@@ -39,7 +39,13 @@ class OrcWarrior extends Enemy {
 
     speed = 1;
     jumpSpeed = 8;
-    frameRate = 8;
+    frameRate = 8; //Needed?
+
+    //Hitbox Modificators:
+    hbmX = 25;
+    hbmY = 80;
+    hbmW = (-60)
+    hbmH = (-80)
 
     animations = {
         idle: {
@@ -79,8 +85,8 @@ class OrcWarrior extends Enemy {
         let getY = (190 + Math.random() * 20)
 
         super(min_x, getY)
-        this.loadImageSprite(this.animations.idle)
-        this.move();
+        this.loadImageSprite(this.animations.walk)
+        //  this.move();
 
     }
 }
@@ -92,7 +98,13 @@ class OrcBerserker extends Enemy {
 
     speed = 1;
     jumpSpeed = 8;
-    frameRate = 8;
+    frameRate = 8; //Needed?
+
+    //Hitbox Modificators:
+    hbmX = 25;
+    hbmY = 80;
+    hbmW = (-60)
+    hbmH = (-80)
 
     animations = {
         idle: {

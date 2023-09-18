@@ -106,8 +106,15 @@ class Character extends MovableObject {
 class Acco extends Character {
     height = 280;
     width = 140;
+
     speed = 10;
     jumpSpeed = 8;
+
+    //Hitbox Modificators:
+    hbmX = 50;
+    hbmY = 125;
+    hbmW = (-90)
+    hbmH = (-140)
 
     animations = {
         idle: {
@@ -154,10 +161,17 @@ class Acco extends Character {
 }
 
 class Eleria extends Character {
-    width = 140;
     height = 280;
+    width = 140;
+
     speed = 14;
     jumpSpeed = 10;
+
+    //Hitbox Modificators:
+    hbmX = 40;
+    hbmY = 125;
+    hbmW = (-90)
+    hbmH = (-140)
 
     animations = {
         idle: {
@@ -200,8 +214,15 @@ class Eleria extends Character {
 class Kazim extends Character {
     height = 280;
     width = 140;
+
     speed = 12;
     jumpSpeed = 9;
+
+    //Hitbox Modificators:
+    hbmX = 50;
+    hbmY = 125;
+    hbmW = (-95)
+    hbmH = (-140)
 
     animations = {
         idle: {
