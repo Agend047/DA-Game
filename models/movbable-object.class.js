@@ -178,4 +178,8 @@ class MovableObject extends GameObject {
             (this.pos_y + this.hbmY) <= (mo.pos_y + mo.hbmY + mo.height + mo.hbmH)
     }
 
+    applyDMG(dmg) {
+        this.LeP = this.LeP - dmg;
+        console.log(this.LeP)
+    }
 }

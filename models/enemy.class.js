@@ -15,7 +15,7 @@ class Enemy extends MovableObject {
         setInterval(() => {
             if (this.playerNear) {
                 //    this.isPlayerLeft ? this.otherdirection = true : false;
-                this.strike()
+                this.strike(this.animations.meele1)
             } else {
                 this.otherdirection = false;
                 this.move()
@@ -26,8 +26,11 @@ class Enemy extends MovableObject {
     /** Enemy single Strike. Plays the Attack animation
      * and sets the 'playerNear' variable on false, so the enemy only attacks once, then walks on.
      */
-    strike() {
-        this.loadImageSprite(this.animations.meele1)
+    strike(attack) {
+        this.loadImageSprite(attack)
+        if (this.currentFrame == attack.dmgFrame - 1 && world.character.isInRangeOf(this)) {
+            (world.character.applyDMG(attack.dmg))
+        }
         if (this.currentFrame == this.frameRate - 1) {
             this.playerNear = false;
         }
@@ -40,9 +43,9 @@ class Enemy extends MovableObject {
     }
 
     /**
-   * Defines an area arround enemys, in wich they shall start attacking
-   * @param {HTMLElement} ctx The Canvas Element, we draw on.
-   */
+    * Defines an area arround enemys, in wich they shall start attacking
+    * @param {HTMLElement} ctx The Canvas Element, we draw on.
+    */
     drawAggroArea(ctx) {
         ctx.beginPath()
         ctx.lineWidth = '5';
@@ -52,9 +55,9 @@ class Enemy extends MovableObject {
     }
 
     /**
-* Looking for the Player position, so the red Orcs can follow the player.
-* @returns true if player is on the left side, or false, if hes on the right side.
-*/
+    * Looking for the Player position, so the red Orcs can follow the player.
+    * @returns true if player is on the left side, or false, if hes on the right side.
+    */
     isPlayerLeft() {
         let playerX = world.character.pos_x
         let orcX = this.pos_x
