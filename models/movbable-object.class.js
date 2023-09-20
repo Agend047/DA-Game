@@ -25,6 +25,9 @@ class MovableObject extends GameObject {
      */
     loadImageSprite(key) {
         this.checkNewAnimation(key)
+        if (this.newAnimation) {
+        }
+        // console.log(this)
         this.img = new Image;
         this.img.src = key.imageSrc;
 
@@ -164,11 +167,11 @@ class MovableObject extends GameObject {
     }
 
 
-    // ENEMY AGGRO AREA: (mo.pos_x, mo.pos_y + mo.hbmY, mo.width, mo.height + mo.hbmH,);
+    // ENEMY AGGRO AREA: (mo.pos_x + mo.abmX, mo.pos_y + mo.hbmY, mo.width + mo.abmW, mo.height + mo.hbmH,);
     //Pure checkng if colliding
     isColliding(mo) {
 
-        return (this.pos_x + this.hbmX + this.width + this.hbmW) >= mo.pos_x && this.pos_x + this.hbmX <= (mo.pos_x + mo.width) &&
+        return (this.pos_x + this.hbmX + this.width + this.hbmW) >= mo.pos_x + mo.abmX && this.pos_x + this.hbmX <= (mo.pos_x + mo.width + mo.abmW) &&
             (this.pos_y + + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
             (this.pos_y + this.hbmY) <= (mo.pos_y + mo.hbmY + mo.height + mo.hbmH)
     }
