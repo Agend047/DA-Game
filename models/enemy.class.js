@@ -14,8 +14,10 @@ class Enemy extends MovableObject {
     walkerAI() {
         setInterval(() => {
             if (this.playerNear) {
+                //    this.isPlayerLeft ? this.otherdirection = true : false;
                 this.strike()
             } else {
+                this.otherdirection = false;
                 this.move()
             }
         }, this.globeDelay);
@@ -26,7 +28,6 @@ class Enemy extends MovableObject {
      */
     strike() {
         this.loadImageSprite(this.animations.meele1)
-        console.log('Current: ', this.currentFrame)
         if (this.currentFrame == this.frameRate - 1) {
             this.playerNear = false;
         }
@@ -49,6 +50,16 @@ class Enemy extends MovableObject {
         ctx.rect(this.pos_x + this.abmX, this.pos_y + this.hbmY, this.width + this.abmW, this.height + this.hbmH,);
         ctx.stroke();
     }
+
+    /**
+* Looking for the Player position, so the red Orcs can follow the player.
+* @returns true if player is on the left side, or false, if hes on the right side.
+*/
+    isPlayerLeft() {
+        let playerX = world.character.pos_x
+        let orcX = this.pos_x
+        return playerX < orcX ? true : false
+    }
 }
 
 class Chicken extends Enemy {
@@ -63,6 +74,8 @@ class Chicken extends Enemy {
 class OrcWarrior extends Enemy {
     width = 110;
     height = 220;
+    LeP = 24;
+
 
     speed = 1;
     jumpSpeed = 8;
@@ -131,6 +144,8 @@ class OrcWarrior extends Enemy {
 class OrcBerserker extends Enemy {
     width = 140;
     height = 260;
+    LeP = 32;
+
 
     speed = 1;
     jumpSpeed = 8;
@@ -143,8 +158,8 @@ class OrcBerserker extends Enemy {
     hbmH = (-80)
 
     //aggroBox Modificator
-    abmX = 15;
-    abmW = (-10);
+    abmX = 25;
+    abmW = (-25);
 
     animations = {
         idle: {
@@ -190,7 +205,7 @@ class OrcBerserker extends Enemy {
         let getY = (200 + Math.random() * 15)
 
         super(min_x, getY)
-        this.loadImageSprite(this.animations.idle)
+        this.loadImageSprite(this.animations.walk)
         this.walkerAI()
     }
 
@@ -210,15 +225,6 @@ class OrcBerserker extends Enemy {
         // }, 1000);
     }
 
-    /**
-    * Looking for the Player position, so the red Orcs can follow the player.
-    * @returns true if player is on the left side, or false, if hes on the right side.
-    */
-    isPlayerLeft() {
-        let playerX = world.character.pos_x
-        let orcX = this.pos_x
-        return playerX < orcX ? true : false
-    }
 
     /**
      * A function for Enemys, that follow the player. They shall follow for a while, untill he hunted enough,
