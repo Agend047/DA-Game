@@ -94,7 +94,7 @@ class OrcWarrior extends Enemy {
     }
 
     constructor(min_x) {
-        let getY = (190 + Math.random() * 20)
+        let getY = 240 + Math.random() * 15
 
         super(min_x, getY)
         this.loadImageSprite(this.animations.idle)
@@ -152,7 +152,7 @@ class OrcBerserker extends Enemy {
     }
 
     constructor(min_x) {
-        let getY = (150 + Math.random() * 20)
+        let getY = (200 + Math.random() * 15)
 
         super(min_x, getY)
         this.loadImageSprite(this.animations.idle)
