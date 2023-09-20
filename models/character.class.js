@@ -169,9 +169,9 @@ class Eleria extends Character {
 
     //Hitbox Modificators:
     hbmX = 40;
-    hbmY = 125; d
-    hbmW = (-90)
-    hbmH = (-140)
+    hbmY = 125;
+    hbmW = (-90);
+    hbmH = (-140);
 
     animations = {
         idle: {
