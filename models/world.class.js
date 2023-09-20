@@ -118,7 +118,7 @@ class World {
 
     /**
      * Helper function. If an Object has to be placed facing the left side, this will turn the ctx, so we can draw the image.
-     * @param {O} mo MovableObject, we want to draw. 
+     * @param {Object} mo MovableObject, we want to draw. 
      */
     readyForMirror(mo) {
         if (mo.otherdirection) {
@@ -131,7 +131,7 @@ class World {
 
     /**
     * Turning the ctx to the right direction, so everything looks fine.
-    * @param {O} mo MovableObject, we want to draw. 
+    * @param {Object} mo MovableObject, we want to draw. 
     */
     reverseMirroring(mo) {
         if (mo.otherdirection) {
@@ -145,14 +145,14 @@ class World {
         setInterval(() => {
             this.enemys.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
-                    console.log('Colliding with ', enemy)
+                    enemy.playerNear = true;
                 } else {
                     {
 
                     }
                 }
             })
-        }, 1000);
+        }, 1500);
     }
 
 }
