@@ -1,5 +1,5 @@
 class World {
-    actualLevel = level5;
+    actualLevel = level1;
     character = this.setHero(120, 180);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
