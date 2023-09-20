@@ -18,7 +18,6 @@ class Enemy extends MovableObject {
             } else {
                 this.move()
             }
-
         }, this.globeDelay);
     }
 
@@ -26,13 +25,11 @@ class Enemy extends MovableObject {
      * and sets the 'playerNear' variable on false, so the enemy only attacks once, then walks on.
      */
     strike() {
-        let interval = setInterval(() => {
-            this.loadImageSprite(this.animations.meele1)
-            if (this.currentFrame == this.frameRate - 1) {
-                clearInterval(interval)
-                this.playerNear = false;
-            }
-        }, this.globeDelay);
+        this.loadImageSprite(this.animations.meele1)
+        console.log('Current: ', this.currentFrame)
+        if (this.currentFrame == this.frameRate - 1) {
+            this.playerNear = false;
+        }
     };
 
     /**Enemy simple move with animation*/
@@ -103,6 +100,7 @@ class OrcWarrior extends Enemy {
             frameBuffer: 3,
             dmgFrame: 4,
             dmg: 6,
+            showFull: true,
         },
         meele2: {
             imageSrc: 'img/enemys_orcs/orc_warrior/Attack_1.png',
@@ -110,6 +108,7 @@ class OrcWarrior extends Enemy {
             frameBuffer: 2,
             dmgFrame: 3,
             dmg: 2,
+            showFull: true,
         },
 
         walk: {
