@@ -1,6 +1,6 @@
 class World {
     actualLevel = level2;
-    character = this.setHero(120, 240);
+    character = this.setHero(120, 180);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     backgroundObjects = this.actualLevel.backgroundObjects;
@@ -15,6 +15,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
     /**
@@ -107,9 +108,9 @@ class World {
         this.readyForMirror(mo);
 
         mo.drawSpritePic(this.ctx);
-        //  mo.drawHitbox(this.ctx);
+        mo.drawHitbox(this.ctx);
         if (mo instanceof Enemy) {
-            //   mo.drawAggroArea(this.ctx)
+            mo.drawAggroArea(this.ctx)
         }
 
         this.reverseMirroring(mo);
@@ -128,8 +129,6 @@ class World {
         }
     }
 
-
-
     /**
     * Turning the ctx to the right direction, so everything looks fine.
     * @param {O} mo MovableObject, we want to draw. 
@@ -139,6 +138,21 @@ class World {
             mo.pos_x = mo.pos_x * -1;
             this.ctx.restore();
         }
+    }
+
+
+    checkCollisions() {
+        setInterval(() => {
+            this.enemys.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    console.log('Colliding with ', enemy)
+                } else {
+                    {
+
+                    }
+                }
+            })
+        }, 1000);
     }
 
 }

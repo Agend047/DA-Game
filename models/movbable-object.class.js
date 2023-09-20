@@ -69,8 +69,8 @@ class MovableObject extends GameObject {
                 this.gravitySpeed += this.gravityAcceleration;
             } else {
                 this.gravitySpeed = 0;
-                if (this.pos_y > 165) {
-                    this.pos_y = 165
+                if (this.pos_y > 180) {
+                    this.pos_y = 180
                 }
             }
         }, this.globeDelay)
@@ -95,7 +95,7 @@ class MovableObject extends GameObject {
      * @returns true or false
      */
     isAboveGround() {
-        return this.pos_y < 140;
+        return this.pos_y < 180;
     }
 
 
@@ -161,6 +161,16 @@ class MovableObject extends GameObject {
         ctx.strokeStyle = 'blue';
         ctx.rect(this.pos_x + this.hbmX, this.pos_y + this.hbmY, this.width + this.hbmW, this.height + this.hbmH,);
         ctx.stroke();
+    }
+
+
+    // ENEMY AGGRO AREA: (mo.pos_x, mo.pos_y + mo.hbmY, mo.width, mo.height + mo.hbmH,);
+    //Pure checkng if colliding
+    isColliding(mo) {
+
+        return (this.pos_x + this.hbmX + this.width + this.hbmW) >= mo.pos_x && this.pos_x + this.hbmX <= (mo.pos_x + mo.width) &&
+            (this.pos_y + + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
+            (this.pos_y + this.hbmY) <= (mo.pos_y + mo.hbmY + mo.height + mo.hbmH)
     }
 
 }
