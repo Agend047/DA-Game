@@ -8,9 +8,9 @@ class MovableObject extends GameObject {
     frameBuffer = 3; //delay on frames
     elapsedFrames = 0; //sum of all frames, since we move over this sprite
     img; //gets filled with the Image
-    otherdirection = false; //Used, if something moves to the left
-    lastloaded; // 
-    newAnimation; /** Is a new Stripe shown? */
+    otherdirection = false; //Used, if something moves to the right
+    lastloaded; // The Stripe that was loaded before. Important for attack-Stripes.
+    newAnimation; // Is a new Stripe shown? 
     showFull; //Used for attack animations, wich have to be shown completly without interruption
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
@@ -36,7 +36,6 @@ class MovableObject extends GameObject {
         if (key.showFull) { this.showFull = key.showFull } else { this.showFull = false }
     }
 
-    counter = 0
     /**
      * To play animations from the start, this sets a variable to true or false.
      * @param {Object} key The Animation that shall be played
@@ -167,10 +166,13 @@ class MovableObject extends GameObject {
     }
 
 
-    // ENEMY AGGRO AREA: (mo.pos_x + mo.abmX, mo.pos_y + mo.hbmY, mo.width + mo.abmW, mo.height + mo.hbmH,);
-    //Pure checkng if colliding
-    isColliding(mo) {
-
+    /** Checks, if player is in attack range of an enemy. 
+     *     
+     * @param {this} this Player character 
+     * @param {Object} mo Enemy object
+     * @returns true, if an enemy Unit can hit the player, or false, if not.
+     */
+    isInRangeOf(mo) {
         return (this.pos_x + this.hbmX + this.width + this.hbmW) >= mo.pos_x + mo.abmX && this.pos_x + this.hbmX <= (mo.pos_x + mo.width + mo.abmW) &&
             (this.pos_y + + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
             (this.pos_y + this.hbmY) <= (mo.pos_y + mo.hbmY + mo.height + mo.hbmH)

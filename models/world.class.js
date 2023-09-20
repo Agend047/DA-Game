@@ -1,5 +1,5 @@
 class World {
-    actualLevel = level2;
+    actualLevel = level5;
     character = this.setHero(120, 180);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
@@ -15,7 +15,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.canEnemysAttack();
     }
 
     /**
@@ -141,15 +141,13 @@ class World {
     }
 
 
-    checkCollisions() {
+    canEnemysAttack() {
         setInterval(() => {
             this.enemys.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
+                if (this.character.isInRangeOf(enemy)) {
                     enemy.playerNear = true;
                 } else {
-                    {
 
-                    }
                 }
             })
         }, 1500);
