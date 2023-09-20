@@ -106,6 +106,7 @@ class Character extends MovableObject {
 class Acco extends Character {
     height = 280;
     width = 140;
+    LeP = 48;
 
     speed = 10;
     jumpSpeed = 8;
@@ -136,12 +137,24 @@ class Acco extends Character {
             imageSrc: 'img/heroes/Acco/Attack_1.png',
             frameRate: 6,
             frameBuffer: 2,
+            dmgFrame: 5,
+            dmg: 8,
             showFull: true,
         },
         meele2: {
             imageSrc: 'img/heroes/Acco/Attack_2.png',
+            frameRate: 3,
+            frameBuffer: 2,
+            dmgFrame: 2,
+            dmg: 8,
+            showFull: true,
+        },
+        meele3: {
+            imageSrc: 'img/heroes/Acco/Attack_3.png',
             frameRate: 4,
             frameBuffer: 2,
+            dmgFrame: 3,
+            dmg: 14,
             showFull: true,
         },
         // range: { //Idle Animation, Acco does not have a ranged attack!
@@ -163,6 +176,8 @@ class Acco extends Character {
 class Eleria extends Character {
     height = 280;
     width = 140;
+    LeP = 30;
+    ammunition = 20;
 
     speed = 14;
     jumpSpeed = 10;
@@ -193,6 +208,8 @@ class Eleria extends Character {
             imageSrc: 'img/heroes/Eleria_new/Attack_1.png',
             frameRate: 4,
             frameBuffer: 3,
+            dmgFrame: 3,
+            dmg: 4,
             showFull: true,
 
         },
@@ -200,6 +217,8 @@ class Eleria extends Character {
             imageSrc: 'img/heroes/Eleria_new/Shot_1.png',
             frameRate: 14,
             frameBuffer: 1,
+            dmgFrame: 12,
+            dmg: 9,
             showFull: true,
         },
     }
@@ -214,6 +233,9 @@ class Eleria extends Character {
 class Kazim extends Character {
     height = 280;
     width = 140;
+    LeP = 34;
+    AsP = 42;
+
 
     speed = 12;
     jumpSpeed = 9;
@@ -244,6 +266,8 @@ class Kazim extends Character {
             imageSrc: 'img/heroes/Kazim/Attack_1.png',
             frameRate: 10,
             frameBuffer: 2,
+            dmgFrame: 8,
+            dmg: 8,
             showFull: true,
 
         },
@@ -251,6 +275,8 @@ class Kazim extends Character {
             imageSrc: 'img/heroes/Kazim/Attack_3FULL.png',
             frameRate: 7,
             frameBuffer: 3,
+            dmgFrame: 5,
+            dmg: 16,
             showFull: true,
         },
     }
