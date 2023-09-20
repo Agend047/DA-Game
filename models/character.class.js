@@ -51,7 +51,8 @@ class Character extends MovableObject {
                     if (this.animations.range) {
                         this.currentFrame = 0;
                         this.elapsedFrames = 0;
-                        this.attackIntervall(this.animations.range)
+                        if (this.enoughAmmo()) this.attackIntervall(this.animations.range)
+
                     }
 
                 } else {
@@ -228,6 +229,14 @@ class Eleria extends Character {
         this.loadImageSprite(this.animations.idle)
     }
 
+
+    enoughAmmo() {
+        if (this.ammunition >= 1) {
+            this.ammunition -= 0.5;
+            console.log(this.ammunition)
+            return true
+        } else return false
+    }
 }
 
 class Kazim extends Character {
@@ -286,7 +295,13 @@ class Kazim extends Character {
         super(pos_x, pos_y,);
 
         this.loadImageSprite(this.animations.idle)
-
     }
 
+    enoughAmmo() {
+        if (this.AsP >= 6) {
+            this.AsP -= 3;
+            console.log(this.AsP)
+            return true
+        } else return false
+    }
 }
