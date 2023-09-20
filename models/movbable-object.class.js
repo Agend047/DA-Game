@@ -10,7 +10,7 @@ class MovableObject extends GameObject {
     img; //gets filled with the Image
     otherdirection = false; //Used, if something moves to the left
     lastloaded; // 
-    newAnimation; /** NOT SURE IF STILL NEEDED */
+    newAnimation; /** Is a new Stripe shown? */
     showFull; //Used for attack animations, wich have to be shown completly without interruption
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
@@ -25,9 +25,7 @@ class MovableObject extends GameObject {
      */
     loadImageSprite(key) {
         this.checkNewAnimation(key)
-        if (this.newAnimation) {
-        }
-        // console.log(this)
+
         this.img = new Image;
         this.img.src = key.imageSrc;
 
@@ -38,14 +36,16 @@ class MovableObject extends GameObject {
         if (key.showFull) { this.showFull = key.showFull } else { this.showFull = false }
     }
 
+    counter = 0
     /**
      * To play animations from the start, this sets a variable to true or false.
      * @param {Object} key The Animation that shall be played
-     */
+    */
     checkNewAnimation(key) {
         if (key.showFull && this.lastloaded !== key) {
-            this.newAnimation = true
-        } else { this.newAnimation = false }
+            this.newAnimation = true;
+        }
+        else this.newAnimation = false
     }
 
     //Constant moving for enemys to right side.
@@ -108,7 +108,7 @@ class MovableObject extends GameObject {
      * Secoundly and mainly, sets currentFrame back to 0, when last frame is played.
      */
     updateFrames() {
-        if (this.newAnimation) { this.elapsedFrames = 0 }
+        if (this.newAnimation) { this.elapsedFrames = 0; this.currentFrame = 0 }
         this.elapsedFrames++
         if (this.elapsedFrames % this.frameBuffer === 0) {
             if (this.currentFrame < this.frameRate - 1) {
