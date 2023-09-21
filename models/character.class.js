@@ -7,6 +7,13 @@ class Character extends MovableObject {
     // jumpSpeed = 8;
     world;
 
+
+    // AttackBox Meele Modificators:
+    abmX = 80
+    abmY = 155
+    abmW = (-80)
+    abmH = (-190)
+
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.applyGravity();
@@ -31,6 +38,14 @@ class Character extends MovableObject {
         }
     }
 
+    drawCharAttackMeeleBox(ctx) {
+        ctx.beginPath()
+        ctx.lineWidth = '5';
+        ctx.strokeStyle = 'red';
+        ctx.rect(this.pos_x + this.abmX, this.pos_y + this.abmY, this.width + this.abmW, this.height + this.abmH,);
+        ctx.stroke();
+    }
+
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
@@ -38,48 +53,53 @@ class Character extends MovableObject {
     control() {
         setInterval(() => {
 
-            if (this.showFull && this.currentFrame < this.frameRate) {
-                return
-            }
-            else {
-                if (this.world.keyboard.SPACE) {
-                    this.currentFrame = 0;
-                    this.elapsedFrames = 0;
-                    this.attackIntervall(this.animations.meele1)
+            if (this.isDead()) {
 
-                } else if (this.world.keyboard.G) {
-                    if (this.animations.range) {
-                        this.currentFrame = 0;
-                        this.elapsedFrames = 0;
-                        if (this.enoughAmmo()) this.attackIntervall(this.animations.range)
+                this.loadImageSprite(this.animations.dead);
+            } else {
 
-                    }
+                if (this.showFull && this.currentFrame < this.frameRate) {
+                    return
+                }
+                else {
+                    if (this.world.keyboard.SPACE) {
+                        // this.currentFrame = 0;
+                        // this.elapsedFrames = 0;
+                        this.attackIntervall(this.animations.meele1)
 
-                } else {
-
-                    if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
-                        this.charMoveRight();
-                        if (!this.isAboveGround()) {
-                            this.loadImageSprite(this.animations.run)
+                    } else if (this.world.keyboard.G) {
+                        if (this.animations.range) {
+                            // this.currentFrame = 0;
+                            // this.elapsedFrames = 0;
+                            if (this.enoughAmmo()) this.attackIntervall(this.animations.range)
                         }
-                    }
-                    if (this.world.keyboard.LEFT && this.pos_x > 10) {
-                        this.charMoveLeft();
-                        if (!this.isAboveGround()) {
-                            this.loadImageSprite(this.animations.run)
+
+                    } else {
+
+                        if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
+                            this.charMoveRight();
+                            if (!this.isAboveGround()) {
+                                this.loadImageSprite(this.animations.run)
+                            }
                         }
-                    }
-                    if (this.world.keyboard.UP) {
-                        this.jump();
-                        this.loadImageSprite(this.animations.jump)
-                    }
-                    if (this.world.keyboard.DOWN) {
+                        if (this.world.keyboard.LEFT && this.pos_x > 10) {
+                            this.charMoveLeft();
+                            if (!this.isAboveGround()) {
+                                this.loadImageSprite(this.animations.run)
+                            }
+                        }
+                        if (this.world.keyboard.UP) {
+                            this.jump();
+                            this.loadImageSprite(this.animations.jump)
+                        }
+                        if (this.world.keyboard.DOWN) {
 
-                    }
-                    if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
+                        }
+                        if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
 
-                        if (!this.isAboveGround()) {
-                            this.loadImageSprite(this.animations.idle)
+                            if (!this.isAboveGround()) {
+                                this.loadImageSprite(this.animations.idle)
+                            }
                         }
                     }
                 }
@@ -164,6 +184,11 @@ class Acco extends Character {
         //     frameBuffer: 3,
         //     showFull: false
         // },
+        dead: {
+            imageSrc: 'img/heroes/Acco/Dead.png',
+            frameRate: 3,
+            frameBuffer: 5,
+        },
     }
 
     constructor(pos_x, pos_y,) {
@@ -188,6 +213,7 @@ class Eleria extends Character {
     hbmY = 125;
     hbmW = (-90);
     hbmH = (-140);
+
 
     animations = {
         idle: {
@@ -221,6 +247,11 @@ class Eleria extends Character {
             dmgFrame: 12,
             dmg: 9,
             showFull: true,
+        },
+        dead: {
+            imageSrc: 'img/heroes/Eleria_new/Dead.png',
+            frameRate: 3,
+            frameBuffer: 5,
         },
     }
 
@@ -287,6 +318,11 @@ class Kazim extends Character {
             dmgFrame: 5,
             dmg: 16,
             showFull: true,
+        },
+        dead: {
+            imageSrc: 'img/heroes/Kazim/Dead.png',
+            frameRate: 4,
+            frameBuffer: 5,
         },
     }
 
