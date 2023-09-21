@@ -13,12 +13,15 @@ class Enemy extends MovableObject {
 
     walkerAI() {
         setInterval(() => {
-            if (this.playerNear) {
-                //    this.isPlayerLeft ? this.otherdirection = true : false;
-                this.strike(this.animations.meele1)
-            } else {
-                this.otherdirection = false;
-                this.move()
+            if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+            else {
+                if (this.playerNear) {
+                    //    this.isPlayerLeft ? this.otherdirection = true : false;
+                    this.strike(this.animations.meele1)
+                } else {
+                    this.otherdirection = false;
+                    this.move()
+                }
             }
         }, this.globeDelay);
     }
@@ -77,7 +80,7 @@ class Chicken extends Enemy {
 class OrcWarrior extends Enemy {
     width = 110;
     height = 220;
-    LeP = 24;
+    LeP = 16;
 
 
     speed = 1;
@@ -126,10 +129,14 @@ class OrcWarrior extends Enemy {
             dmg: 2,
             showFull: true,
         },
-
         walk: {
             imageSrc: 'img/enemys_orcs/orc_warrior/Walk.png',
             frameRate: 7,
+            frameBuffer: 4,
+        },
+        dead: {
+            imageSrc: 'img/enemys_orcs/orc_warrior/Dead2.png',
+            frameRate: 4,
             frameBuffer: 4,
         },
     }
@@ -196,10 +203,14 @@ class OrcBerserker extends Enemy {
             dmg: 2,
             showFull: true,
         },
-
         walk: {
             imageSrc: 'img/enemys_orcs/orc_berserker/Walk.png',
             frameRate: 7,
+            frameBuffer: 4,
+        },
+        dead: {
+            imageSrc: 'img/enemys_orcs/orc_berserker/Dead.png',
+            frameRate: 4,
             frameBuffer: 4,
         },
     }

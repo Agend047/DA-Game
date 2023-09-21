@@ -12,6 +12,7 @@ class MovableObject extends GameObject {
     lastloaded; // The Stripe that was loaded before. Important for attack-Stripes.
     newAnimation; // Is a new Stripe shown? 
     showFull; //Used for attack animations, wich have to be shown completly without interruption
+    deathAnimationPlayed = false; //Used, so death animations only play once!
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
         super(pos_x, pos_y,)
@@ -103,16 +104,21 @@ class MovableObject extends GameObject {
 
     /**
      * Support function for Sprotes:
+     * If dead, and death animation was already played, doesnt do anything more.
      * On the one Hand, takes care that the animated Sprites wont move to quickly by counting 'elapsedFrames'
      * Secoundly and mainly, sets currentFrame back to 0, when last frame is played.
      */
     updateFrames() {
-        if (this.newAnimation) { this.elapsedFrames = 0; this.currentFrame = 0 }
-        this.elapsedFrames++
-        if (this.elapsedFrames % this.frameBuffer === 0) {
-            if (this.currentFrame < this.frameRate - 1) {
-                this.currentFrame++
-            } else { this.currentFrame = 0 }
+        if (this.isDead() && this.deathAnimationPlayed) { this.currentFrame = this.frameRate - 1 }
+        else {
+            if (this.newAnimation) { this.elapsedFrames = 0; this.currentFrame = 0 }
+            this.elapsedFrames++
+            if (this.elapsedFrames % this.frameBuffer === 0) {
+                if (this.currentFrame < this.frameRate - 1) {
+                    this.currentFrame++
+                } else { this.currentFrame = 0 }
+            }
+            if (this.isDead() && this.currentFrame == this.frameRate - 1) this.deathAnimationPlayed = true;
         }
     }
 
@@ -122,7 +128,6 @@ class MovableObject extends GameObject {
      * @param {HTMLElement} ctx The Canvas Element, we draw on.
      */
     drawSpritePic(ctx) {
-
         const cropbox = this.createCropbox();
 
         ctx.drawImage(
@@ -180,6 +185,11 @@ class MovableObject extends GameObject {
 
     applyDMG(dmg) {
         this.LeP = this.LeP - dmg;
+        if (this.LeP <= 0) { this.LeP = 0; }
         console.log(this.LeP)
+    }
+
+    isDead() {
+        return (this.LeP === 0)
     }
 }
