@@ -134,6 +134,12 @@ class OrcWarrior extends Enemy {
             frameRate: 7,
             frameBuffer: 4,
         },
+        hurt: {
+            imageSrc: 'img/enemys_orcs/orc_warrior/Hurt.png',
+            frameRate: 2,
+            frameBuffer: 3,
+            showFull: true,
+        },
         dead: {
             imageSrc: 'img/enemys_orcs/orc_warrior/Dead2.png',
             frameRate: 4,
@@ -207,6 +213,12 @@ class OrcBerserker extends Enemy {
             imageSrc: 'img/enemys_orcs/orc_berserker/Walk.png',
             frameRate: 7,
             frameBuffer: 4,
+        },
+        hurt: {
+            imageSrc: 'img/enemys_orcs/orc_berserker/Hurt.png',
+            frameRate: 2,
+            frameBuffer: 3,
+            showFull: true,
         },
         dead: {
             imageSrc: 'img/enemys_orcs/orc_berserker/Dead.png',

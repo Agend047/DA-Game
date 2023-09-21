@@ -12,7 +12,10 @@ class MovableObject extends GameObject {
     lastloaded; // The Stripe that was loaded before. Important for attack-Stripes.
     newAnimation; // Is a new Stripe shown? 
     showFull; //Used for attack animations, wich have to be shown completly without interruption
+
+    gotHit = false; //If someone got git, this cancels other animations as feedback.
     deathAnimationPlayed = false; //Used, so death animations only play once!
+
 
     constructor(pos_x, pos_y, frameRate, imageSrc) {
         super(pos_x, pos_y,)
@@ -186,7 +189,7 @@ class MovableObject extends GameObject {
     applyDMG(dmg) {
         this.LeP = this.LeP - dmg;
         if (this.LeP <= 0) { this.LeP = 0; }
-        console.log(this.LeP)
+        this.gotHit = true;
     }
 
     isDead() {

@@ -56,6 +56,8 @@ class Character extends MovableObject {
             if (this.isDead()) {
 
                 this.loadImageSprite(this.animations.dead);
+            } else if (this.gotHit) {
+                this.loadImageSprite(this.animations.hurt)
             } else {
 
                 if (this.showFull && this.currentFrame < this.frameRate) {
@@ -178,12 +180,18 @@ class Acco extends Character {
             dmg: 14,
             showFull: true,
         },
-        // range: { //Idle Animation, Acco does not have a ranged attack!
+        // range: { //Acco does not have a ranged attack!
         //     imageSrc: 'img/heroes/Acco/Idle.png',
         //     frameRate: 8,
         //     frameBuffer: 3,
         //     showFull: false
         // },
+        hurt: {
+            imageSrc: 'img/heroes/Acco/Hurt.png',
+            frameRate: 3,
+            frameBuffer: 2,
+            showFull: true,
+        },
         dead: {
             imageSrc: 'img/heroes/Acco/Dead.png',
             frameRate: 3,
@@ -246,6 +254,12 @@ class Eleria extends Character {
             frameBuffer: 1,
             dmgFrame: 12,
             dmg: 9,
+            showFull: true,
+        },
+        hurt: {
+            imageSrc: 'img/heroes/Eleria_new/Hurt.png',
+            frameRate: 3,
+            frameBuffer: 2,
             showFull: true,
         },
         dead: {
@@ -317,6 +331,12 @@ class Kazim extends Character {
             frameBuffer: 3,
             dmgFrame: 5,
             dmg: 16,
+            showFull: true,
+        },
+        hurt: {
+            imageSrc: 'img/heroes/Kazim/Hurt.png',
+            frameRate: 4,
+            frameBuffer: 2,
             showFull: true,
         },
         dead: {
