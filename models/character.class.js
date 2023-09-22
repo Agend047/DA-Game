@@ -54,11 +54,12 @@ class Character extends MovableObject {
         setInterval(() => {
 
             if (this.isDead()) {
-
                 this.loadImageSprite(this.animations.dead);
             } else if (this.gotHit) {
                 this.loadImageSprite(this.animations.hurt)
+                // console.log('Blockiert!')
             } else {
+                // console.log('nemme!')
 
                 if (this.showFull && this.currentFrame < this.frameRate) {
                     return
@@ -123,6 +124,11 @@ class Character extends MovableObject {
             }
         }, this.globeDelay);
     }
+
+
+
+
+
 }
 
 
