@@ -57,11 +57,9 @@ class Character extends MovableObject {
                 this.loadImageSprite(this.animations.dead);
             } else if (this.gotHit) {
                 this.loadImageSprite(this.animations.hurt)
-                // console.log('Blockiert!')
             } else {
-                // console.log('nemme!')
 
-                if (this.showFull && this.currentFrame < this.frameRate) {
+                if (this.showFull && this.currentFrame < this.frameRate - 1) {
                     return
                 }
                 else {
@@ -124,11 +122,6 @@ class Character extends MovableObject {
             }
         }, this.globeDelay);
     }
-
-
-
-
-
 }
 
 
