@@ -103,7 +103,10 @@ class World {
      * @param {Object} mo The MovableObject, we want to draw.
      */
     drawSprite(mo) {
-        mo.updateFrames();
+        if (mo.isDead() && mo.deathAnimationPlayed) { return }
+        else {
+            mo.updateFrames()
+        }
 
         this.readyForMirror(mo);
 
