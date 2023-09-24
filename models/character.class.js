@@ -231,12 +231,12 @@ class Eleria extends Character {
 
     animations = {
         idle: {
-            imageSrc: 'img/heroes/Eleria/Idle.png',
+            imageSrc: 'img/heroes/Eleria_new/Idle.png',
             frameRate: 6,
             frameBuffer: 3,
         },
         run: {
-            imageSrc: 'img/heroes/Eleria_new/Walk.png',
+            imageSrc: 'img/heroes/Eleria_new/Run.png',
             frameRate: 8,
             frameBuffer: 3,
         },
