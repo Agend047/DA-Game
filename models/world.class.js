@@ -103,7 +103,7 @@ class World {
      * @param {Object} mo The MovableObject, we want to draw.
      */
     drawSprite(mo) {
-        if (mo.isDead() && mo.deathAnimationPlayed) { return }
+        if (mo.isDead() && mo.deathAnimationPlayed) { this.currentFrame = this.frameRate - 1 }
         else {
             mo.updateFrames()
         }
