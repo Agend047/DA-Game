@@ -1,10 +1,6 @@
 /** the Playable Character */
 class Character extends MovableObject {
 
-    // height = 280;
-    // width = 120;
-    // speed = 12;
-    // jumpSpeed = 8;
     world;
 
 
@@ -36,14 +32,6 @@ class Character extends MovableObject {
         if (this.world.camera_x < 0 && this.pos_x < (world.actualLevel.level_end_x - 720)) {
             this.world.camera_x = -this.pos_x + 120;
         }
-    }
-
-    drawCharAttackMeeleBox(ctx) {
-        ctx.beginPath()
-        ctx.lineWidth = '5';
-        ctx.strokeStyle = 'red';
-        ctx.rect(this.pos_x + this.abmX, this.pos_y + this.abmY, this.width + this.abmW, this.height + this.abmH,);
-        ctx.stroke();
     }
 
     /**
@@ -117,12 +105,35 @@ class Character extends MovableObject {
             if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
 
             this.loadImageSprite(attack)
+
+            if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack) }
+
             if (this.currentFrame == this.frameRate - 1) {
                 clearInterval(interval)
                 this.loadImageSprite(this.animations.idle)
             }
         }, this.globeDelay);
     }
+
+    hitEnemys(attack) {
+        let enemys = this.world.enemys
+        enemys.forEach(enemy => {
+            console.log(enemy.isInHitRangeOf(this))
+        });
+    }
+
+
+
+    drawCharAttackMeeleBox(ctx) {
+        ctx.beginPath()
+        ctx.lineWidth = '5';
+        ctx.strokeStyle = 'red';
+        ctx.rect(this.pos_x + this.abmX, this.pos_y + this.abmY, this.width + this.abmW, this.height + this.abmH,);
+        ctx.stroke();
+    }
+
+
+
 }
 
 

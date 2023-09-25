@@ -179,17 +179,35 @@ class MovableObject extends GameObject {
      * @returns true, if an enemy Unit can hit the player, or false, if not.
      */
     isInRangeOf(mo) {
-        return (this.pos_x + this.hbmX + this.width + this.hbmW) >= mo.pos_x + mo.abmX && this.pos_x + this.hbmX <= (mo.pos_x + mo.width + mo.abmW) &&
-            (this.pos_y + + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
-            (this.pos_y + this.hbmY) <= (mo.pos_y + mo.hbmY + mo.height + mo.hbmH)
+        return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x + mo.abmX) &&
+            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.width + mo.abmW) &&
+            (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
+            (this.pos_y + this.hbmY) <= mo.pos_y + mo.hbmY + mo.height + mo.hbmH
     }
 
+    isInHitRangeOf(mo) {
+
+
+        return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x + mo.abmX) &&
+            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.width) &&
+            (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
+            (this.pos_y + this.hbmY) <= mo.pos_y + mo.hbmY + mo.height + mo.hbmH
+    }
+
+
+    /**
+     * Subtracts the damage, wich an attack does from any live points.
+     * @param {Number} dmg Damage Characteristic of an attack property 
+     */
     applyDMG(dmg) {
         this.LeP = this.LeP - dmg;
         if (this.LeP <= 0) { this.LeP = 0; }
         this.gotHit = true;
     }
 
+    /** Simple check if the HP are above 0
+     * @returns true, if something is dead.
+     */
     isDead() {
         return (this.LeP === 0)
     }
