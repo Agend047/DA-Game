@@ -59,13 +59,12 @@ class Character extends MovableObject {
                 this.loadImageSprite(this.animations.hurt)
             } else {
 
-                if (this.showFull && this.currentFrame < this.frameRate - 1) {
-                    return
-                }
+                if (this.showFull && this.currentFrame < this.frameRate - 1) { return }
+
                 else {
                     if (this.world.keyboard.SPACE) {
                         // this.currentFrame = 0;
-                        // this.elapsedFrames = 0;
+                        // this.elapsedFrames = 0;#
                         this.attackIntervall(this.animations.meele1)
 
                     } else if (this.world.keyboard.G) {
@@ -114,7 +113,9 @@ class Character extends MovableObject {
      * After animation was played completly, will end the intervall..
      */
     attackIntervall(attack) {
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
+            if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
+
             this.loadImageSprite(attack)
             if (this.currentFrame == this.frameRate - 1) {
                 clearInterval(interval)
