@@ -174,25 +174,43 @@ class MovableObject extends GameObject {
 
     /** Checks, if player is in attack range of an enemy. 
      *     
-     * @param {this} this Player character 
+     * @param {Object} this Player character 
      * @param {Object} mo Enemy object
      * @returns true, if an enemy Unit can hit the player, or false, if not.
      */
     isInRangeOf(mo) {
         return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x + mo.abmX) &&
-            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.width + mo.abmW) &&
+            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.abmW + mo.width) &&
             (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
             (this.pos_y + this.hbmY) <= mo.pos_y + mo.hbmY + mo.height + mo.hbmH
     }
 
-    isInHitRangeOf(mo) {
-
+    /**
+     * Slightly different function, if PLAYER attacks enemys. 
+     * @param {Object} this Enemy Object 
+     * @param {Object} mo Player Character
+     * @returns true, if an enemy Unit GETS HIT by the Player's attack
+     */
+    hitFromRight(mo) {
         return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x + mo.abmX) &&
-            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.width) &&
+            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.abmX + mo.width) &&
             (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
             (this.pos_y + this.hbmY) <= mo.pos_y + mo.hbmY + mo.height + mo.hbmH
     }
 
+    /**
+     * Terrible, but needed function. If player looks in the other direction, his attackbox has to be
+     * recalculated. so.. this is my solution.
+     * @param {Object} this Enemy Object 
+     * @param {Object} mo Player Character
+     * @returns true, if an enemy Unit GETS HIT by the Player's attack
+     */
+    hitFromLeft(mo) {
+        return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x - 12) &&
+            (this.pos_x + this.hbmX) <= (mo.pos_x + 50) &&
+            (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
+            (this.pos_y + this.hbmY) <= mo.pos_y + mo.hbmY + mo.height + mo.hbmH
+    }
 
     /**
      * Subtracts the damage, wich an attack does from any live points.

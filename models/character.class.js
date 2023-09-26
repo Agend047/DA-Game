@@ -112,7 +112,7 @@ class Character extends MovableObject {
             if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
             this.loadImageSprite(attack)
 
-            if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); console.log('Seperator') }
+            if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); }
 
             if (this.currentFrame == this.frameRate - 1) {
                 clearInterval(interval)
@@ -121,16 +121,27 @@ class Character extends MovableObject {
         }, this.globeDelay);
     }
 
+
     hitEnemys(attack) {
         let enemys = this.world.enemys
         enemys.forEach(enemy => {
-            if (enemy.isHitBy(this)) {
-                enemy.applyDMG(attack.dmg)
-                enemy.loadImageSprite(enemy.animations.hurt)
-                // console.log(enemy.LeP)
+            if (!this.otherdirection) {
+                if (enemy.hitFromRight(this)) {
+                    enemy.applyDMG(attack.dmg)
+                    enemy.loadImageSprite(enemy.animations.hurt)
+                    console.log(enemy.LeP)
+                }
+            } else {
+                if (enemy.hitFromLeft(this)) {
+                    enemy.applyDMG(attack.dmg)
+                    enemy.loadImageSprite(enemy.animations.hurt)
+                    console.log(enemy.LeP)
+                }
             }
         });
     }
+
+
 
     resetAttack() {
         setTimeout(() => {
