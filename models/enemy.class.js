@@ -11,19 +11,28 @@ class Enemy extends MovableObject {
         this.speed = 0.2 + (Math.random() * 0.25);
     }
 
+    /**
+     * The moves of the normal enemy Walker.
+     */
     walkerAI() {
         setInterval(() => {
             if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+            else if (this.gotHit) { this.knockBack }
             else {
                 if (this.playerNear) {
-                    //    this.isPlayerLeft ? this.otherdirection = true : false;
-                    this.strike(this.animations.meele1)
+                    this.isPlayerLeft ? this.otherdirection = true : false;
+                    // this.strike(this.animations.meele1)
                 } else {
-                    this.otherdirection = false;
-                    this.move()
+                    this.otherdirection = true;
+                    // this.move()
                 }
             }
         }, this.globeDelay);
+    }
+
+    knockBack() {
+        console.log('Worjks')
+        this.loadImageSprite(this.animations.hurt)
     }
 
     /** Enemy single Strike. Plays the Attack animation
@@ -80,7 +89,7 @@ class Chicken extends Enemy {
 class OrcWarrior extends Enemy {
     width = 110;
     height = 220;
-    LeP = 16;
+    LeP = 1000 //16;
 
 
     speed = 1;

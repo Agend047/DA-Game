@@ -104,9 +104,7 @@ class World {
      */
     drawSprite(mo) {
         if (mo.isDead() && mo.deathAnimationPlayed) { this.currentFrame = this.frameRate - 1 }
-        else {
-            mo.updateFrames()
-        }
+        else { mo.updateFrames() }
 
         this.readyForMirror(mo);
 
@@ -141,6 +139,10 @@ class World {
         }
     }
 
+    /**
+     * Checks position of Player, and looks if an enemy can attack him. 
+     * If so, it sets a variable to 'true', wich causes the enemy model to attack.
+     */
     canEnemysAttack() {
         setInterval(() => {
             this.enemys.forEach((enemy) => {

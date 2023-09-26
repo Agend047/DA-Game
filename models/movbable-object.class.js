@@ -187,7 +187,6 @@ class MovableObject extends GameObject {
 
     isInHitRangeOf(mo) {
 
-
         return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x + mo.abmX) &&
             (this.pos_x + this.hbmX) <= (mo.pos_x + mo.width) &&
             (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
