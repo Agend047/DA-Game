@@ -37,7 +37,7 @@ class Character extends MovableObject {
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
-    counter = 0
+    attacking = false;
     control() {
         setInterval(() => {
 
@@ -51,15 +51,22 @@ class Character extends MovableObject {
 
                 else {
                     if (this.world.keyboard.SPACE) {
-                        // this.currentFrame = 0;
-                        // this.elapsedFrames = 0;#
-                        this.attackIntervall(this.animations.meele1)
+
+                        if (!this.attacking) {
+                            this.attackIntervall(this.animations.meele1)
+                            this.resetAttack()
+                            this.attacking = true;
+                        }
 
                     } else if (this.world.keyboard.G) {
                         if (this.animations.range) {
-                            // this.currentFrame = 0;
-                            // this.elapsedFrames = 0;
-                            if (this.enoughAmmo()) this.attackIntervall(this.animations.range)
+                            this.world.keyboard.G = false;
+
+                            if (this.enoughAmmo() && !this.attacking) {
+                                this.attackIntervall(this.animations.range)
+                                this.resetAttack()
+                                this.attacking = true;
+                            }
                         }
 
                     } else {
@@ -110,7 +117,7 @@ class Character extends MovableObject {
 
             if (this.currentFrame == this.frameRate - 1) {
                 clearInterval(interval)
-                this.loadImageSprite(this.animations.idle)
+                this.loadImageSprite(this.animations.idle2)
             }
         }, this.globeDelay);
     }
@@ -118,8 +125,17 @@ class Character extends MovableObject {
     hitEnemys(attack) {
         let enemys = this.world.enemys
         enemys.forEach(enemy => {
-            console.log(enemy.isInHitRangeOf(this))
+            if (enemy.isInHitRangeOf(this)) {
+                enemy.applyDMG(attack.dmg)
+                console.log(enemy.LeP)
+            }
         });
+    }
+
+    resetAttack() {
+        setTimeout(() => {
+            this.attacking = false;
+        }, 600);
     }
 
 
@@ -155,6 +171,11 @@ class Acco extends Character {
         idle: {
             imageSrc: 'img/heroes/Acco/Idle.png',
             frameRate: 8,
+            frameBuffer: 3,
+        },
+        idle2: {
+            imageSrc: 'img/heroes/Acco/Idle_2.png',
+            frameRate: 3,
             frameBuffer: 3,
         },
         run: {
@@ -240,6 +261,11 @@ class Eleria extends Character {
             frameRate: 6,
             frameBuffer: 3,
         },
+        idle2: {
+            imageSrc: 'img/heroes/Eleria_new/Idle_2.png',
+            frameRate: 4,
+            frameBuffer: 3,
+        },
         run: {
             imageSrc: 'img/heroes/Eleria_new/Run.png',
             frameRate: 8,
@@ -315,6 +341,11 @@ class Kazim extends Character {
         idle: {
             imageSrc: 'img/heroes/Kazim/Idle.png',
             frameRate: 6,
+            frameBuffer: 3,
+        },
+        idle2: {
+            imageSrc: 'img/heroes/Kazim/Idle_2.png',
+            frameRate: 5,
             frameBuffer: 3,
         },
         run: {
