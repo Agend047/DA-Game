@@ -11,7 +11,7 @@ class Character extends MovableObject {
     abmH = (-190)
 
     constructor(pos_x, pos_y,) {
-        super(pos_x, pos_y,).loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        super(pos_x, pos_y,)
         this.applyGravity();
         this.control();
     }
@@ -110,10 +110,9 @@ class Character extends MovableObject {
     attackIntervall(attack) {
         const interval = setInterval(() => {
             if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
-
             this.loadImageSprite(attack)
 
-            if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack) }
+            if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); console.log('Seperator') }
 
             if (this.currentFrame == this.frameRate - 1) {
                 clearInterval(interval)
@@ -125,9 +124,10 @@ class Character extends MovableObject {
     hitEnemys(attack) {
         let enemys = this.world.enemys
         enemys.forEach(enemy => {
-            if (enemy.isInHitRangeOf(this)) {
+            if (enemy.isHitBy(this)) {
                 enemy.applyDMG(attack.dmg)
-                console.log(enemy.LeP)
+                enemy.loadImageSprite(enemy.animations.hurt)
+                // console.log(enemy.LeP)
             }
         });
     }
@@ -405,14 +405,13 @@ class Kazim extends Character {
      * @returns true, if Kazim can cast 'Ignifaxius'
      */
     enoughAmmo() {
-        return (this.ammunition >= 3)
-
+        return (this.AsP >= 3)
     }
 
     /**
      * Subtracts the AsP cost of 'Ignifaxius' from Kazim's AsP
      */
     subtractAmmo() {
-        this.ammunition -= 3;
+        this.AsP -= 3;
     }
 }
