@@ -53,19 +53,19 @@ class Character extends MovableObject {
                     if (this.world.keyboard.SPACE) {
 
                         if (!this.attacking) {
+                            this.attacking = true;
                             this.attackIntervall(this.animations.meele1)
                             this.resetAttack()
-                            this.attacking = true;
                         }
 
                     } else if (this.world.keyboard.G) {
+                        this.world.keyboard.G = false;
                         if (this.animations.range) {
-                            this.world.keyboard.G = false;
-
                             if (this.enoughAmmo() && !this.attacking) {
+                                this.attacking = true;
+                                this.subtractAmmo();
                                 this.attackIntervall(this.animations.range)
                                 this.resetAttack()
-                                this.attacking = true;
                             }
                         }
 
@@ -137,7 +137,6 @@ class Character extends MovableObject {
             this.attacking = false;
         }, 600);
     }
-
 
 
     drawCharAttackMeeleBox(ctx) {
@@ -311,13 +310,20 @@ class Eleria extends Character {
         this.loadImageSprite(this.animations.idle)
     }
 
-
+    /**
+     * 
+     * @returns true, if Eleria got enough Arrows left.
+     */
     enoughAmmo() {
-        if (this.ammunition >= 1) {
-            this.ammunition -= 0.5;
-            console.log(this.ammunition)
-            return true
-        } else return false
+        return (this.ammunition >= 1)
+
+    }
+
+    /**
+     * An arrow gets shot away, and is gone for good.
+     */
+    subtractAmmo() {
+        this.ammunition--;
     }
 }
 
@@ -388,18 +394,25 @@ class Kazim extends Character {
         },
     }
 
-
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,);
 
         this.loadImageSprite(this.animations.idle)
     }
 
+    /**
+     * Checks, if Kazim has enough AsP left, to cast.
+     * @returns true, if Kazim can cast 'Ignifaxius'
+     */
     enoughAmmo() {
-        if (this.AsP >= 6) {
-            this.AsP -= 3;
-            console.log(this.AsP)
-            return true
-        } else return false
+        return (this.ammunition >= 3)
+
+    }
+
+    /**
+     * Subtracts the AsP cost of 'Ignifaxius' from Kazim's AsP
+     */
+    subtractAmmo() {
+        this.ammunition -= 3;
     }
 }
