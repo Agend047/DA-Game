@@ -36,7 +36,6 @@ function setIntervalX(callback, delay, repetitions) {
 }
 
 
-
 window.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
 

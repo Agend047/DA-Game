@@ -3,6 +3,7 @@ class Enemy extends MovableObject {
 
     speed;
     playerNear = false;
+    hitCounter = 0;
 
     constructor(min_x, getY) {
         let getX = (min_x + Math.random() * 450)
@@ -17,22 +18,25 @@ class Enemy extends MovableObject {
     walkerAI() {
         setInterval(() => {
             if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
-            else if (this.gotHit) { this.knockBack }
+            else if (this.gotHit && this.hitCounter < 7) { this.knockBack() }
             else {
                 if (this.playerNear) {
                     this.isPlayerLeft ? this.otherdirection = true : false;
-                    // this.strike(this.animations.meele1)
+                    this.strike(this.animations.meele1)
                 } else {
                     this.otherdirection = true;
-                    // this.move()
+                    this.move()
                 }
             }
         }, this.globeDelay);
     }
 
     knockBack() {
-        console.log('Worjks')
+        this.isPlayerLeft() ? this.pos_x += 1.5 : this.pos_x -= 1.5
         this.loadImageSprite(this.animations.hurt)
+        this.hitCounter++
+
+        if (this.hitCounter == 6) this.gotHit = false;
     }
 
     /** Enemy single Strike. Plays the Attack animation
