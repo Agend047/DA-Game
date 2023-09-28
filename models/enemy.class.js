@@ -18,7 +18,7 @@ class Enemy extends MovableObject {
     walkerAI() {
         setInterval(() => {
             if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
-            else if (this.gotHit && this.hitCounter < 7) { this.knockBack() }
+            else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
             else {
                 if (this.playerNear) {
                     this.isPlayerLeft ? this.otherdirection = true : false;
@@ -31,12 +31,16 @@ class Enemy extends MovableObject {
         }, this.globeDelay);
     }
 
+    /**
+     * Shall build on a nice Knockback- effect for enemys, and the Hurt animation gets played.
+     * If it was played a few frames, it should not be called until the enemy gets hit again.
+     */
     knockBack() {
         this.isPlayerLeft() ? this.pos_x += 1.5 : this.pos_x -= 1.5
         this.loadImageSprite(this.animations.hurt)
         this.hitCounter++
 
-        if (this.hitCounter == 6) this.gotHit = false;
+        if (this.hitCounter == 8) this.gotHit = false;
     }
 
     /** Enemy single Strike. Plays the Attack animation
