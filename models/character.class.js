@@ -2,6 +2,7 @@
 class Character extends MovableObject {
 
     world;
+    attacking = false; //WIll be true, if char is attacking, so the animation wont get called twice.
 
 
     // AttackBox Meele Modificators:
@@ -37,28 +38,30 @@ class Character extends MovableObject {
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
-    attacking = false;
     control() {
         setInterval(() => {
 
             if (this.isDead()) {
                 this.loadImageSprite(this.animations.dead);
+
             } else if (this.gotHit) {
                 this.loadImageSprite(this.animations.hurt)
-            } else {
 
+            } else {
+                //Making sure, that important animations cannot get cancelled
                 if (this.showFull && this.currentFrame < this.frameRate - 1) { return }
 
                 else {
+                    //Attack animations and processes
                     if (this.world.keyboard.SPACE) {
-
+                        //Meele attack
                         if (!this.attacking) {
                             this.attacking = true;
                             this.attackIntervall(this.animations.meele1)
                             this.resetAttack()
                         }
-
                     } else if (this.world.keyboard.G) {
+                        //Range attack, if one is there
                         this.world.keyboard.G = false;
                         if (this.animations.range) {
                             if (this.enoughAmmo() && !this.attacking) {
@@ -70,7 +73,7 @@ class Character extends MovableObject {
                         }
 
                     } else {
-
+                        //Basic Move & Jump Commands
                         if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
                             this.charMoveRight();
                             if (!this.isAboveGround()) {
@@ -90,8 +93,8 @@ class Character extends MovableObject {
                         if (this.world.keyboard.DOWN) {
 
                         }
+                        //Idle Animation, if nothing is pressed
                         if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
-
                             if (!this.isAboveGround()) {
                                 this.loadImageSprite(this.animations.idle)
                             }
