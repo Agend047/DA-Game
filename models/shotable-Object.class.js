@@ -1,14 +1,14 @@
 class ShotableObject extends MovableObject {
 
     speed = 14;
-    constructor() {
+    constructor(pos_x, pos_y) {
         super()
 
-        this.pos_x = 100;
-        this.pos_y = 100;
+        this.pos_x = this.pos_x;
+        this.pos_y = this.pos_y;
         this.width = 100;
         this.height = 50;
-        this.shooting(100, 100);
+        this.shooting(this.pos_x, this.pos_y);
     }
 
     shooting(x, y) {
@@ -18,10 +18,16 @@ class ShotableObject extends MovableObject {
 
         const shot = setInterval(() => {
             counter++
+            // console.log(this.pos_y)
+
             this.moveRight()
+            if (this.pos_y > 400) {
+                console.log('Schließen!')
+                clearInterval(shot)
+            }
+
             if (counter == 30) {
-                // clearInterval(shot)
-                this.runOut()
+                this.runOut(shot)
             }
         }, 33);
 
@@ -35,7 +41,7 @@ class Arrow extends ShotableObject {
 
     }
 
-    runOut() {
+    runOut(shot) {
         this.applyGravity()
         this.speed = 7;
     }
@@ -49,7 +55,7 @@ class Ignifaxius extends ShotableObject {
 
     }
 
-    runOut() {
+    runOut(shot) {
         this.speed = 7;
         this.loadImage('img/heroes/Kazim/Ignifaxius_2.png')
         this.loadImage('img/heroes/Kazim/Ignifaxius_3.png')
