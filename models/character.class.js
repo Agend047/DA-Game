@@ -58,7 +58,7 @@ class Character extends MovableObject {
                         if (!this.attacking) {
                             this.attacking = true;
                             this.attackIntervall(this.animations.meele1)
-                            this.resetAttack()
+                            this.resetAttackBlocker()
                         }
                     } else if (this.world.keyboard.G) {
                         //Range attack, if one is there
@@ -67,8 +67,8 @@ class Character extends MovableObject {
                             if (this.enoughAmmo() && !this.attacking) {
                                 this.attacking = true;
                                 this.subtractAmmo();
-                                this.attackIntervall(this.animations.range)
-                                this.resetAttack()
+                                this.rangeAttackIntervall(this.animations.range)
+                                this.resetAttackBlocker()
                             }
                         }
                     } else {
@@ -148,10 +148,33 @@ class Character extends MovableObject {
 
 
     /** Resetting the 'attacked' Variable, to make new attacks possible.*/
-    resetAttack() {
+    resetAttackBlocker() {
         setTimeout(() => {
             this.attacking = false;
         }, 600);
+    }
+
+
+    rangeAttackIntervall(attack) {
+        const interval = setInterval(() => {
+            if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
+            this.loadImageSprite(attack)
+
+            if (this.currentFrame == attack.shotFrame) { this.fire() }
+
+            if (this.currentFrame == this.frameRate - 1) {
+                clearInterval(interval)
+                this.loadImageSprite(this.animations.idle2)
+            }
+        }, this.globeDelay);
+    }
+
+
+    fire() {
+        let projectile;
+        if (this instanceof Eleria) { projectile = new Arrow(this.character.pos_x, this.character.pos_y) }
+        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.character.pos_x, this.character.pos_y) }
+        this.world.shotableObjects.push(projectile)
     }
 
 
@@ -304,7 +327,7 @@ class Eleria extends Character {
             imageSrc: 'img/heroes/Eleria_new/Shot_1.png',
             frameRate: 14,
             frameBuffer: 1,
-            dmgFrame: 12,
+            shotFrame: 12,
             dmg: 9,
             showFull: true,
         },
@@ -393,7 +416,7 @@ class Kazim extends Character {
             imageSrc: 'img/heroes/Kazim/Attack_3FULL.png',
             frameRate: 7,
             frameBuffer: 3,
-            dmgFrame: 5,
+            shotFrame: 5,
             dmg: 16,
             showFull: true,
         },

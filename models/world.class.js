@@ -9,7 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar;
-    shotableObjects = [new Arrow];
+    shotableObjects = [];
 
 
     constructor(canvas, keyboard) {
@@ -22,9 +22,9 @@ class World {
     }
 
     /**
-    *Getting set Hero from local Storage, just used for developing Phase 
-    * @param {Number} x Position on 
-    * @param {Number} y
+    * Getting set Hero from local Storage, just used for developing Phase 
+    * @param {Number} x X-Position
+    * @param {Number} y Y-Position
     * @returns 
     */
     setHero(x, y) {
