@@ -71,7 +71,6 @@ class Character extends MovableObject {
                                 this.resetAttack()
                             }
                         }
-
                     } else {
                         //Basic Move & Jump Commands
                         if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
@@ -124,7 +123,10 @@ class Character extends MovableObject {
         }, this.globeDelay);
     }
 
-
+    /**
+     * Checking on a specific frame, if enemys are in range, wich may be hitted.
+     * @param {Object} attack The used animation, with its propertys.
+     */
     hitEnemys(attack) {
         let enemys = this.world.enemys
         enemys.forEach(enemy => {
@@ -132,20 +134,20 @@ class Character extends MovableObject {
                 if (enemy.hitFromRight(this)) {
                     enemy.applyDMG(attack.dmg)
                     enemy.loadImageSprite(enemy.animations.hurt)
-                    console.log(enemy.LeP)
+                    console.log(enemy.LeP) //CONSOLE
                 }
             } else {
                 if (enemy.hitFromLeft(this)) {
                     enemy.applyDMG(attack.dmg)
                     enemy.loadImageSprite(enemy.animations.hurt)
-                    console.log(enemy.LeP)
+                    console.log(enemy.LeP) //CONSOLE
                 }
             }
         });
     }
 
 
-
+    /** Resetting the 'attacked' Variable, to make new attacks possible.*/
     resetAttack() {
         setTimeout(() => {
             this.attacking = false;
