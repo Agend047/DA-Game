@@ -8,6 +8,9 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+    statusBar;
+    shotableObjects = [new ShotableObject];
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -48,6 +51,8 @@ class World {
         this.ctx.translate(this.camera_x, 0)
         this.addArrayToMap(this.backgroundObjects)
         this.addArrayToMap(this.clouds)
+
+        this.addArrayToMap(this.shotableObjects);
 
         this.addSpriteArrayToMap(this.enemys)
 
