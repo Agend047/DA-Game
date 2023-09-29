@@ -9,7 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar;
-    shotableObjects = [new ShotableObject];
+    shotableObjects = [new Arrow];
 
 
     constructor(canvas, keyboard) {
