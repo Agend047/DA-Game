@@ -39,7 +39,7 @@ class Character extends MovableObject {
      * Here the Inputs from Keyboard get used to control the Character
      */
     control() {
-        setInterval(() => {
+        setInterval(async () => {
 
             if (this.isDead()) {
                 this.loadImageSprite(this.animations.dead);
@@ -49,55 +49,54 @@ class Character extends MovableObject {
 
             } else {
                 //Making sure, that important animations cannot get cancelled
-                if (this.showFull && this.currentFrame < this.frameRate - 1) { return }
+                // if (this.showFull && this.currentFrame < this.frameRate - 1) {
+                // }
 
-                else {
-                    //Attack animations and processes
-                    if (this.world.keyboard.SPACE) {
-                        //Meele attack
-                        if (!this.attacking) {
+                //Attack animations and processes
+                if (this.world.keyboard.SPACE || this.attacking) {
+                    //Meele attack
+                    if (!this.attacking) {
+                        this.attacking = true;
+                        await this.attackIntervall(this.animations.meele1)
+                        this.resetAttackBlocker()
+                    }
+                } else if (this.world.keyboard.G) {
+                    //Range attack, if one is there
+                    this.world.keyboard.G = false;
+                    if (this.animations.range) {
+                        if (this.enoughAmmo() && this.attacking == false) {
+                            console.log(this.attacking)
                             this.attacking = true;
-                            this.attackIntervall(this.animations.meele1)
+                            this.subtractAmmo();
+                            await this.rangeAttackIntervall(this.animations.range)
                             this.resetAttackBlocker()
                         }
-                    } else if (this.world.keyboard.G) {
-                        //Range attack, if one is there
-                        this.world.keyboard.G = false;
-                        if (this.animations.range) {
-                            if (this.enoughAmmo() && !this.attacking) {
-                                this.attacking = true;
-                                console.log('Set: ', this.attacking)
-                                this.subtractAmmo();
-                                this.rangeAttackIntervall(this.animations.range)
-                                this.resetAttackBlocker()
-                            }
+                    }
+                } else {
+                    //Basic Move & Jump Commands
+                    if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
+                        this.charMoveRight();
+                        if (!this.isAboveGround()) {
+                            this.loadImageSprite(this.animations.run)
                         }
-                    } else {
-                        //Basic Move & Jump Commands
-                        if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
-                            this.charMoveRight();
-                            if (!this.isAboveGround()) {
-                                this.loadImageSprite(this.animations.run)
-                            }
+                    }
+                    if (this.world.keyboard.LEFT && this.pos_x > 10) {
+                        this.charMoveLeft();
+                        if (!this.isAboveGround()) {
+                            this.loadImageSprite(this.animations.run)
                         }
-                        if (this.world.keyboard.LEFT && this.pos_x > 10) {
-                            this.charMoveLeft();
-                            if (!this.isAboveGround()) {
-                                this.loadImageSprite(this.animations.run)
-                            }
-                        }
-                        if (this.world.keyboard.UP) {
-                            this.jump();
-                            this.loadImageSprite(this.animations.jump)
-                        }
-                        if (this.world.keyboard.DOWN) {
+                    }
+                    if (this.world.keyboard.UP) {
+                        this.jump();
+                        this.loadImageSprite(this.animations.jump)
+                    }
+                    if (this.world.keyboard.DOWN) {
 
-                        }
-                        //Idle Animation, if nothing is pressed
-                        if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
-                            if (!this.isAboveGround()) {
-                                this.loadImageSprite(this.animations.idle)
-                            }
+                    }
+                    //Idle Animation, if nothing is pressed
+                    if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
+                        if (!this.isAboveGround()) {
+                            this.loadImageSprite(this.animations.idle)
                         }
                     }
                 }
@@ -105,23 +104,27 @@ class Character extends MovableObject {
         }, this.globeDelay)
     }
 
-
     /**
      * Helper function, plays the needed attack animation.
      * After animation was played completly, will end the intervall..
      */
     attackIntervall(attack) {
-        const interval = setInterval(() => {
-            if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
-            this.loadImageSprite(attack)
 
-            if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); }
+        return new Promise((resolve, reject) => {
 
-            if (this.currentFrame == this.frameRate - 1) {
-                clearInterval(interval)
-                this.loadImageSprite(this.animations.idle2)
-            }
-        }, this.globeDelay);
+            const interval = setInterval(() => {
+                if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
+                this.loadImageSprite(attack)
+
+                if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); }
+
+                if (this.currentFrame == this.frameRate - 1) {
+                    clearInterval(interval)
+                    resolve()
+                    // this.loadImageSprite(this.animations.idle2)
+                }
+            }, this.globeDelay);
+        })
     }
 
     /**
@@ -150,24 +153,32 @@ class Character extends MovableObject {
 
     /** Resetting the 'attacked' Variable, to make new attacks possible.*/
     resetAttackBlocker() {
-        setTimeout(() => {
-            this.attacking = false;
-        }, 1000);
+        // setTimeout(() => {
+        this.attacking = false;
+        // }, 600);
     }
 
 
     rangeAttackIntervall(attack) {
-        const interval = setInterval(() => {
-            if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
-            this.loadImageSprite(attack)
 
-            if (this.currentFrame == attack.shotFrame) { this.fire() }
+        return new Promise((resolve, reject) => {
 
-            if (this.currentFrame == this.frameRate - 1) {
-                clearInterval(interval)
-                this.loadImageSprite(this.animations.idle2)
-            }
-        }, this.globeDelay);
+            const interval = setInterval(() => {
+                if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
+                this.loadImageSprite(attack)
+
+                if (this.currentFrame == attack.shotFrame) {
+                    this.fire()
+                    this.currentFrame++
+                }
+
+                if (this.currentFrame == this.frameRate - 1) {
+                    clearInterval(interval)
+                    resolve()
+                    //this.loadImageSprite(this.animations.idle2)
+                }
+            }, this.globeDelay);
+        })
     }
 
 
@@ -176,7 +187,7 @@ class Character extends MovableObject {
         if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180) }
         else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190) }
         this.world.shotableObjects.push(projectile)
-        console.log(this.attacking)
+        console.log('Schuss!')
     }
 
 
@@ -187,9 +198,6 @@ class Character extends MovableObject {
         ctx.rect(this.pos_x + this.abmX, this.pos_y + this.abmY, this.width + this.abmW, this.height + this.abmH,);
         ctx.stroke();
     }
-
-
-
 }
 
 
@@ -407,16 +415,15 @@ class Kazim extends Character {
         },
         meele1: {
             imageSrc: 'img/heroes/Kazim/Attack_1.png',
-            frameRate: 10,
+            frameRate: 10, //CHANGE PLS (11 or 8)
             frameBuffer: 2,
             dmgFrame: 8,
             dmg: 8,
             showFull: true,
-
         },
         range: {
             imageSrc: 'img/heroes/Kazim/Attack_3FULL.png',
-            frameRate: 7,
+            frameRate: 7, //CHANGE PLS (8)
             frameBuffer: 3,
             shotFrame: 5,
             dmg: 16,

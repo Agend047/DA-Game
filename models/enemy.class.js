@@ -304,7 +304,7 @@ class OrcBerserker extends Enemy {
             if (this.playerNear) {
                 this.strike();
             }
-            if (i === 300) {
+            if (i >= 300) {
                 clearInterval(timer)
                 this.loadImageSprite(this.animations.idle)
             }
