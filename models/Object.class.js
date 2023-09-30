@@ -15,8 +15,10 @@ class GameObject {
     }
 
     loadImage(path) {
-        this.img = new Image();
-        this.img.src = path
+        if (typeof (path) != 'undefined') {
+            this.img = new Image();
+            this.img.src = path
+        }
     }
 
 }
