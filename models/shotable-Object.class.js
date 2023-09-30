@@ -18,18 +18,16 @@ class ShotableObject extends MovableObject {
 
         const shot = setInterval(() => {
             counter++
-            // console.log(this.pos_y)
 
             this.moveRight()
             if (this.pos_y > 400) {
-                console.log('Schließen!')
                 clearInterval(shot)
             }
 
             if (counter == 30) {
                 this.runOut(shot)
             }
-        }, 33);
+        }, this.globeDelay);
 
     }
 }

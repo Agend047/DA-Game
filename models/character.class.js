@@ -65,7 +65,6 @@ class Character extends MovableObject {
                     this.world.keyboard.G = false;
                     if (this.animations.range) {
                         if (this.enoughAmmo() && this.attacking == false) {
-                            console.log(this.attacking)
                             this.attacking = true;
                             this.subtractAmmo();
                             await this.rangeAttackIntervall(this.animations.range)
@@ -187,7 +186,6 @@ class Character extends MovableObject {
         if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180) }
         else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190) }
         this.world.shotableObjects.push(projectile)
-        console.log('Schuss!')
     }
 
 
