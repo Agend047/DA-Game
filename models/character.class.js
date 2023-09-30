@@ -66,6 +66,7 @@ class Character extends MovableObject {
                         if (this.animations.range) {
                             if (this.enoughAmmo() && !this.attacking) {
                                 this.attacking = true;
+                                console.log('Set: ', this.attacking)
                                 this.subtractAmmo();
                                 this.rangeAttackIntervall(this.animations.range)
                                 this.resetAttackBlocker()
@@ -151,7 +152,7 @@ class Character extends MovableObject {
     resetAttackBlocker() {
         setTimeout(() => {
             this.attacking = false;
-        }, 600);
+        }, 1000);
     }
 
 
@@ -172,9 +173,10 @@ class Character extends MovableObject {
 
     fire() {
         let projectile;
-        if (this instanceof Eleria) { projectile = new Arrow(this.pos_x, this.pos_y) }
-        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x, this.pos_y) }
+        if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180) }
+        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190) }
         this.world.shotableObjects.push(projectile)
+        console.log(this.attacking)
     }
 
 
