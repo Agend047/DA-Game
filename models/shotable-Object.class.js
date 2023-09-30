@@ -4,8 +4,8 @@ class ShotableObject extends MovableObject {
     constructor(pos_x, pos_y) {
         super()
 
-        this.pos_x = this.pos_x;
-        this.pos_y = this.pos_y;
+        this.pos_x = pos_x;
+        this.pos_y = pos_y;
         this.width = 100;
         this.height = 50;
         this.shooting(this.pos_x, this.pos_y);
@@ -35,8 +35,8 @@ class ShotableObject extends MovableObject {
 }
 
 class Arrow extends ShotableObject {
-    constructor() {
-        super()
+    constructor(pos_x, pos_y) {
+        super(pos_x, pos_y)
         this.loadImage('img/heroes/Eleria_new/Arrow.png')
 
     }
@@ -49,8 +49,8 @@ class Arrow extends ShotableObject {
 }
 
 class Ignifaxius extends ShotableObject {
-    constructor() {
-        super()
+    constructor(pos_x, pos_y) {
+        super(pos_x, pos_y)
         this.loadImage('img/heroes/Kazim/Ignifaxius.png')
 
     }

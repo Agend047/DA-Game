@@ -172,8 +172,8 @@ class Character extends MovableObject {
 
     fire() {
         let projectile;
-        if (this instanceof Eleria) { projectile = new Arrow(this.character.pos_x, this.character.pos_y) }
-        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.character.pos_x, this.character.pos_y) }
+        if (this instanceof Eleria) { projectile = new Arrow(this.pos_x, this.pos_y) }
+        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x, this.pos_y) }
         this.world.shotableObjects.push(projectile)
     }
 
