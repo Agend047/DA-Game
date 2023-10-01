@@ -1,6 +1,6 @@
 class ShotableObject extends MovableObject {
 
-    speed = 14;
+    speed = 18;
     constructor(pos_x, pos_y, otherDirection) {
         super()
 
@@ -22,10 +22,14 @@ class ShotableObject extends MovableObject {
         this.pos_y = y;
         let counter = 0;
 
+        if (this.otherDirection) this.pos_x -= 140;
+
+
         const shot = setInterval(() => {
             counter++
 
             this.otherDirection ? this.moveLeft() : this.moveRight();
+
             if (this.pos_y > 400) {
                 clearInterval(shot)
             }
