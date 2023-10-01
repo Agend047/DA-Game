@@ -33,10 +33,12 @@ class ShotableObject extends MovableObject {
 
             if (counter == 30) {
                 this.runOut(shot)
+            }
 
-                if (this.pos_y > 400 || counter >= 33) {
-                    clearInterval(shot)
-                }
+
+            if (this.pos_y > 400 || counter >= 40) {
+                clearInterval(shot)
+                world.shotableObjects.splice(0, 1)
             }
         }, this.globeDelay);
 
