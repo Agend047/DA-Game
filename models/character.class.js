@@ -57,7 +57,7 @@ class Character extends MovableObject {
                     //Meele attack
                     if (!this.attacking) {
                         this.attacking = true;
-                        await this.attackIntervall(this.animations.meele1)
+                        await this.meeleAttackIntervall(this.animations.meele1)
                         this.resetAttackBlocker()
                     }
                 } else if (this.world.keyboard.G) {
@@ -107,7 +107,7 @@ class Character extends MovableObject {
      * Helper function, plays the needed attack animation.
      * After animation was played completly, will end the intervall..
      */
-    attackIntervall(attack) {
+    meeleAttackIntervall(attack) {
 
         return new Promise((resolve, reject) => {
 
@@ -183,8 +183,8 @@ class Character extends MovableObject {
 
     fire() {
         let projectile;
-        if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180) }
-        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190) }
+        if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180, this.otherdirection) }
+        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190, this.otherdirection) }
         this.world.shotableObjects.push(projectile)
     }
 
