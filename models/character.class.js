@@ -152,9 +152,7 @@ class Character extends MovableObject {
 
     /** Resetting the 'attacked' Variable, to make new attacks possible.*/
     resetAttackBlocker() {
-        // setTimeout(() => {
         this.attacking = false;
-        // }, 600);
     }
 
 
@@ -181,7 +179,7 @@ class Character extends MovableObject {
     }
 
 
-    fire() {
+    async fire() {
         let projectile;
         if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180, this.otherdirection) }
         else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190, this.otherdirection) }
@@ -420,7 +418,7 @@ class Kazim extends Character {
             showFull: true,
         },
         range: {
-            imageSrc: 'img/heroes/Kazim/Attack_3FULL.png',
+            imageSrc: 'img/heroes/Kazim/Attack_3no_igni.png',
             frameRate: 7, //CHANGE PLS (8)
             frameBuffer: 3,
             shotFrame: 5,
