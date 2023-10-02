@@ -155,9 +155,12 @@ class Character extends MovableObject {
         this.attacking = false;
     }
 
-
+    /** Char makes a ranged attack, and fires a shot.
+     * 
+     * @param {Object} attack The used attack, with all parameters
+     * @returns a Promise, wich gets resolved at the end, so the rest of the code will wait
+     */
     rangeAttackIntervall(attack) {
-
         return new Promise((resolve, reject) => {
 
             const interval = setInterval(() => {
@@ -165,7 +168,7 @@ class Character extends MovableObject {
                 this.loadImageSprite(attack)
 
                 if (this.currentFrame == attack.shotFrame) {
-                    this.fire()
+                    this.fire(attack)
                     this.currentFrame++
                 }
 
@@ -178,11 +181,14 @@ class Character extends MovableObject {
         })
     }
 
-
-    async fire() {
+    /**
+     * The projectile gets created as shootable object, 
+     * and will be added to the 'shotableObjects' Array at the World-Class
+     */
+    async fire(attack) {
         let projectile;
-        if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180, this.otherdirection) }
-        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190, this.otherdirection) }
+        if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180, this.otherdirection, attack.dmg) }
+        else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190, this.otherdirection, attack.dmg) }
         this.world.shotableObjects.push(projectile)
     }
 
@@ -327,7 +333,6 @@ class Eleria extends Character {
             dmgFrame: 3,
             dmg: 4,
             showFull: true,
-
         },
         range: {
             imageSrc: 'img/heroes/Eleria_new/Shot_1.png',
