@@ -62,7 +62,6 @@ class ShotableObject extends MovableObject {
 
             this.otherDirection ? this.moveLeft() : this.moveRight();
 
-
             if (counter <= 30) {
                 if (this.checkForCollision()) {
                     counter = 38;
@@ -78,13 +77,18 @@ class ShotableObject extends MovableObject {
         }, this.globeDelay);
     }
 
-
+    /** 
+     * Checks, if enemys get hit and deals dmg.
+     *  @returns true, if it happens
+     */
     checkForCollision() {
         let result = false;
         world.enemys.forEach(enemy => {
-            if (enemy.hitFromLeft(this)) {
-                result = true;
-                enemy.applyDMG()
+            if (enemy.LeP > 0) {
+                if (enemy.hitFromLeft(this)) {
+                    result = true;
+                    enemy.applyDMG(this.dmg)
+                }
             }
         })
         return result;
