@@ -19,7 +19,6 @@ class ShotableObject extends MovableObject {
         this.height = 50;
         this.dmg = dmg;
         this.shooting();
-        // hitableEnemys = this.getHitableEnemys();
     }
 
 
@@ -34,19 +33,6 @@ class ShotableObject extends MovableObject {
         ctx.rect(this.pos_x, this.pos_y, this.width, this.height,);
         ctx.stroke();
     }
-
-
-
-    // getHitableEnemys() {
-    //     let allEnemys = world.enemys
-    //     for (enemy in allEnemys) {
-    //         if (enemy.pos_y > this.pos_y) {
-
-    //         }
-
-    //     }
-    //     return hitableEnemys
-    // }
 
     /** This function controls the projectiles, fired by ranged heroes.
      * Sets a counter and basically does a delayed loop over the function.
@@ -96,8 +82,6 @@ class ShotableObject extends MovableObject {
 }
 
 class Arrow extends ShotableObject {
-    removeCounter = 0;
-
 
     constructor(pos_x, pos_y, otherDirection, dmg) {
         super(pos_x, pos_y, otherDirection, dmg)
@@ -113,8 +97,6 @@ class Arrow extends ShotableObject {
 
 
 class Ignifaxius extends ShotableObject {
-    removeCounter = 0;
-
 
     constructor(pos_x, pos_y, otherDirection, dmg) {
         super(pos_x, pos_y, otherDirection, dmg)
