@@ -192,7 +192,10 @@ class Character extends MovableObject {
         this.world.shotableObjects.push(projectile)
     }
 
-
+    /**
+     * This draws the Box in front of a char, in wich he deals meele Dmg
+     * @param {The context, we draw on} ctx 
+     */
     drawCharAttackMeeleBox(ctx) {
         ctx.beginPath()
         ctx.lineWidth = '5';
@@ -419,7 +422,7 @@ class Kazim extends Character {
             frameRate: 10, //CHANGE PLS (11 or 8)
             frameBuffer: 2,
             dmgFrame: 8,
-            dmg: 8,
+            dmg: 4, // wanted, but will always be doubled
             showFull: true,
         },
         range: {
