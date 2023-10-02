@@ -1,7 +1,15 @@
 class ShotableObject extends MovableObject {
 
+    // hitableEnemys = [];
     speed = 18;
-    constructor(pos_x, pos_y, otherDirection) {
+
+    hbmX = 0;
+    hbmY = 0;
+    hbmW = (0)
+    hbmH = (0)
+
+
+    constructor(pos_x, pos_y, otherDirection, dmg) {
         super()
 
         this.pos_x = pos_x - 40;
@@ -9,21 +17,44 @@ class ShotableObject extends MovableObject {
         this.otherDirection = otherDirection;
         this.width = 100;
         this.height = 50;
-        this.shooting(this.pos_x, this.pos_y, otherDirection);
+        this.dmg = dmg;
+        this.shooting();
+        // hitableEnemys = this.getHitableEnemys();
     }
 
+
     /**
-     * 
-     * @param {Number} x Koordinate
-     * @param {Number} y Koordinate
+   * Defines an area arround enemys, in wich they shall start attacking
+   * @param {HTMLElement} ctx The Canvas Element, we draw on.
+   */
+    drawArrowArea(ctx) {
+        ctx.beginPath()
+        ctx.lineWidth = '5';
+        ctx.strokeStyle = 'red';
+        ctx.rect(this.pos_x, this.pos_y, this.width, this.height,);
+        ctx.stroke();
+    }
+
+
+
+    // getHitableEnemys() {
+    //     let allEnemys = world.enemys
+    //     for (enemy in allEnemys) {
+    //         if (enemy.pos_y > this.pos_y) {
+
+    //         }
+
+    //     }
+    //     return hitableEnemys
+    // }
+
+    /** This function controls the projectiles, fired by ranged heroes.
+     * Sets a counter and basically does a delayed loop over the function.
+     * Sets the direction for the projectile, and calls the end functions
+     * Will delete the projectiles out of the 'shotableObjects' array.
      */
-    async shooting(x, y) {
-
-        this.pos_x = x;
-        this.pos_y = y;
+    async shooting() {
         let counter = 0;
-
-
         if (this.otherDirection) this.pos_x -= 100;
 
         const shot = setInterval(() => {
@@ -31,25 +62,41 @@ class ShotableObject extends MovableObject {
 
             this.otherDirection ? this.moveLeft() : this.moveRight();
 
-            if (counter == 30) {
-                this.runOut(shot)
+
+            if (counter <= 30) {
+                if (this.checkForCollision()) {
+                    counter = 38;
+                }
             }
 
+            if (counter == 30) { this.runOut(shot) }
 
-            if (this.pos_y > 400 || counter >= 40) {
+            if (this.pos_y > 400 || counter >= 38) {
                 clearInterval(shot)
                 world.shotableObjects.splice(0, 1)
             }
         }, this.globeDelay);
+    }
 
+
+    checkForCollision() {
+        let result = false;
+        world.enemys.forEach(enemy => {
+            if (enemy.hitFromLeft(this)) {
+                result = true;
+                enemy.applyDMG()
+            }
+        })
+        return result;
     }
 }
 
 class Arrow extends ShotableObject {
     removeCounter = 0;
 
-    constructor(pos_x, pos_y, otherDirection) {
-        super(pos_x, pos_y, otherDirection)
+
+    constructor(pos_x, pos_y, otherDirection, dmg) {
+        super(pos_x, pos_y, otherDirection, dmg)
         this.loadImage('img/heroes/Eleria_new/Arrow.png')
     }
 
@@ -64,8 +111,9 @@ class Arrow extends ShotableObject {
 class Ignifaxius extends ShotableObject {
     removeCounter = 0;
 
-    constructor(pos_x, pos_y, otherDirection) {
-        super(pos_x, pos_y, otherDirection)
+
+    constructor(pos_x, pos_y, otherDirection, dmg) {
+        super(pos_x, pos_y, otherDirection, dmg)
         this.loadImage('img/heroes/Kazim/Ignifaxius.png')
     }
 
@@ -76,6 +124,6 @@ class Ignifaxius extends ShotableObject {
 
         setTimeout(() => {
             this.loadImage('img/heroes/Kazim/Ignifaxius_3.png')
-        }, 200);
+        }, 180);
     }
 }
