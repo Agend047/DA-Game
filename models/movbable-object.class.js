@@ -7,7 +7,6 @@ class MovableObject extends GameObject {
     currentFrame; //Frame on the Sprite
     frameBuffer = 3; //delay on frames
     elapsedFrames = 0; //sum of all frames, since we move over this sprite
-    img; //gets filled with the Image
     otherdirection = false; //Used, if something moves to the right
     lastloaded; // The Stripe that was loaded before. Important for attack-Stripes.
     newAnimation; // Is a new Stripe shown? 

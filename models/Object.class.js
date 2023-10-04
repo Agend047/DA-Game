@@ -4,6 +4,8 @@ class GameObject {
     pos_y;
     width;
     height;
+    img; //gets filled with the Image
+
 
 
     constructor(pos_x, pos_y, width, height, path) {
