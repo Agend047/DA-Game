@@ -25,30 +25,32 @@ canvas {
     display: flex;
     margin: 6px;
     border-color: white;
-    width: 100px;
     height: 32px;
 }
 
 .bar_Image {
-    width: 32px;
-    height: 32px;
+    width: 20%;
+    height: 100%;
 }
 
 .bar_div {
-    border-radius: 16px;
+    border-radius: 50px;
     width: 100%;
 }
 
 #playerHealth_div {
     background-color: red;
+    width: 100px;
 }
 
 #playerAmmo_div {
     background-color: blue;
+    width: 200px;
 }
 
 #playerCoins_div {
     background-color: yellow;
+    width: 200px;
 }
 
 
