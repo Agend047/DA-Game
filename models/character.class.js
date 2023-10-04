@@ -401,27 +401,27 @@ class Kazim extends Character {
 
     animations = {
         idle: {
-            imageSrc: 'img/heroes/Kazim/Idle.png',
+            imageSrc: 'img/heroes/Kazim_new/Idle.png',
             frameRate: 6,
             frameBuffer: 3,
         },
         idle2: {
-            imageSrc: 'img/heroes/Kazim/Idle_2.png',
+            imageSrc: 'img/heroes/Kazim_new/Idle_2.png',
             frameRate: 5,
             frameBuffer: 3,
         },
         run: {
-            imageSrc: 'img/heroes/Kazim/Run.png',
+            imageSrc: 'img/heroes/Kazim_new/Run.png',
             frameRate: 8,
             frameBuffer: 3,
         },
         jump: {
-            imageSrc: 'img/heroes/Kazim/Jump.png',
+            imageSrc: 'img/heroes/Kazim_new/Jump.png',
             frameRate: 11,
             frameBuffer: 3,
         },
         meele1: {
-            imageSrc: 'img/heroes/Kazim/Attack_1.png',
+            imageSrc: 'img/heroes/Kazim_new/Attack_1.png',
             frameRate: 10, //CHANGE PLS (11 or 8)
             frameBuffer: 2,
             dmgFrame: 8,
@@ -429,7 +429,7 @@ class Kazim extends Character {
             showFull: true,
         },
         range: {
-            imageSrc: 'img/heroes/Kazim/Attack_3no_igni.png',
+            imageSrc: 'img/heroes/Kazim_new/Attack_3no_igni.png',
             frameRate: 7, //CHANGE PLS (8)
             frameBuffer: 3,
             shotFrame: 5,
@@ -437,13 +437,13 @@ class Kazim extends Character {
             showFull: true,
         },
         hurt: {
-            imageSrc: 'img/heroes/Kazim/Hurt.png',
+            imageSrc: 'img/heroes/Kazim_new/Hurt.png',
             frameRate: 4,
             frameBuffer: 2,
             showFull: true,
         },
         dead: {
-            imageSrc: 'img/heroes/Kazim/Dead.png',
+            imageSrc: 'img/heroes/Kazim_new/Dead.png',
             frameRate: 4,
             frameBuffer: 5,
         },
