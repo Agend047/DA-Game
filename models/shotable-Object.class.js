@@ -71,7 +71,7 @@ class ShotableObject extends MovableObject {
         let result = false;
         world.enemys.forEach(enemy => {
             if (enemy.LeP > 0) {
-                if (enemy.hitFromLeft(this)) {
+                if (enemy.hitLeft(this)) {
                     result = true;
                     enemy.applyDMG(this.dmg)
                 }

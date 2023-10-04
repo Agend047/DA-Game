@@ -192,9 +192,9 @@ class MovableObject extends GameObject {
      * @param {Object} mo Player Character
      * @returns true, if an enemy Unit GETS HIT by the Player's attack
      */
-    hitFromRight(mo) {
+    hitRight(mo) {
         return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x + mo.abmX) &&
-            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.abmX + mo.width) &&
+            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.width) &&
             (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
             (this.pos_y + this.hbmY) <= mo.pos_y + mo.hbmY + mo.height + mo.hbmH
     }
@@ -206,7 +206,7 @@ class MovableObject extends GameObject {
      * @param {Object} mo Player Character
      * @returns true, if an enemy Unit GETS HIT by the Player's attack
      */
-    hitFromLeft(mo) {
+    hitLeft(mo) {
         return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x - 12) &&
             (this.pos_x + this.hbmX) <= (mo.pos_x + 50) &&
             (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&

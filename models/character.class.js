@@ -137,13 +137,13 @@ class Character extends MovableObject {
         let enemys = this.world.enemys
         enemys.forEach(enemy => {
             if (!this.otherdirection) {
-                if (enemy.hitFromRight(this)) {
+                if (enemy.hitRight(this)) {
                     enemy.applyDMG(attack.dmg)
                     enemy.loadImageSprite(enemy.animations.hurt)
                     console.log(enemy.LeP) //CONSOLE
                 }
             } else {
-                if (enemy.hitFromLeft(this)) {
+                if (enemy.hitLeft(this)) {
                     enemy.applyDMG(attack.dmg)
                     enemy.loadImageSprite(enemy.animations.hurt)
                     console.log(enemy.LeP) //CONSOLE
