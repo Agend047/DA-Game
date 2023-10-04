@@ -6,9 +6,42 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+main {
+    position: relative;
+}
+
 canvas {
     background-color: black;
 }
+
+.playerBars {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.playerProperty_div {
+    margin: 6px;
+    border-color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 20px;
+    background-color: white;
+}
+
+#playerHealth_div {
+    background-color: red;
+}
+
+#playerAmmo_div {
+    background-color: blue;
+}
+
+#playerCoins_div {
+    background-color: yellow;
+}
+
 
 .overDiv {
     display: flex;

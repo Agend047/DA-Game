@@ -5,6 +5,9 @@ class Character extends MovableObject {
     attacking = false; //WIll be true, if char is attacking, so the animation wont get called twice.
 
 
+    height = 280;
+    width = 140;
+
     // AttackBox Meele Modificators:
     abmX = 80
     abmY = 155
@@ -207,9 +210,8 @@ class Character extends MovableObject {
 
 
 class Acco extends Character {
-    height = 280;
-    width = 140;
     LeP = 48;
+    maxLeP = 48;
 
     speed = 10;
     jumpSpeed = 8;
@@ -293,10 +295,10 @@ class Acco extends Character {
 }
 
 class Eleria extends Character {
-    height = 280;
-    width = 140;
     LeP = 30;
+    maxLeP = 30;
     ammunition = 20;
+    maxAmmunition = 20;
 
     speed = 14;
     jumpSpeed = 10;
@@ -381,10 +383,11 @@ class Eleria extends Character {
 }
 
 class Kazim extends Character {
-    height = 280;
-    width = 140;
+
     LeP = 34;
     AsP = 42;
+    maxLeP = 34;
+    maxAsP = 42;
 
 
     speed = 12;
