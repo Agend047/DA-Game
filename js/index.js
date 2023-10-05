@@ -15,7 +15,7 @@ function init() {
 
     console.log('My Char is: ', world.character)
 
-    mustDo()
+    addResizeEvList()
 }
 
 /**
@@ -43,27 +43,47 @@ function getHeroNumber() {
         return 0;
 }
 
+/**
+ * Small, but important. Adding an Eventlistener, wich will trigger on every
+ * rezising of the window
+ */
+function addResizeEvList() {
+    let mainDiv = document.getElementById('mainDiv');
+    mainDiv.addEventListener('fullscreenchange', () => {
+        resizeCanvas(mainDiv);
+    });
+}
+
 
 function setFullScreen() {
     let main = document.getElementById('mainDiv')
     main.requestFullscreen()
 
     modifyStatusBar(1)
-    canvas.style.transform = 'scale(1.8)'
+    let scaleFactor = calculateScaleFactor(720, 480)
+    canvas.style.transform = 'scale(' + scaleFactor + ')'
     fullscreen = true;
 
 }
 
-function mustDo() {
-    let mainDiv = document.getElementById('mainDiv');
-    mainDiv.addEventListener('fullscreenchange', () => {
-        resizeCanvas(mainDiv)
-    });
+
+
+
+function calculateScaleFactor(maxWidth, maxHeight) {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Berechnen Sie den horizontalen und vertikalen Skalierungsfaktor basierend auf der maximalen Breite und Höhe
+    const scaleX = viewportWidth / maxWidth;
+    const scaleY = viewportHeight / maxHeight;
+
+    // Verwenden Sie den kleineren der beiden Skalierungsfaktoren, um sicherzustellen, dass das Canvas auf den Bildschirm passt
+    return Math.min(scaleX, scaleY);
 }
 
 
+
 function resizeCanvas() {
-    console.log(fullscreen)
     if (!fullscreen) {
         canvas.style.transform = 'scale(1)'
 
@@ -73,28 +93,30 @@ function resizeCanvas() {
     } else { fullscreen = false; }
 }
 
+
 /**
  * Upscaling - Downscaling of Status Bars
  * @param {Number} key 0 == Downscaling, 1 == Upscaling
  */
 function modifyStatusBar(key) {
 
+    let PlayerBars = document.getElementById('PlayerBars');
+    key ? PlayerBars.style.paddingLeft = '4%' : PlayerBars.style.paddingLeft = '0px';
+    key ? PlayerBars.style.paddingTop = '4%' : PlayerBars.style.paddingTop = '0px';
+
     let marginArray = ['6px', '12px']
     let heightArray = ['32px', '64px']
-    let picWidthArray = ['32px', '64px']
-
     let bars = document.getElementsByClassName('PlayerProperty');
     for (let bar of bars) {
         bar.style.margin = marginArray[key]
         bar.style.height = heightArray[key]
     }
 
+    let picWidthArray = ['32px', '64px']
     let pics = document.getElementsByClassName('Bar_Image');
     for (let pic of pics) {
         pic.style.width = picWidthArray[key]
     }
-
-
 
 
     key ? world.character.screenMod = 8 : world.character.screenMod = 4;
