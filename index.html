@@ -55,10 +55,11 @@
             </div>
         </span>
 
-
-        <canvas id="mainCanvas" width="720" height="480">
-        </canvas>
-
+        <span class="overCanvas">
+            <canvas id="mainCanvas" width="720" height="480">
+            </canvas>
+            <!-- <div class="overlay">Dieses Div liegt über dem Canvas.</div> -->
+        </span>
     </main>
 
     <button onclick="setFullScreen()">
@@ -108,6 +109,12 @@
             </tr>
         </table>
     </span>
+
+    <script>
+        // DOES NOT WORK, FUCKING EVENT LISTENER!!!!
+        let mainDiv = document.getElementById('mainDiv');
+        mainDiv.addEventListener('fullscreenchange', resizeCanvas());
+    </script>
 </body>
 
 </html>

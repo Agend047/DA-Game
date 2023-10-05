@@ -6,6 +6,8 @@ let world;
 let heroBall = [Acco, Eleria, Kazim]
 let heroNumber = getHeroNumber();
 
+let fullscreen = false;
+
 
 function init() {
     canvas = document.getElementById('mainCanvas');
@@ -65,6 +67,25 @@ function getHeroNumber() {
     }
     else
         return 0;
+}
+
+function setFullScreen() {
+    let main = document.getElementById('mainDiv')
+    main.requestFullscreen()
+
+
+    // main.style.transform = 'scale(1.5)'
+    canvas.style.transform = 'scale(1.8)'
+    fullscreen = true;
+}
+
+
+function resizeCanvas() {
+    console.log(fullscreen)
+    if (fullscreen) {
+        canvas.style.transform = 'scale(1)';
+        fullscreen = false;
+    }
 }
 
 
