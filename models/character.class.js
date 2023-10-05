@@ -16,6 +16,9 @@ class Character extends MovableObject {
     abmW = (-80)
     abmH = (-190)
 
+    screenMod = 4; //Screen Modificator. On Fullscreen, it will be 8!
+
+
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,)
         this.applyGravity();
@@ -218,16 +221,14 @@ class Character extends MovableObject {
     setStatusBars() {
 
         let healthBar = document.getElementById('health_bg_max');
-        healthBar.style.width = (this.maxLeP * 4) + "px";
+        healthBar.style.width = (this.maxLeP * this.screenMod) + "px";
 
         let coinBar = document.getElementById('playerCoins_bar');
-        // coinBar.style.width = this.world.collectableCoins * 4;
-
-        console.log(this.world)
+        // coinBar.style.width = this.world.collectableCoins * this.screenMod;
 
         if (this.maxAmmunition) {
             let ammoBar = document.getElementById('ammo_bg_max');
-            ammoBar.style.width = (this.maxAmmunition * 4) + "px";
+            ammoBar.style.width = (this.maxAmmunition * this.screenMod) + "px";
 
             let ammoPic = document.getElementById('ammo_pic');
             ammoPic.src = this.ammoPicture

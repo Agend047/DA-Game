@@ -15,43 +15,17 @@ function init() {
 
     console.log('My Char is: ', world.character)
 
-    setStatusBars()
+    mustDo()
 }
 
+/**
+ * Sets the HeroID in Storage
+ * @param {Number} heroNumber Index of Choosen Hero in the Array, who has to be set
+ */
 function createHero(heroNumber) {
     localStorage.setItem('heroNumber', JSON.stringify(heroNumber));
 
     window.location.reload();
-}
-
-
-function setStatusBars() {
-    // if (heroNumber == 0) { //Acco
-
-    //     let ammoBar = document.getElementById('ammo_property');
-    //     ammoBar.style.display = 'none';
-
-    //     let healthBar = document.getElementById('health_bg_max');
-    //     healthBar.style.width = (48 * 4) + "px";
-
-    // } else if (heroNumber == 1) { //Eleria
-
-    //     let healthBar = document.getElementById('health_bg_max');
-    //     healthBar.style.width = (30 * 4) + "px";
-
-    //     let ammoBar = document.getElementById('ammo_bg_max');
-    //     ammoBar.style.width = (20 * 4) + "px";
-
-    // } else if (heroNumber == 2) { //Kazim
-
-    //     let healthBar = document.getElementById('health_bg_max');
-    //     healthBar.style.width = (32 * 4) + "px";
-
-
-
-    //     let ammoBar = document.getElementById('ammo_bg_max');
-    //     ammoBar.style.width = (40 * 4) + "px";
-    // }
 }
 
 /**
@@ -69,23 +43,62 @@ function getHeroNumber() {
         return 0;
 }
 
+
 function setFullScreen() {
     let main = document.getElementById('mainDiv')
     main.requestFullscreen()
 
-
-    // main.style.transform = 'scale(1.5)'
+    modifyStatusBar(1)
     canvas.style.transform = 'scale(1.8)'
     fullscreen = true;
+
+}
+
+function mustDo() {
+    let mainDiv = document.getElementById('mainDiv');
+    mainDiv.addEventListener('fullscreenchange', () => {
+        resizeCanvas(mainDiv)
+    });
 }
 
 
 function resizeCanvas() {
     console.log(fullscreen)
-    if (fullscreen) {
-        canvas.style.transform = 'scale(1)';
-        fullscreen = false;
+    if (!fullscreen) {
+        canvas.style.transform = 'scale(1)'
+
+        modifyStatusBar(0)
+
+        world.character.setStatusBars()
+    } else { fullscreen = false; }
+}
+
+/**
+ * Upscaling - Downscaling of Status Bars
+ * @param {Number} key 0 == Downscaling, 1 == Upscaling
+ */
+function modifyStatusBar(key) {
+
+    let marginArray = ['6px', '12px']
+    let heightArray = ['32px', '64px']
+    let picWidthArray = ['32px', '64px']
+
+    let bars = document.getElementsByClassName('PlayerProperty');
+    for (let bar of bars) {
+        bar.style.margin = marginArray[key]
+        bar.style.height = heightArray[key]
     }
+
+    let pics = document.getElementsByClassName('Bar_Image');
+    for (let pic of pics) {
+        pic.style.width = picWidthArray[key]
+    }
+
+
+
+
+    key ? world.character.screenMod = 8 : world.character.screenMod = 4;
+    world.character.setStatusBars()
 }
 
 
