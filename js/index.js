@@ -60,7 +60,7 @@ function setFullScreen() {
     main.requestFullscreen()
 
     modifyStatusBar(1)
-    let scaleFactor = calculateScaleFactor(720, 480)
+    let scaleFactor = calculateScaleFactor(720 * 0.9, 480 * 0.9)
     canvas.style.transform = 'scale(' + scaleFactor + ')'
     fullscreen = true;
 
@@ -101,7 +101,7 @@ function resizeCanvas() {
 function modifyStatusBar(key) {
 
     let PlayerBars = document.getElementById('PlayerBars');
-    key ? PlayerBars.style.paddingLeft = '4%' : PlayerBars.style.paddingLeft = '0px';
+    key ? PlayerBars.style.paddingLeft = '10%' : PlayerBars.style.paddingLeft = '0px';
     key ? PlayerBars.style.paddingTop = '4%' : PlayerBars.style.paddingTop = '0px';
 
     let marginArray = ['6px', '12px']
