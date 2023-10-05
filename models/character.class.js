@@ -254,10 +254,6 @@ class Character extends MovableObject {
 
         let percentage = this.getPercentage(usedVariavle, usedMaxVariavle)
         bar.style.width = percentage + '%';
-        if (percentage < 20) {
-            bar.style.height = 80 + '%';
-
-        }
     }
 
     /**

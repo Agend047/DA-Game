@@ -33,7 +33,7 @@ canvas {
 }
 
 .Bar_bg_div {
-    border-radius: 50px;
+    border-radius: 8px;
     border-color: white;
     border-style: solid;
     background-color: rgb(52, 52, 52);
@@ -53,7 +53,7 @@ canvas {
 }
 
 .Actual_bar {
-    border-radius: 1000px;
+    border-radius: 5px;
 }
 
 #playerHealth_bar {
