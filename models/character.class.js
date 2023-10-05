@@ -228,6 +228,9 @@ class Character extends MovableObject {
         if (this.maxAmmunition) {
             let ammoBar = document.getElementById('ammo_bg_max');
             ammoBar.style.width = (this.maxAmmunition * 4) + "px";
+
+            let ammoPic = document.getElementById('ammo_pic');
+            ammoPic.src = this.ammoPicture
         } else { //Acco
             let ammoBar = document.getElementById('ammo_property');
             ammoBar.style.display = 'none';
@@ -239,7 +242,6 @@ class Character extends MovableObject {
 
     /**
      * Changes the Characters Status bars, so the Bars are correct.
-     * 
      * @param {Number} which 1 == Health, 2 == ammounition, 3 == Coins
      */
     updateStatusBar(which) {
@@ -357,8 +359,10 @@ class Acco extends Character {
 class Eleria extends Character {
     LeP = 30;
     maxLeP = 30;
+
     ammunition = 40;
     maxAmmunition = 40;
+    ammoPicture = 'img/statusBars/quiver2.png'
 
     speed = 14;
     jumpSpeed = 10;
@@ -451,6 +455,8 @@ class Kazim extends Character {
 
     ammunition = 42; //AsP
     maxAmmunition = 42; //AsP
+    ammoPicture = 'img/statusBars/mana_potion.png'
+
 
     speed = 12;
     jumpSpeed = 9;
