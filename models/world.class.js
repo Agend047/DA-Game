@@ -22,20 +22,13 @@ class World {
     }
 
     /**
-    * Getting set Hero from local Storage, just used for developing Phase 
+    * Getting set Hero by global variable, just used for developing Phase 
     * @param {Number} x X-Position
     * @param {Number} y Y-Position
     * @returns 
     */
     setHero(x, y) {
-        let numberFromStorage
-        numberFromStorage = localStorage.getItem('heroNumber')
-        if (numberFromStorage) {
-            let heroNumber = JSON.parse(numberFromStorage)
-            return new heroBall[heroNumber](x, y);
-        }
-        else
-            return new heroBall[0](x, y);
+        return new heroBall[heroNumber](x, y);
     }
 
 

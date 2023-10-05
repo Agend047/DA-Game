@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 let IndexDelay = 33;
 let world;
 let heroBall = [Acco, Eleria, Kazim]
+let heroNumber = getHeroNumber();
 
 
 function init() {
@@ -11,6 +12,8 @@ function init() {
     world = new World(canvas, keyboard);
 
     console.log('My Char is: ', world.character)
+
+    setStatusBars()
 }
 
 function createHero(heroNumber) {
@@ -18,6 +21,36 @@ function createHero(heroNumber) {
 
     window.location.reload();
 }
+
+
+function setStatusBars() {
+    if (heroNumber == 0) { //Acco
+
+        let ammoBar = document.getElementById('ammo_property');
+        ammoBar.style.display = 'none';
+
+    } else if (heroNumber == 1) { //Eleria
+
+    } else if (heroNumber == 2) { //Kazim
+    }
+}
+
+/**
+ * Loads set hero Number of local Storage, for world-class and more.
+ * @returns the set Number of the hero, or 0, if none was set before-
+ */
+function getHeroNumber() {
+    let numberFromStorage
+    numberFromStorage = localStorage.getItem('heroNumber')
+    if (numberFromStorage) {
+        let heroNumber = JSON.parse(numberFromStorage)
+        return heroNumber;
+    }
+    else
+        return 0;
+}
+
+
 
 /**
  * Helper function, that allows me to use intervalls for an amount of uses.
