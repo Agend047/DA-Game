@@ -14,43 +14,64 @@ canvas {
     background-color: black;
 }
 
-.playerBars {
+.PlayerBars {
     position: absolute;
-
     display: flex;
     flex-direction: column;
 }
 
-.playerProperty_div {
+.PlayerProperty_div {
     display: flex;
     margin: 6px;
     height: 32px;
 }
 
-.bar_Image {
-    width: 20%;
+.Bar_Image {
+    width: 35px;
     height: 100%;
 }
 
-.bar_div {
+.Bar_bg_div {
     border-radius: 50px;
     border-color: white;
     border-style: solid;
+    background-color: rgb(52, 52, 52);
+}
+
+
+#health_bg_width {
+    width: 60%;
+}
+
+#ammo_bg_width {
     width: 100%;
+}
+
+#coin_bg_width {
+    width: 100%;
+}
+
+
+
+.Actual_bar {
+    border-radius: 50px;
 }
 
 #playerHealth_div {
     background-color: red;
-    width: 100px;
+    height: 100%;
+    width: 40px;
 }
 
 #playerAmmo_div {
     background-color: blue;
-    width: 200px;
+    height: 100%;
+    width: 100px;
 }
 
 #playerCoins_div {
     background-color: yellow;
+    height: 100%;
     width: 200px;
 }
 
