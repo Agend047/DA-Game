@@ -14,10 +14,11 @@ canvas {
     background-color: black;
 }
 
-.PlayerBars {
+#PlayerBars {
     position: absolute;
     display: flex;
     flex-direction: column;
+    display: none;
 }
 
 .PlayerProperty_div {
@@ -27,7 +28,7 @@ canvas {
 }
 
 .Bar_Image {
-    width: 35px;
+    width: px;
     height: 100%;
 }
 
@@ -39,16 +40,16 @@ canvas {
 }
 
 
-#health_bg_width {
-    width: 60%;
+#health_bg_max {
+    width: 10px
 }
 
-#ammo_bg_width {
-    width: 100%;
+#ammo_bg_max {
+    width: 100px;
 }
 
-#coin_bg_width {
-    width: 100%;
+#coin_bg_max {
+    width: 100px;
 }
 
 
@@ -57,22 +58,22 @@ canvas {
     border-radius: 50px;
 }
 
-#playerHealth_div {
+#playerHealth_bar {
     background-color: red;
     height: 100%;
-    width: 40px;
+    width: 100%;
 }
 
-#playerAmmo_div {
+#playerAmmo_bar {
     background-color: blue;
     height: 100%;
-    width: 100px;
+    width: 100%;
 }
 
-#playerCoins_div {
+#playerCoins_bar {
     background-color: yellow;
     height: 100%;
-    width: 200px;
+    width: 0%;
 }
 
 
