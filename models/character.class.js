@@ -3,6 +3,7 @@ class Character extends MovableObject {
 
     world;
     attacking = false; //Will be true, if char is attacking, so the animation wont get called twice.
+    collectedCoins = 0;
 
 
 
@@ -44,6 +45,7 @@ class Character extends MovableObject {
      */
     control() {
         setInterval(async () => {
+            this.updateStatusBar(1);
 
             if (this.isDead()) {
                 this.loadImageSprite(this.animations.dead);
@@ -72,6 +74,7 @@ class Character extends MovableObject {
                             this.attacking = true;
                             this.subtractAmmo();
                             await this.rangeAttackIntervall(this.animations.range)
+                            this.updateStatusBar(2)
                             this.resetAttackBlocker()
                         }
                     }
@@ -217,12 +220,15 @@ class Character extends MovableObject {
         let healthBar = document.getElementById('health_bg_max');
         healthBar.style.width = (this.maxLeP * 4) + "px";
 
+        let coinBar = document.getElementById('playerCoins_bar');
+        // coinBar.style.width = this.world.collectableCoins * 4;
+
+        console.log(this.world)
+
         if (this.maxAmmunition) {
             let ammoBar = document.getElementById('ammo_bg_max');
             ammoBar.style.width = (this.maxAmmunition * 4) + "px";
-
         } else { //Acco
-
             let ammoBar = document.getElementById('ammo_property');
             ammoBar.style.display = 'none';
         }
@@ -232,13 +238,37 @@ class Character extends MovableObject {
     }
 
     /**
+     * Changes the Characters Status bars, so the Bars are correct.
      * 
-     * @param {Number} wich 1 == Health, 2 == ammounition, 3 == Coins
-     * @param {Number} what 1 == 'Add', 0 == 'Substract'
-     * @param {Number} amount how much shall the bar get chanegd?
+     * @param {Number} which 1 == Health, 2 == ammounition, 3 == Coins
      */
-    updateStatusBar(wich, what, amount) {
+    updateStatusBar(which) {
 
+        let barsArray = ['playerHealth_bar', 'playerAmmo_bar', 'playerCoins_bar'];
+        let variables = [this.LeP, this.ammunition, this.collectedCoins]
+        let maxVariables = [this.maxLeP, this.maxAmmunition, this.world.collectableCoins]
+
+        let bar = document.getElementById(barsArray[which - 1])
+        let usedVariavle = variables[which - 1]
+        let usedMaxVariavle = maxVariables[which - 1]
+
+        let percentage = this.getPercentage(usedVariavle, usedMaxVariavle)
+        bar.style.width = percentage + '%';
+        if (percentage < 20) {
+            bar.style.height = 80 + '%';
+
+        }
+    }
+
+    /**
+     * Gets the Percentage of the Bar, we want to draw.
+     * 
+     * @param {*} curr current Amount of used Status
+     * @param {*} max Max amount of used Status
+     * @returns Percentage of current amount to max amount
+     */
+    getPercentage(curr, max) {
+        return (100 / max) * curr
     }
 }
 
@@ -331,8 +361,8 @@ class Acco extends Character {
 class Eleria extends Character {
     LeP = 30;
     maxLeP = 30;
-    ammunition = 20;
-    maxAmmunition = 20;
+    ammunition = 40;
+    maxAmmunition = 40;
 
     speed = 14;
     jumpSpeed = 10;
@@ -406,7 +436,7 @@ class Eleria extends Character {
      * @returns true, if Eleria got enough Arrows left.
      */
     enoughAmmo() {
-        return (this.ammunition >= 1)
+        return (this.ammunition >= 2)
 
     }
 
@@ -414,7 +444,7 @@ class Eleria extends Character {
      * An arrow gets shot away, and is gone for good.
      */
     subtractAmmo() {
-        this.ammunition--;
+        this.ammunition -= 2;
     }
 }
 

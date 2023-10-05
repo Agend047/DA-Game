@@ -3,12 +3,12 @@ class World {
     character = this.setHero(120, 180);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
+    collectableCoins = 20; //= this.actualLevel.coins.length();
     backgroundObjects = this.actualLevel.backgroundObjects;
     ctx;
     canvas;
     keyboard;
     camera_x = 0;
-    statusBar;
     shotableObjects = [];
 
 
