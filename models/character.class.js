@@ -2,7 +2,8 @@
 class Character extends MovableObject {
 
     world;
-    attacking = false; //WIll be true, if char is attacking, so the animation wont get called twice.
+    attacking = false; //Will be true, if char is attacking, so the animation wont get called twice.
+
 
 
     height = 280;
@@ -206,8 +207,40 @@ class Character extends MovableObject {
         ctx.rect(this.pos_x + this.abmX, this.pos_y + this.abmY, this.width + this.abmW, this.height + this.abmH,);
         ctx.stroke();
     }
-}
 
+
+    /**
+     * Initial Drawing of the Player Status Bars.
+     */
+    setStatusBars() {
+
+        let healthBar = document.getElementById('health_bg_max');
+        healthBar.style.width = (this.maxLeP * 4) + "px";
+
+        if (this.maxAmmunition) {
+            let ammoBar = document.getElementById('ammo_bg_max');
+            ammoBar.style.width = (this.maxAmmunition * 4) + "px";
+
+        } else { //Acco
+
+            let ammoBar = document.getElementById('ammo_property');
+            ammoBar.style.display = 'none';
+        }
+
+        let playerBars = document.getElementById('PlayerBars');
+        playerBars.style.display = 'block';
+    }
+
+    /**
+     * 
+     * @param {Number} wich 1 == Health, 2 == ammounition, 3 == Coins
+     * @param {Number} what 1 == 'Add', 0 == 'Substract'
+     * @param {Number} amount how much shall the bar get chanegd?
+     */
+    updateStatusBar(wich, what, amount) {
+
+    }
+}
 
 class Acco extends Character {
     LeP = 48;
@@ -290,6 +323,7 @@ class Acco extends Character {
 
         super(pos_x, pos_y,)
         this.loadImageSprite(this.animations.idle)
+        this.setStatusBars();
     }
 
 }
@@ -363,6 +397,8 @@ class Eleria extends Character {
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,);
         this.loadImageSprite(this.animations.idle)
+        this.setStatusBars();
+
     }
 
     /**
@@ -385,10 +421,10 @@ class Eleria extends Character {
 class Kazim extends Character {
 
     LeP = 34;
-    AsP = 42;
     maxLeP = 34;
-    maxAsP = 42;
 
+    ammunition = 42; //AsP
+    maxAmmunition = 42; //AsP
 
     speed = 12;
     jumpSpeed = 9;
@@ -452,7 +488,8 @@ class Kazim extends Character {
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,);
 
-        this.loadImageSprite(this.animations.idle)
+        this.loadImageSprite(this.animations.idle);
+        this.setStatusBars();
     }
 
     /**
@@ -460,13 +497,13 @@ class Kazim extends Character {
      * @returns true, if Kazim can cast 'Ignifaxius'
      */
     enoughAmmo() {
-        return (this.AsP >= 3)
+        return (this.ammunition >= 3)
     }
 
     /**
      * Subtracts the AsP cost of 'Ignifaxius' from Kazim's AsP
      */
     subtractAmmo() {
-        this.AsP -= 3;
+        this.ammunition -= 3;
     }
 }

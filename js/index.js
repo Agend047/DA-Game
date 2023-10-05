@@ -24,15 +24,32 @@ function createHero(heroNumber) {
 
 
 function setStatusBars() {
-    if (heroNumber == 0) { //Acco
+    // if (heroNumber == 0) { //Acco
 
-        let ammoBar = document.getElementById('ammo_property');
-        ammoBar.style.display = 'none';
+    //     let ammoBar = document.getElementById('ammo_property');
+    //     ammoBar.style.display = 'none';
 
-    } else if (heroNumber == 1) { //Eleria
+    //     let healthBar = document.getElementById('health_bg_max');
+    //     healthBar.style.width = (48 * 4) + "px";
 
-    } else if (heroNumber == 2) { //Kazim
-    }
+    // } else if (heroNumber == 1) { //Eleria
+
+    //     let healthBar = document.getElementById('health_bg_max');
+    //     healthBar.style.width = (30 * 4) + "px";
+
+    //     let ammoBar = document.getElementById('ammo_bg_max');
+    //     ammoBar.style.width = (20 * 4) + "px";
+
+    // } else if (heroNumber == 2) { //Kazim
+
+    //     let healthBar = document.getElementById('health_bg_max');
+    //     healthBar.style.width = (32 * 4) + "px";
+
+
+
+    //     let ammoBar = document.getElementById('ammo_bg_max');
+    //     ammoBar.style.width = (40 * 4) + "px";
+    // }
 }
 
 /**
