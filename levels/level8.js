@@ -17,6 +17,13 @@ const level8 = new Level(
         new Cloud(740 * 7, 'img/5_background/layers/4_clouds/1.png'),
     ],
 
+    //coins
+    [],
+
+    //collectables
+    [],
+
+    //backgrounds
     [
         new Background(0, 480, 'img/5_background/layers/air.png'),
         new Background(719, 480, 'img/5_background/layers/air.png'),

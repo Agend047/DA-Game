@@ -6,7 +6,16 @@ const level3 = new Level(
         new OrcBerserker(300),
     ],
 
+    //clouds
     [],
+
+    //coins
+    [],
+
+    //collectables
+    [],
+
+    //backgrounds
 
     [
         new Background(0, 480, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Sky.png'),

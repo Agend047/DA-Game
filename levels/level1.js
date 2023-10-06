@@ -2,15 +2,19 @@ const level1 = new Level(
     // Enemys
     [
         new OrcWarrior(200),
+        new OrcBerserker(300),
         new OrcWarrior(800),
         new OrcWarrior(1600),
-        new OrcBerserker(300),
+        new OrcBerserker(2000),
     ],
 
     //clouds
     [],
 
     //coins
+    [],
+
+    //collectables
     [],
 
     //backgrounds
