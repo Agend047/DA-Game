@@ -363,7 +363,7 @@ class Eleria extends Character {
 
     ammunition = 40;
     maxAmmunition = 40;
-    ammoPicture = 'img/statusBars/quiver2.png'
+    ammoPicture = 'img/statusBars/quiver3.png'
 
     speed = 14;
     jumpSpeed = 10;

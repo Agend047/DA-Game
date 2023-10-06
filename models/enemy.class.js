@@ -97,7 +97,7 @@ class Chicken extends Enemy {
 class OrcWarrior extends Enemy {
     width = 110;
     height = 220;
-    LeP = 1000 //16;
+    LeP = 16;
 
 
     speed = 1;

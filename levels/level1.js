@@ -1,4 +1,5 @@
 const level1 = new Level(
+    // Enemys
     [
         new OrcWarrior(200),
         new OrcWarrior(800),
@@ -6,8 +7,13 @@ const level1 = new Level(
         new OrcBerserker(300),
     ],
 
+    //clouds
     [],
 
+    //coins
+    [],
+
+    //backgrounds
     [
         new Background(0, 480, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Sky.png'),
         new Background(719, 480, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Sky.png'),
@@ -30,5 +36,6 @@ const level1 = new Level(
         new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Foreground.png'),
     ],
 
+    //level End
     level_end_x = (719 * 4)
 )
