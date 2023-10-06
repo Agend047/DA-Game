@@ -57,10 +57,25 @@ function addResizeEvList() {
 
 function setFullScreen() {
     let main = document.getElementById('mainDiv')
-    main.requestFullscreen()
+    // main.requestFullscreen()//#endregion
+
+    try {
+        if (canvas.requestFullscreen) {
+            main.requestFullscreen() //.then(adjustCanvasSizeOnFullscreen);
+        } else if (main.mozRequestFullScreen) { // Firefox
+            main.mozRequestFullScreen()//.then(adjustCanvasSizeOnFullscreen);
+        } else if (main.webkitRequestFullscreen) { // Chrome, Safari und Opera
+            main.webkitRequestFullscreen()//.then(adjustCanvasSizeOnFullscreen);
+        } else if (main.msRequestFullscreen) { // IE/Edge
+            main.msRequestFullscreen()//.then(adjustCanvasSizeOnFullscreen);
+        }
+    } catch (err) {
+        alert(err)
+    }
+
 
     modifyStatusBar(1)
-    let scaleFactor = calculateScaleFactor(720 * 0.9, 480 * 0.9)
+    let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
     canvas.style.transform = 'scale(' + scaleFactor + ')'
     fullscreen = true;
 
@@ -82,7 +97,9 @@ function calculateScaleFactor(maxWidth, maxHeight) {
 }
 
 
-
+/**
+ * Bringingeverything back to normal size
+ */
 function resizeCanvas() {
     if (!fullscreen) {
         canvas.style.transform = 'scale(1)'
