@@ -3,7 +3,8 @@ class World {
     character = this.setHero(120, 180);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
-    collectableCoins = 20; //= this.actualLevel.coins.length();
+    coins = this.actualLevel.coins;
+    collectableCoins = this.actualLevel.coins.length; //For the length of the
     backgroundObjects = this.actualLevel.backgroundObjects;
     ctx;
     canvas;
@@ -44,6 +45,7 @@ class World {
         this.ctx.translate(this.camera_x, 0)
         this.addArrayToMap(this.backgroundObjects)
         this.addArrayToMap(this.clouds)
+        this.addArrayToMap(this.coins)
 
         this.addArrayToMap(this.shotableObjects);
 
@@ -148,9 +150,7 @@ class World {
             this.enemys.forEach((enemy) => {
                 if (this.character.isInRangeOf(enemy)) {
                     enemy.playerNear = true;
-                } else {
-
-                }
+                } else { }
             })
         }, 1500);
     }

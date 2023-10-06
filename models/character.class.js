@@ -220,11 +220,14 @@ class Character extends MovableObject {
      */
     setStatusBars() {
 
+
         let healthBar = document.getElementById('health_bg_max');
         healthBar.style.width = (this.maxLeP * this.screenMod) + "px";
 
         let coinBar = document.getElementById('playerCoins_bar');
-        // coinBar.style.width = this.world.collectableCoins * this.screenMod;
+        if (this.world) {
+            coinBar.style.width = (this.world.collectableCoins * (this.screenMod * 2)) + "px"
+        }
 
         if (this.maxAmmunition) {
             let ammoBar = document.getElementById('ammo_bg_max');
@@ -257,6 +260,7 @@ class Character extends MovableObject {
 
         let percentage = this.getPercentage(usedVariavle, usedMaxVariavle)
         bar.style.width = percentage + '%';
+        console.log()
     }
 
     /**

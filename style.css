@@ -77,12 +77,12 @@ canvas {
 
 #ammo_bg_max {
     /* Will be Set by Character Values */
-    width: 100px;
+    /* width: 100px; */
 }
 
 #coin_bg_max {
     /* Will be Set by Character Values */
-    width: 100px;
+    /* width: 100px; */
 }
 
 .Actual_bar {

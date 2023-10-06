@@ -12,7 +12,18 @@ const level1 = new Level(
     [],
 
     //coins
-    [],
+    [
+        new Coin(200, 100),
+        new Coin(200, -50),
+        new Coin(200, -50),
+        new Coin(200, -50),
+        new Coin(200, -50),
+        new Coin(200, -50),
+        new Coin(200, -50),
+        new Coin(200, -50),
+        new Coin(200, -50),
+        new Coin(200, -50),
+    ],
 
     //collectables
     [],
