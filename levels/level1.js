@@ -1,11 +1,11 @@
 const level1 = new Level(
     // Enemys
     [
-        new OrcWarrior(200),
-        new OrcBerserker(300),
-        new OrcWarrior(800),
-        new OrcWarrior(1600),
-        new OrcBerserker(2000),
+        // new OrcWarrior(200),
+        // new OrcBerserker(300),
+        // new OrcWarrior(800),
+        // new OrcWarrior(1600),
+        // new OrcBerserker(2000),
     ],
 
     //clouds
@@ -13,16 +13,21 @@ const level1 = new Level(
 
     //coins
     [
+        new Coin(100, 100),
         new Coin(200, 100),
-        new Coin(200, -50),
-        new Coin(200, -50),
-        new Coin(200, -50),
-        new Coin(200, -50),
-        new Coin(200, -50),
-        new Coin(200, -50),
-        new Coin(200, -50),
-        new Coin(200, -50),
-        new Coin(200, -50),
+        new Coin(300, 100),
+        new Coin(400, 100),
+        new Coin(500, 100),
+        new Coin(600, 100),
+        new Coin(200, 100),
+        new Coin(200, 100),
+        new Coin(100, 100),
+        new Coin(100, 100),
+        new Coin(100, 100),
+        new Coin(100, 100),
+        new Coin(100, 100),
+        new Coin(100, 100),
+        new Coin(100, 100),
     ],
 
     //collectables
