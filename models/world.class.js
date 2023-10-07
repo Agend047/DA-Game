@@ -3,9 +3,12 @@ class World {
     character = this.setHero(120, 180);
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
+
+    //Collectable Things
+    healthPotions = [];
+    freeAmmo = this.actualLevel.freeAmmo; //The ammounition, that can be found
     coins = this.actualLevel.coins;
     collectableCoins = this.actualLevel.coins.length; //For the length of the Coin-collect bar
-    freeAmmo = this.actualLevel.freeAmmo; //The ammounition, that can be found
 
     backgroundObjects = this.actualLevel.backgroundObjects;
     ctx;
@@ -51,7 +54,10 @@ class World {
         this.ctx.translate(this.camera_x, 0)
         this.addArrayToMap(this.backgroundObjects)
         this.addArrayToMap(this.clouds)
+
         this.addArrayToMap(this.coins)
+        this.addArrayToMap(this.freeAmmo)
+        // this.addArrayToMap(this.healthPotions)
 
         this.addArrayToMap(this.shotableObjects);
 
@@ -117,7 +123,7 @@ class World {
         this.readyForMirror(mo);
 
         mo.drawSpritePic(this.ctx);
-        mo.drawHitbox(this.ctx);
+        // mo.drawHitbox(this.ctx);
         // if (mo instanceof Enemy) { mo.drawAggroArea(this.ctx) }
         // if (mo instanceof Character) { mo.drawCharAttackMeeleBox(this.ctx) }
         this.reverseMirroring(mo);

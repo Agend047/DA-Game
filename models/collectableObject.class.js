@@ -20,18 +20,38 @@ class collectableObject extends GameObject {
     }
 
 
-
+    /**
+     * Here, the Items get removed from the level, and added to the players Status.
+     * @param {Number} index Index inside the array
+     * @param {Object} pl Player object
+     * @param {Object} world World Object
+     * @param {Number} statusIdentifyer 1 == Health, 2 == ammounition, 3 == Coins
+     */
     collect(index, pl, world, statusIdentifyer) {
-        world.coins.splice(index, 1)
 
-        if (statusIdentifyer === 1) pl.LeP += 8;
-        if (statusIdentifyer === 2) pl.ammunition += 6;
-        if (statusIdentifyer === 3) pl.collectedCoins++
+        let plStats = [pl.LeP, pl.ammunition, pl.collectedCoins]
+        let MAXplStats = [pl.maxLeP, pl.maxAmmunition, 15]
+
+        if (!(plStats[statusIdentifyer - 1] >= MAXplStats[statusIdentifyer - 1])) {
+
+            let worldArrays = [world.healthPotions, world.freeAmmo, world.coins]
+
+            worldArrays[statusIdentifyer - 1].splice(index, 1)
+
+            if (statusIdentifyer === 1) pl.LeP += 8;
+            if (statusIdentifyer === 2) pl.ammunition += 6; console.log('test')
+            if (statusIdentifyer === 3) pl.collectedCoins++
 
 
-        pl.updateStatusBar(statusIdentifyer)
+            //VERY WEARD
+            if (plStats[statusIdentifyer - 1] > MAXplStats[statusIdentifyer - 1]) { plStats[statusIdentifyer - 1] = MAXplStats[statusIdentifyer - 1] }
+            console.log(plStats[statusIdentifyer - 1] > MAXplStats[statusIdentifyer - 1])
+            console.log(plStats[statusIdentifyer - 1], ' ? ', MAXplStats[statusIdentifyer - 1])
+
+            pl.updateStatusBar(statusIdentifyer)
+
+        } else { }
     }
-
 }
 
 
@@ -42,13 +62,42 @@ class Coin extends collectableObject {
     height = 50;
     width = 50;
 
-
-
     constructor(min_x, min_y) {
         let pos_x = min_x + Math.random() * 2100;
         let pos_y = min_y + Math.random() * 300;
         super(pos_x, pos_y).loadImage('img/collectables/Dukate.png')
     }
+}
 
+class AstralPotion extends collectableObject {
+    height = 50;
+    width = 50;
 
+    constructor(min_x, min_y) {
+        let pos_x = min_x //+ Math.random() * 2100;
+        let pos_y = min_y //+ Math.random() * 300;
+        super(pos_x, pos_y).loadImage('img/collectables/mana_potion.png')
+    }
+}
+
+class Arrows extends collectableObject {
+    height = 50;
+    width = 50;
+
+    constructor(min_x, min_y) {
+        let pos_x = min_x //+ Math.random() * 2100;
+        let pos_y = min_y //+ Math.random() * 300;
+        super(pos_x, pos_y).loadImage('img/collectables/Arrows_diagonal.png')
+    }
+}
+
+class HealthPotion extends collectableObject {
+    height = 50;
+    width = 50;
+
+    constructor(min_x, min_y) {
+        let pos_x = min_x //+ Math.random() * 2100;
+        let pos_y = min_y //+ Math.random() * 300;
+        super(pos_x, pos_y).loadImage('img/collectables/health_potion.png')
+    }
 }

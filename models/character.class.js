@@ -249,16 +249,17 @@ class Character extends MovableObject {
     updateStatusBar(statusIdentifyer) {
 
         let barsArray = ['playerHealth_bar', 'playerAmmo_bar', 'playerCoins_bar'];
-        let variables = [this.LeP, this.ammunition, this.collectedCoins]
-        let maxVariables = [this.maxLeP, this.maxAmmunition, this.world.collectableCoins]
+        let plStats = [this.LeP, this.ammunition, this.collectedCoins]
+        let MAXplStats = [this.maxLeP, this.maxAmmunition, this.world.collectableCoins]
 
         let bar = document.getElementById(barsArray[statusIdentifyer - 1])
-        let usedVariavle = variables[statusIdentifyer - 1]
-        let usedMaxVariavle = maxVariables[statusIdentifyer - 1]
+        let usedVariavle = plStats[statusIdentifyer - 1]
+        let usedMaxVariavle = MAXplStats[statusIdentifyer - 1]
 
         let percentage = this.getPercentage(usedVariavle, usedMaxVariavle)
         bar.style.width = percentage + '%';
     }
+
 
     /**
      * Gets the Percentage of the Bar, we want to draw.
