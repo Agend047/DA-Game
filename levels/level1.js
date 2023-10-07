@@ -30,8 +30,11 @@ const level1 = new Level(
         new Coin(300, 100),
     ],
 
-    //collectables
-    [],
+    //Ammounition
+    [
+        new Arrows(100, 200),
+        new AstralPotion(200, 200),
+    ],
 
     //backgrounds
     [
