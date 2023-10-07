@@ -42,7 +42,11 @@ class Coin extends collectableObject {
     height = 50;
     width = 50;
 
-    constructor(pos_x, pos_y) {
+
+
+    constructor(min_x, min_y) {
+        let pos_x = min_x + Math.random() * 2100;
+        let pos_y = min_y + Math.random() * 300;
         super(pos_x, pos_y).loadImage('img/collectables/Dukate.png')
     }
 
