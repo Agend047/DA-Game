@@ -4,7 +4,9 @@ class World {
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
     coins = this.actualLevel.coins;
-    collectableCoins = this.actualLevel.coins.length; //For the length of the
+    collectableCoins = this.actualLevel.coins.length; //For the length of the Coin-collect bar
+    freeAmmo = this.actualLevel.freeAmmo; //The ammounition, that can be found
+
     backgroundObjects = this.actualLevel.backgroundObjects;
     ctx;
     canvas;
@@ -40,6 +42,10 @@ class World {
 
     /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */
     draw() {
+        this.collectObjects(this.coins)
+        this.collectObjects(this.freeAmmo)
+
+
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.ctx.translate(this.camera_x, 0)
@@ -111,7 +117,7 @@ class World {
         this.readyForMirror(mo);
 
         mo.drawSpritePic(this.ctx);
-        // mo.drawHitbox(this.ctx);
+        mo.drawHitbox(this.ctx);
         // if (mo instanceof Enemy) { mo.drawAggroArea(this.ctx) }
         // if (mo instanceof Character) { mo.drawCharAttackMeeleBox(this.ctx) }
         this.reverseMirroring(mo);
@@ -154,6 +160,18 @@ class World {
             })
         }, 1500);
     }
+
+    collectObjects(elements) {
+        elements.forEach((element => {
+            if (this.character.pos_x >= element.pos_x - 100 && this.character.pos_x <= element.pos_x + 100) {
+                if (element.isInCollectRange(this.character)) {
+                    console.log('Jea')
+                    // coin.collect(this.character) 
+                }
+            }
+        }))
+    }
+
 
 }
 
