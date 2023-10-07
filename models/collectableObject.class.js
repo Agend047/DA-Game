@@ -12,16 +12,24 @@ class collectableObject extends GameObject {
      * @returns true, if character touches a collectable object
      */
     isInCollectRange(pl) {
+
         return (this.pos_x + this.width) >= pl.pos_x + pl.hbmX &&
-            this.pos_x <= (pl.pos_x + pl.width + pl.hbmW) &&
+            this.pos_x <= (pl.pos_x + pl.hbmX + pl.width + pl.hbmW) &&
             (this.pos_y + this.height) >= pl.pos_y + pl.hbmY &&
             (this.pos_y) <= (pl.pos_y + pl.hbmY + pl.height + pl.hbmH)
     }
 
 
 
-    collect(pl) {
+    collect(index, pl, world, statusIdentifyer) {
+        world.coins.splice(index, 1)
 
+        if (statusIdentifyer === 1) pl.LeP += 8;
+        if (statusIdentifyer === 2) pl.ammunition += 6;
+        if (statusIdentifyer === 3) pl.collectedCoins++
+
+
+        pl.updateStatusBar(statusIdentifyer)
     }
 
 }

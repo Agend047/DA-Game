@@ -244,17 +244,17 @@ class Character extends MovableObject {
 
     /**
      * Changes the Characters Status bars, so the Bars are correct.
-     * @param {Number} which 1 == Health, 2 == ammounition, 3 == Coins
+     * @param {Number} statusIdentifyer 1 == Health, 2 == ammounition, 3 == Coins
      */
-    updateStatusBar(which) {
+    updateStatusBar(statusIdentifyer) {
 
         let barsArray = ['playerHealth_bar', 'playerAmmo_bar', 'playerCoins_bar'];
         let variables = [this.LeP, this.ammunition, this.collectedCoins]
         let maxVariables = [this.maxLeP, this.maxAmmunition, this.world.collectableCoins]
 
-        let bar = document.getElementById(barsArray[which - 1])
-        let usedVariavle = variables[which - 1]
-        let usedMaxVariavle = maxVariables[which - 1]
+        let bar = document.getElementById(barsArray[statusIdentifyer - 1])
+        let usedVariavle = variables[statusIdentifyer - 1]
+        let usedMaxVariavle = maxVariables[statusIdentifyer - 1]
 
         let percentage = this.getPercentage(usedVariavle, usedMaxVariavle)
         bar.style.width = percentage + '%';

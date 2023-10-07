@@ -42,8 +42,8 @@ class World {
 
     /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */
     draw() {
-        this.collectObjects(this.coins)
-        this.collectObjects(this.freeAmmo)
+        this.collectObjects(this.freeAmmo, 2);
+        this.collectObjects(this.coins, 3);
 
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -161,15 +161,20 @@ class World {
         }, 1500);
     }
 
-    collectObjects(elements) {
-        elements.forEach((element => {
+    /**
+     * Collecting items on the way. The first check is meant to result in a better performance.
+     * @param {Array} elements either 'coins', or 'freeAmmo', wich we can collect
+     *  @param {Number} statusIdentifyer 1 == health, 2 == ammounition, 3 == Coins - used to raise the players status.
+     */
+    collectObjects(elements, statusIdentifyer) {
+        for (let i in elements) {
+            let element = elements[i];
             if (this.character.pos_x >= element.pos_x - 100 && this.character.pos_x <= element.pos_x + 100) {
                 if (element.isInCollectRange(this.character)) {
-                    console.log('Jea')
-                    // coin.collect(this.character) 
+                    element.collect(i, this.character, this, statusIdentifyer)
                 }
             }
-        }))
+        }
     }
 
 
