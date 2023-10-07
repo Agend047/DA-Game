@@ -23,11 +23,11 @@ const level1 = new Level(
         new Coin(200, 100),
         new Coin(100, 100),
         new Coin(100, 100),
-        new Coin(100, 100),
-        new Coin(100, 100),
-        new Coin(100, 100),
-        new Coin(100, 100),
-        new Coin(100, 100),
+        new Coin(300, 100),
+        new Coin(300, 100),
+        new Coin(300, 100),
+        new Coin(300, 100),
+        new Coin(300, 100),
     ],
 
     //collectables
