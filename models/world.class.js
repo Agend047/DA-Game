@@ -45,8 +45,8 @@ class World {
 
     /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */
     draw() {
-        this.collectObjects(this.supplys)//, 2);
-        this.collectObjects(this.coins)//, 3);
+        this.collectObjects(this.supplys);
+        this.collectObjects(this.coins);
 
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -170,14 +170,13 @@ class World {
     /**
      * Collecting items on the way. The first check is meant to result in a better performance.
      * @param {Array} elements either 'coins', or 'supplys', wich we can collect
-     *  @param {Number} statusID 1 == health, 2 == ammounition, 3 == Coins - used to raise the players status.
      */
-    collectObjects(elements) {//, statusID) {
+    collectObjects(elements) {
         for (let i in elements) {
             let element = elements[i];
             if (this.character.pos_x >= element.pos_x - 100 && this.character.pos_x <= element.pos_x + 100) {
                 if (element.isInCollectRange(this.character)) {
-                    element.collect(i, this.character, this)//, statusID)
+                    element.collect(i, this.character, this)
                 }
             }
         }

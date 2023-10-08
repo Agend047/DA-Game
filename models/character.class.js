@@ -264,7 +264,7 @@ class Character extends MovableObject {
      * Will make sure, that health and ammo wont raise upon maximal value
      */
     checkStatusMax() {
-        if (this.LeP > this.maxLeP) { this.LeP = this.maxLeP; console.log(this.Lep) }
+        if (this.LeP > this.maxLeP) { this.LeP = this.maxLeP; }
         if (this.ammunition > this.maxAmmunition) { this.ammunition = this.maxAmmunition }
     }
 
