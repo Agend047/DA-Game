@@ -25,30 +25,29 @@ class collectableObject extends GameObject {
      * @param {Number} index Index inside the array
      * @param {Object} pl Player object
      * @param {Object} world World Object
-     * @param {Number} statusIdentifyer 1 == Health, 2 == ammounition, 3 == Coins
+     * @param {Number} statusID 1 == Health, 2 == ammounition, 3 == Coins
      */
-    collect(index, pl, world, statusIdentifyer) {
+    collect(index, pl, world, statusID) {
 
         let plStats = [pl.LeP, pl.ammunition, pl.collectedCoins]
         let MAXplStats = [pl.maxLeP, pl.maxAmmunition, 15]
 
-        if (!(plStats[statusIdentifyer - 1] >= MAXplStats[statusIdentifyer - 1])) {
+        if (!(plStats[statusID - 1] >= MAXplStats[statusID - 1])) {
 
             let worldArrays = [world.healthPotions, world.freeAmmo, world.coins]
 
-            worldArrays[statusIdentifyer - 1].splice(index, 1)
+            worldArrays[statusID - 1].splice(index, 1)
 
-            if (statusIdentifyer === 1) pl.LeP += 8;
-            if (statusIdentifyer === 2) pl.ammunition += 6; console.log('test')
-            if (statusIdentifyer === 3) pl.collectedCoins++
+            if (statusID === 1) pl.LeP += 8;
+            if (statusID === 2) pl.ammunition += 6;
+            if (statusID === 3) pl.collectedCoins++;
 
 
             //VERY WEARD
-            if (plStats[statusIdentifyer - 1] > MAXplStats[statusIdentifyer - 1]) { plStats[statusIdentifyer - 1] = MAXplStats[statusIdentifyer - 1] }
-            console.log(plStats[statusIdentifyer - 1] > MAXplStats[statusIdentifyer - 1])
-            console.log(plStats[statusIdentifyer - 1], ' ? ', MAXplStats[statusIdentifyer - 1])
 
-            pl.updateStatusBar(statusIdentifyer)
+
+            pl.checkStatusMax();
+            pl.updateStatusBar(statusID);
 
         } else { }
     }

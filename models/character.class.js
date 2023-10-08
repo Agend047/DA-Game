@@ -244,22 +244,29 @@ class Character extends MovableObject {
 
     /**
      * Changes the Characters Status bars, so the Bars are correct.
-     * @param {Number} statusIdentifyer 1 == Health, 2 == ammounition, 3 == Coins
+     * @param {Number} statusID 1 == Health, 2 == ammounition, 3 == Coins
      */
-    updateStatusBar(statusIdentifyer) {
+    updateStatusBar(statusID) {
 
         let barsArray = ['playerHealth_bar', 'playerAmmo_bar', 'playerCoins_bar'];
         let plStats = [this.LeP, this.ammunition, this.collectedCoins]
-        let MAXplStats = [this.maxLeP, this.maxAmmunition, this.world.collectableCoins]
+        let MAXplStats = [this.maxLeP, this.maxAmmunition, 15]
 
-        let bar = document.getElementById(barsArray[statusIdentifyer - 1])
-        let usedVariavle = plStats[statusIdentifyer - 1]
-        let usedMaxVariavle = MAXplStats[statusIdentifyer - 1]
+        let bar = document.getElementById(barsArray[statusID - 1])
+        let usedVariavle = plStats[statusID - 1]
+        let usedMaxVariavle = MAXplStats[statusID - 1]
 
         let percentage = this.getPercentage(usedVariavle, usedMaxVariavle)
         bar.style.width = percentage + '%';
     }
 
+    /**
+     * Will make sure, that health and ammo wont raise upon maximal value
+     */
+    checkStatusMax() {
+        if (this.LeP > this.maxLeP) { this.Lep = this.maxLeP }
+        if (this.ammunition > this.maxAmmunition) { this.ammunition = this.maxAmmunition }
+    }
 
     /**
      * Gets the Percentage of the Bar, we want to draw.
