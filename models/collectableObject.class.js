@@ -7,7 +7,6 @@ class collectableObject extends GameObject {
 
 
     /**
-     * 
      * @param {Object} pl The Player character
      * @returns true, if character touches a collectable object
      */
@@ -65,7 +64,9 @@ class HealthPotion extends collectableObject {
     }
 }
 
-class AstralPotion extends collectableObject {
+
+class Ammounition extends collectableObject {
+
     height = 50;
     width = 50;
     statusID = 2;
@@ -73,21 +74,9 @@ class AstralPotion extends collectableObject {
     constructor(min_x, min_y) {
         let pos_x = min_x //+ Math.random() * 2100;
         let pos_y = min_y //+ Math.random() * 300;
-        super(pos_x, pos_y).loadImage('img/collectables/mana_potion.png')
+        super(pos_x, pos_y)
     }
-}
 
-class Arrows extends collectableObject {
-    height = 50;
-    width = 50;
-    statusID = 2;
-
-
-    constructor(min_x, min_y) {
-        let pos_x = min_x //+ Math.random() * 2100;
-        let pos_y = min_y //+ Math.random() * 300;
-        super(pos_x, pos_y).loadImage('img/collectables/Arrows_diagonal.png')
-    }
 }
 
 class Coin extends collectableObject {

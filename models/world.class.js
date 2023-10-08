@@ -5,7 +5,6 @@ class World {
     clouds = this.actualLevel.clouds;
 
     //Collectable Things
-    healthPotions = [];
     supplys = this.actualLevel.supplys; //The ammounition, that can be found
     coins = this.actualLevel.coins;
     collectableCoins = this.actualLevel.coins.length; //For the length of the Coin-collect bar
@@ -17,11 +16,14 @@ class World {
     camera_x = 0;
     shotableObjects = [];
 
+    // console.log(this.character.ammoPicture)
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+
+        this.givingRightImage()
         this.draw();
         this.setWorld();
         this.canEnemysAttack();
@@ -37,6 +39,14 @@ class World {
         return new heroBall[heroNumber](x, y);
     }
 
+    givingRightImage() {
+        // console.log(this.character.ammoPicture)
+        for (let supply of this.supplys) {
+            if (supply.statusID == 2) {
+                supply.loadImage(this.character.ammoPicture)
+            }
+        }
+    }
 
     // Handing the World attributes to another class. (for example, to Character)
     setWorld() {
@@ -57,7 +67,6 @@ class World {
 
         this.addArrayToMap(this.coins)
         this.addArrayToMap(this.supplys)
-        // this.addArrayToMap(this.healthPotions)
 
         this.addArrayToMap(this.shotableObjects);
 

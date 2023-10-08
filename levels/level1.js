@@ -2,10 +2,10 @@ const level1 = new Level(
     // Enemys
     [
         new OrcWarrior(200),
-        // new OrcBerserker(300),
-        // new OrcWarrior(800),
-        // new OrcWarrior(1600),
-        // new OrcBerserker(2000),
+        new OrcBerserker(300),
+        new OrcWarrior(800),
+        new OrcWarrior(1600),
+        new OrcBerserker(2000),
     ],
 
     //clouds
@@ -30,11 +30,11 @@ const level1 = new Level(
         new Coin(300, 100),
     ],
 
-    //Ammounition
+    //Supplys
     [
-        new Arrows(100, 200),
-        new AstralPotion(200, 200),
-        new HealthPotion(300, 200)
+        new Ammounition(200, 200),
+        new Ammounition(1500, 200),
+        new HealthPotion(1600, 200)
     ],
 
     //backgrounds

@@ -284,6 +284,10 @@ class Acco extends Character {
     LeP = 48;
     maxLeP = 48;
 
+    ammunition = 0;
+    maxAmmunition = 0;
+    ammoPicture = '';
+
     speed = 10;
     jumpSpeed = 8;
 
@@ -372,7 +376,7 @@ class Eleria extends Character {
 
     ammunition = 40;
     maxAmmunition = 40;
-    ammoPicture = 'img/statusBars/quiver3.png'
+    ammoPicture = 'img/collectables/Arrows_diagonal.png'
 
     speed = 14;
     jumpSpeed = 10;
