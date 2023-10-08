@@ -39,8 +39,12 @@ class World {
         return new heroBall[heroNumber](x, y);
     }
 
+
+    /**
+     * Setting the right picture for the ammounition collectables in the level.
+     * Depends on a property of the choosen hero!
+     */
     givingRightImage() {
-        // console.log(this.character.ammoPicture)
         for (let supply of this.supplys) {
             if (supply.statusID == 2) {
                 supply.loadImage(this.character.ammoPicture)
