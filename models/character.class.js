@@ -264,15 +264,15 @@ class Character extends MovableObject {
      * Will make sure, that health and ammo wont raise upon maximal value
      */
     checkStatusMax() {
-        if (this.LeP > this.maxLeP) { this.Lep = this.maxLeP }
+        if (this.LeP > this.maxLeP) { this.LeP = this.maxLeP; console.log(this.Lep) }
         if (this.ammunition > this.maxAmmunition) { this.ammunition = this.maxAmmunition }
     }
 
     /**
      * Gets the Percentage of the Bar, we want to draw.
      * 
-     * @param {*} curr current Amount of used Status
-     * @param {*} max Max amount of used Status
+     * @param {Number} curr current Amount of used Status (health, ammounition or coins)
+     * @param {Number} max Max amount of used Status (health, ammounition or coins)
      * @returns Percentage of current amount to max amount
      */
     getPercentage(curr, max) {

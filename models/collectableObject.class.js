@@ -25,52 +25,50 @@ class collectableObject extends GameObject {
      * @param {Number} index Index inside the array
      * @param {Object} pl Player object
      * @param {Object} world World Object
-     * @param {Number} statusID 1 == Health, 2 == ammounition, 3 == Coins
      */
     collect(index, pl, world, statusID) {
+
+        statusID = this.statusID; //@param {Number} statusID 1 == Health, 2 == ammounition, 3 == Coins
 
         let plStats = [pl.LeP, pl.ammunition, pl.collectedCoins]
         let MAXplStats = [pl.maxLeP, pl.maxAmmunition, 15]
 
         if (!(plStats[statusID - 1] >= MAXplStats[statusID - 1])) {
 
-            let worldArrays = [world.healthPotions, world.freeAmmo, world.coins]
-
+            let worldArrays = [world.supplys, world.supplys, world.coins]
             worldArrays[statusID - 1].splice(index, 1)
 
             if (statusID === 1) pl.LeP += 8;
             if (statusID === 2) pl.ammunition += 6;
             if (statusID === 3) pl.collectedCoins++;
 
-
-            //VERY WEARD
-
-
             pl.checkStatusMax();
             pl.updateStatusBar(statusID);
 
-        } else { }
+        }
     }
 }
 
 
 
 
-class Coin extends collectableObject {
-
+class HealthPotion extends collectableObject {
     height = 50;
     width = 50;
+    statusID = 1;
+
 
     constructor(min_x, min_y) {
-        let pos_x = min_x + Math.random() * 2100;
-        let pos_y = min_y + Math.random() * 300;
-        super(pos_x, pos_y).loadImage('img/collectables/Dukate.png')
+        let pos_x = min_x //+ Math.random() * 2100;
+        let pos_y = min_y //+ Math.random() * 300;
+        super(pos_x, pos_y).loadImage('img/collectables/health_potion.png')
     }
 }
 
 class AstralPotion extends collectableObject {
     height = 50;
     width = 50;
+    statusID = 2;
 
     constructor(min_x, min_y) {
         let pos_x = min_x //+ Math.random() * 2100;
@@ -82,6 +80,8 @@ class AstralPotion extends collectableObject {
 class Arrows extends collectableObject {
     height = 50;
     width = 50;
+    statusID = 2;
+
 
     constructor(min_x, min_y) {
         let pos_x = min_x //+ Math.random() * 2100;
@@ -90,13 +90,15 @@ class Arrows extends collectableObject {
     }
 }
 
-class HealthPotion extends collectableObject {
+class Coin extends collectableObject {
+
     height = 50;
     width = 50;
+    statusID = 3;
 
     constructor(min_x, min_y) {
-        let pos_x = min_x //+ Math.random() * 2100;
-        let pos_y = min_y //+ Math.random() * 300;
-        super(pos_x, pos_y).loadImage('img/collectables/health_potion.png')
+        let pos_x = min_x + Math.random() * 2100;
+        let pos_y = min_y + Math.random() * 300;
+        super(pos_x, pos_y).loadImage('img/collectables/Dukate.png')
     }
 }

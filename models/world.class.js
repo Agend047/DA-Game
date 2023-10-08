@@ -6,7 +6,7 @@ class World {
 
     //Collectable Things
     healthPotions = [];
-    freeAmmo = this.actualLevel.freeAmmo; //The ammounition, that can be found
+    supplys = this.actualLevel.supplys; //The ammounition, that can be found
     coins = this.actualLevel.coins;
     collectableCoins = this.actualLevel.coins.length; //For the length of the Coin-collect bar
 
@@ -45,8 +45,8 @@ class World {
 
     /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */
     draw() {
-        this.collectObjects(this.freeAmmo, 2);
-        this.collectObjects(this.coins, 3);
+        this.collectObjects(this.supplys)//, 2);
+        this.collectObjects(this.coins)//, 3);
 
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -56,7 +56,7 @@ class World {
         this.addArrayToMap(this.clouds)
 
         this.addArrayToMap(this.coins)
-        this.addArrayToMap(this.freeAmmo)
+        this.addArrayToMap(this.supplys)
         // this.addArrayToMap(this.healthPotions)
 
         this.addArrayToMap(this.shotableObjects);
@@ -169,15 +169,15 @@ class World {
 
     /**
      * Collecting items on the way. The first check is meant to result in a better performance.
-     * @param {Array} elements either 'coins', or 'freeAmmo', wich we can collect
-     *  @param {Number} statusIdentifyer 1 == health, 2 == ammounition, 3 == Coins - used to raise the players status.
+     * @param {Array} elements either 'coins', or 'supplys', wich we can collect
+     *  @param {Number} statusID 1 == health, 2 == ammounition, 3 == Coins - used to raise the players status.
      */
-    collectObjects(elements, statusIdentifyer) {
+    collectObjects(elements) {//, statusID) {
         for (let i in elements) {
             let element = elements[i];
             if (this.character.pos_x >= element.pos_x - 100 && this.character.pos_x <= element.pos_x + 100) {
                 if (element.isInCollectRange(this.character)) {
-                    element.collect(i, this.character, this, statusIdentifyer)
+                    element.collect(i, this.character, this)//, statusID)
                 }
             }
         }
