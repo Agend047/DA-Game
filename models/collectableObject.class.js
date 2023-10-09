@@ -55,7 +55,7 @@ class HealthPotion extends collectableObject {
 
 
     constructor(min_x, min_y) {
-        let pos_x = min_x + Math.random() * 2400;
+        let pos_x = min_x //+ Math.random() * 2400;
         let pos_y = min_y //+ Math.random() * 300;
         super(pos_x, pos_y).loadImage('img/collectables/health_potion.png')
     }
@@ -69,7 +69,7 @@ class Ammounition extends collectableObject {
     statusID = 2;
 
     constructor(min_x, min_y) {
-        let pos_x = min_x + Math.random() * 2400;
+        let pos_x = min_x //+ Math.random() * 2400;
         let pos_y = min_y //+ Math.random() * 300;
         super(pos_x, pos_y)
     }
@@ -82,9 +82,19 @@ class Coin extends collectableObject {
     width = 50;
     statusID = 3;
 
-    constructor(min_x, min_y) {
-        let pos_x = min_x + Math.random() * 2400;
-        let pos_y = min_y + Math.random() * 300;
+    constructor(min_x, min_y, mixablePlace) {
+
+        let pos_x;
+        let pos_y;
+
+        if (mixablePlace) {
+            pos_x = min_x + Math.random() * 2400;
+            pos_y = min_y + Math.random() * 300;
+        }
+        else {
+            pos_x = min_x
+            pos_y = min_y
+        }
         super(pos_x, pos_y).loadImage('img/collectables/Dukate.png')
     }
 }

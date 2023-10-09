@@ -131,13 +131,13 @@ class Enemy extends MovableObject {
 
 
     playerEncounter() {
-        this.currentFrame = 4;
+        // this.currentFrame = 4;
         let jumping = setInterval(() => {
             this.loadImageSprite(this.animations.jump)
             this.pos_x -= this.speed * 10;
 
 
-            if (this.currentFrame == 8 - 1) {
+            if (this.currentFrame == this.frameRate - 1) {
                 clearInterval(jumping)
                 this.bossAI()
             }
