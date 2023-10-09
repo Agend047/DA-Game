@@ -117,9 +117,33 @@ class Enemy extends MovableObject {
 
     waitingForPlayer() {
         setTimeout(() => {
-            if (world.character.pos_x > world.actualLevel.level_end_x - 720) { }
-        }, 5000);
+            let waitIntervall = setInterval(() => {
+                if (world.character.pos_x > world.actualLevel.level_end_x - 600) {
+
+                    clearInterval(waitIntervall)
+
+                    this.playerEncountered = true;
+                    this.playerEncounter()
+                }
+            }, this.globeDelay);
+        }, 3000);
     }
+
+
+    playerEncounter() {
+        this.currentFrame = 4;
+        let jumping = setInterval(() => {
+            this.loadImageSprite(this.animations.jump)
+            this.pos_x -= this.speed * 10;
+
+
+            if (this.currentFrame == 8 - 1) {
+                clearInterval(jumping)
+                this.bossAI()
+            }
+        }, this.globeDelay);
+    }
+
 
 
     /**
@@ -383,6 +407,7 @@ class BossWarrior extends OrcWarrior {
     height = 440;
 
     LeP = 32;
+    speed = 2;
 
     //Hitbox Modificators:
     hbmX = 45;
@@ -409,6 +434,7 @@ class BossBerserker extends OrcBerserker {
     height = 520;
 
     LeP = 64;
+    speed = 2;
 
     //Hitbox Modificators:
     hbmX = 65;
