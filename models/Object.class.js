@@ -7,7 +7,6 @@ class GameObject {
     img; //gets filled with the Image
 
 
-
     constructor(pos_x, pos_y, width, height, path) {
         this.pos_x = pos_x;
         this.pos_y = pos_y;
