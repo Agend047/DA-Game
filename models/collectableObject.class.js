@@ -5,7 +5,6 @@ class collectableObject extends GameObject {
         super(pos_x, pos_y)
     }
 
-
     /**
      * @param {Object} pl The Player character
      * @returns true, if character touches a collectable object
@@ -17,7 +16,6 @@ class collectableObject extends GameObject {
             (this.pos_y + this.height) >= pl.pos_y + pl.hbmY &&
             (this.pos_y) <= (pl.pos_y + pl.hbmY + pl.height + pl.hbmH)
     }
-
 
     /**
      * Here, the Items get removed from the level, and added to the players Status.
@@ -50,7 +48,6 @@ class collectableObject extends GameObject {
 
 
 
-
 class HealthPotion extends collectableObject {
     height = 50;
     width = 50;
@@ -58,7 +55,7 @@ class HealthPotion extends collectableObject {
 
 
     constructor(min_x, min_y) {
-        let pos_x = min_x //+ Math.random() * 2100;
+        let pos_x = min_x + Math.random() * 2400;
         let pos_y = min_y //+ Math.random() * 300;
         super(pos_x, pos_y).loadImage('img/collectables/health_potion.png')
     }
@@ -72,7 +69,7 @@ class Ammounition extends collectableObject {
     statusID = 2;
 
     constructor(min_x, min_y) {
-        let pos_x = min_x //+ Math.random() * 2100;
+        let pos_x = min_x + Math.random() * 2400;
         let pos_y = min_y //+ Math.random() * 300;
         super(pos_x, pos_y)
     }
@@ -86,7 +83,7 @@ class Coin extends collectableObject {
     statusID = 3;
 
     constructor(min_x, min_y) {
-        let pos_x = min_x + Math.random() * 2100;
+        let pos_x = min_x + Math.random() * 2400;
         let pos_y = min_y + Math.random() * 300;
         super(pos_x, pos_y).loadImage('img/collectables/Dukate.png')
     }

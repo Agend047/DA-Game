@@ -1,11 +1,13 @@
 const level1 = new Level(
     // Enemys
     [
-        new OrcWarrior(200),
-        new OrcBerserker(300),
-        new OrcWarrior(800),
-        new OrcWarrior(1600),
-        new OrcBerserker(2000),
+        // new WalkerWarrior(200),
+        // new WalkerBerserker(300),
+        // new WalkerWarrior(800),
+        // new WalkerWarrior(1600),
+        // new WalkerBerserker(2000),
+        // new BossWarrior(1600),
+        // new BossBerserker(400)
     ],
 
     //clouds
@@ -18,11 +20,11 @@ const level1 = new Level(
         new Coin(300, 100),
         new Coin(400, 100),
         new Coin(500, 100),
-        new Coin(600, 100),
+        new Coin(300, 100),
         new Coin(200, 100),
         new Coin(200, 100),
         new Coin(100, 100),
-        new Coin(100, 100),
+        new Coin(300, 100),
         new Coin(300, 100),
         new Coin(300, 100),
         new Coin(300, 100),
@@ -43,23 +45,27 @@ const level1 = new Level(
         new Background(719, 480, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Sky.png'),
         new Background(719 * 2, 480, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Sky.png'),
         new Background(719 * 3, 480, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Sky.png'),
+        new Background(719 * 4, 480, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Sky.png'),
 
         new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/BG_Decor.png'),
         new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/BG_Decor.png'),
         new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/BG_Decor.png'),
         new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/BG_Decor.png'),
+        new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/BG_Decor.png'),
 
         new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Middle_Decor.png'),
         new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Middle_Decor.png'),
         new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Middle_Decor.png'),
         new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Middle_Decor.png'),
+        new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Middle_Decor.png'),
 
         new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Foreground.png'),
         new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Foreground.png'),
         new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Foreground.png'),
         new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Foreground.png'),
+        new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_01/Layers/Foreground.png'),
     ],
 
     //level End
-    level_end_x = (719 * 4)
+    level_end_x = (719 * 4.8)
 )

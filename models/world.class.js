@@ -136,8 +136,8 @@ class World {
         this.readyForMirror(mo);
 
         mo.drawSpritePic(this.ctx);
-        // mo.drawHitbox(this.ctx);
-        // if (mo instanceof Enemy) { mo.drawAggroArea(this.ctx) }
+        mo.drawHitbox(this.ctx);
+        if (mo instanceof Enemy) { mo.drawAggroArea(this.ctx) }
         // if (mo instanceof Character) { mo.drawCharAttackMeeleBox(this.ctx) }
         this.reverseMirroring(mo);
     }

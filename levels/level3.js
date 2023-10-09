@@ -1,9 +1,9 @@
 const level3 = new Level(
     [
-        new OrcWarrior(200),
-        new OrcWarrior(200),
-        new OrcWarrior(200),
-        new OrcBerserker(300),
+        new WalkerWarrior(200),
+        new WalkerWarrior(200),
+        new WalkerWarrior(200),
+        new WalkerBerserker(300),
     ],
 
     //clouds
