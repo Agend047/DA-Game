@@ -5,16 +5,16 @@ class Enemy extends MovableObject {
     playerNear = false;
     hitCounter = 0;
 
-    constructor(min_x, getY) {
-        let getX = (min_x + Math.random() * 450)
+    constructor(pos_x, getY) {
 
-        super(getX, getY,)
+        super(pos_x, getY,)
         this.speed = 0.2 + (Math.random() * 0.25);
     }
 
+
     /**
-     * The moves of the normal enemy Walker.
-     */
+   * The moves of the normal enemy Walker.
+   */
     walkerAI() {
         setInterval(() => {
             if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
@@ -32,9 +32,9 @@ class Enemy extends MovableObject {
     }
 
     /**
-     * Shall build on a nice Knockback- effect for enemys, and the Hurt animation gets played.
-     * If it was played a few frames, it should not be called until the enemy gets hit again.
-     */
+ * Shall build on a nice Knockback- effect for enemys, and the Hurt animation gets played.
+ * If it was played a few frames, it should not be called until the enemy gets hit again.
+ */
     knockBack() {
         this.isPlayerLeft() ? this.pos_x += 1.5 : this.pos_x -= 1.5
         this.loadImageSprite(this.animations.hurt)
@@ -62,6 +62,11 @@ class Enemy extends MovableObject {
         this.loadImageSprite(this.animations.walk)
     }
 
+    moveOther() {
+        this.moveRight();
+        this.loadImageSprite(this.animations.walk)
+    }
+
     /**
     * Defines an area arround enemys, in wich they shall start attacking
     * @param {HTMLElement} ctx The Canvas Element, we draw on.
@@ -83,6 +88,98 @@ class Enemy extends MovableObject {
         let orcX = this.pos_x
         return playerX < orcX ? true : false
     }
+
+
+
+
+    /**
+     * The Orc Bosses shall follow the player arround, so he may can run- but never hide.
+     * But he shall first have the encounter with the player, before hunting him!
+     */
+    bossAI() {
+        if (this.playerEncountered) {
+            setInterval(() => {
+                if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+                else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
+                else {
+                    if (this.playerNear) {
+                        this.isPlayerLeft ? this.otherdirection = true : false;
+                        this.strike(this.animations.meele1)
+                    } else {
+                        this.otherdirection = true;
+                        this.isPlayerLeft() ? this.move() : this.moveOther()
+                    }
+                }
+            }, this.globeDelay);
+        }
+    }
+
+
+    waitingForPlayer() {
+        setTimeout(() => {
+            if (world.character.pos_x > world.actualLevel.level_end_x - 720) { }
+        }, 5000);
+    }
+
+
+    /**
+    * The Orc will follow the Player arround the Map.
+    * The first timeout is technically needed, otherwise the used variables may still be undefined.
+    */
+    hunt() {
+        // setTimeout(() => {
+        setInterval(() => {
+            if (this.isPlayerLeft()) {
+                this.huntLeft()
+            } else {
+                this.huntRight()
+            }
+        }, 16000);
+        // }, 1000);
+    }
+
+
+    /**
+     * A function for Enemys, that follow the player. They shall follow for a while, untill he hunted enough,
+     * then wait and Idle. Then the next hunt function gets started.
+     */
+    huntLeft() {
+        let i = 0;
+        let timer = setInterval(() => {
+            i++
+            if (this.playerNear) {
+                this.strike();
+            } else {
+                this.moveLeft();
+                this.loadImageSprite(this.animations.walk)
+
+                if (i >= 300) {
+                    clearInterval(timer)
+                    this.loadImageSprite(this.animations.idle)
+                }
+            }
+        }, this.globeDelay);
+    }
+
+    /**
+     * A function for Enemys, that follow the player. They shall follow for a while, untill he hunted enough,
+     * then wait and Idle. Then the next hunt function gets started.
+     */
+    huntRight() {
+        let i = 0;
+        let timer = setInterval(() => {
+            i++
+            this.moveRight();
+            this.loadImageSprite(this.animations.walk)
+            if (this.playerNear) {
+                this.strike();
+            }
+            if (i >= 300) {
+                clearInterval(timer)
+                this.loadImageSprite(this.animations.idle)
+            }
+        }, this.globeDelay);
+    }
 }
 
 class Chicken extends Enemy {
@@ -95,20 +192,11 @@ class Chicken extends Enemy {
 }
 
 class OrcWarrior extends Enemy {
-    width = 110;
-    height = 220;
-    LeP = 16;
-
 
     speed = 1;
     jumpSpeed = 8;
     frameRate = 8; //Needed?
 
-    //Hitbox Modificators:
-    hbmX = 25;
-    hbmY = 80;
-    hbmW = (-60);
-    hbmH = (-80);
 
     //aggroBox Modificator
     abmX = 15;
@@ -164,31 +252,19 @@ class OrcWarrior extends Enemy {
         },
     }
 
-    constructor(min_x) {
-        let getY = 240 + Math.random() * 15
+    constructor(pos_x, pos_y) {
 
-        super(min_x, getY)
-        this.loadImageSprite(this.animations.idle)
-        this.walkerAI();
+        super(pos_x, pos_y)
+        this.loadImageSprite(this.animations.walk)
     }
 }
 
 
 class OrcBerserker extends Enemy {
-    width = 140;
-    height = 260;
-    LeP = 32;
-
 
     speed = 1;
     jumpSpeed = 8;
     frameRate = 8; //Needed?
-
-    //Hitbox Modificators:
-    hbmX = 25;
-    hbmY = 80;
-    hbmW = (-60)
-    hbmH = (-80)
 
     //aggroBox Modificator
     abmX = 25;
@@ -244,70 +320,112 @@ class OrcBerserker extends Enemy {
         },
     }
 
-    constructor(min_x) {
-        let getY = (200 + Math.random() * 15)
+    constructor(pos_x, pos_y) {
 
-        super(min_x, getY)
+        super(pos_x, pos_y)
         this.loadImageSprite(this.animations.walk)
-        this.walkerAI()
     }
 
-    /**
-     * The Orc will follow the Player arround the Map.
-     * The first timeout is technically needed, otherwise the used variables may still be undefined.
-     */
-    hunt() {
-        // setTimeout(() => {
-        setInterval(() => {
-            if (this.isPlayerLeft()) {
-                this.huntLeft()
-            } else {
-                this.huntRight()
-            }
-        }, 16000);
-        // }, 1000);
+}
+
+class WalkerWarrior extends OrcWarrior {
+
+    width = 110;
+    height = 220;
+
+    LeP = 16;
+
+    //Hitbox Modificators:
+    hbmX = 25;
+    hbmY = 80;
+    hbmW = (-60);
+    hbmH = (-80);
+
+
+    constructor(min_x) {
+        let pos_x = (min_x + Math.random() * 450)
+        let getY = 240 + Math.random() * 15
+
+        super(pos_x, getY)
+        this.loadImageSprite(this.animations.idle)
+        this.walkerAI();
     }
 
+}
 
-    /**
-     * A function for Enemys, that follow the player. They shall follow for a while, untill he hunted enough,
-     * then wait and Idle. Then the next hunt function gets started.
-     */
-    huntLeft() {
-        let i = 0;
-        let timer = setInterval(() => {
-            i++
-            if (this.playerNear) {
-                this.strike();
-            } else {
-                this.moveLeft();
-                this.loadImageSprite(this.animations.walk)
+class WalkerBerserker extends OrcBerserker {
 
-                if (i >= 300) {
-                    clearInterval(timer)
-                    this.loadImageSprite(this.animations.idle)
-                }
-            }
-        }, this.globeDelay);
+    width = 140;
+    height = 260;
+
+    LeP = 32;
+
+    //Hitbox Modificators:
+    hbmX = 25;
+    hbmY = 80;
+    hbmW = (-60)
+    hbmH = (-80)
+
+    constructor(min_x) {
+        let pos_x = (min_x + Math.random() * 450)
+        let getY = 200 + Math.random() * 15
+
+        super(pos_x, getY)
+        this.loadImageSprite(this.animations.idle)
+        this.walkerAI();
     }
+}
 
-    /**
-     * A function for Enemys, that follow the player. They shall follow for a while, untill he hunted enough,
-     * then wait and Idle. Then the next hunt function gets started.
-     */
-    huntRight() {
-        let i = 0;
-        let timer = setInterval(() => {
-            i++
-            this.moveRight();
-            this.loadImageSprite(this.animations.walk)
-            if (this.playerNear) {
-                this.strike();
-            }
-            if (i >= 300) {
-                clearInterval(timer)
-                this.loadImageSprite(this.animations.idle)
-            }
-        }, this.globeDelay);
+
+class BossWarrior extends OrcWarrior {
+
+    width = 220;
+    height = 440;
+
+    LeP = 32;
+
+    //Hitbox Modificators:
+    hbmX = 45;
+    hbmY = 165;
+    hbmW = (-120);
+    hbmH = (-160);
+
+    //If true, the Boss will start fighting the player
+    playerEncountered = false;
+
+    constructor(pos_x) {
+        let getY = 460 - 440
+
+        super(pos_x, getY)
+        this.otherdirection = true;
+        this.loadImageSprite(this.animations.meele1)
+        this.waitingForPlayer()
+    }
+}
+
+class BossBerserker extends OrcBerserker {
+
+    width = 280;
+    height = 520;
+
+    LeP = 64;
+
+    //Hitbox Modificators:
+    hbmX = 65;
+    hbmY = 190;
+    hbmW = (-160);
+    hbmH = (-190);
+
+    //If true, the Boss will start fighting the player
+    playerEncountered = false;
+
+    constructor(pos_x) {
+        let getY = 460 - 520
+
+        super(pos_x, getY)
+        this.otherdirection = true;
+
+        this.loadImageSprite(this.animations.walk)
+        this.waitingForPlayer()
     }
 }
