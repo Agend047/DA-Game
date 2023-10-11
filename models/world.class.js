@@ -65,6 +65,8 @@ class World {
         this.resetEnemyAttack();
         this.controlEnemys()
 
+        this.character.applyGravity()
+
         let self = this;  //calling play again
         setTimeout(function () {
             if (playing) {

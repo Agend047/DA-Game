@@ -23,6 +23,11 @@ class MovableObject extends GameObject {
 
 
     /**
+     * Die Draw funktion, die das allererste Element lädt, VOR dem ersten berechnen der Elapsedframes reinsetzen.
+     */
+
+
+    /**
      * Creates a new Image we want to draw later, and sets needed propertys of that image for the Object
      * @param {Object} key The Animation that shall be played
      */
@@ -68,17 +73,15 @@ class MovableObject extends GameObject {
      * Else will make sure that Character wont be positioned to far from moving-area.
      */
     applyGravity() {
-        setInterval(() => {
-            if (this.isAboveGround() || this.gravitySpeed < 0) {
-                this.pos_y += this.gravitySpeed;
-                this.gravitySpeed += this.gravityAcceleration;
-            } else {
-                this.gravitySpeed = 0;
-                if (this.pos_y > 180) {
-                    this.pos_y = 180
-                }
+        if (this.isAboveGround() || this.gravitySpeed < 0) {
+            this.pos_y += this.gravitySpeed;
+            this.gravitySpeed += this.gravityAcceleration;
+        } else {
+            this.gravitySpeed = 0;
+            if (this.pos_y > 180) {
+                this.pos_y = 180
             }
-        }, this.globeDelay)
+        }
     }
 
     /**
@@ -114,6 +117,7 @@ class MovableObject extends GameObject {
      */
     updateFrames() {
         if (this.newAnimation) { this.elapsedFrames = 0; this.currentFrame = 0; }
+
         this.elapsedFrames++
         if (this.elapsedFrames % this.frameBuffer === 0) {
             if (this.currentFrame < this.frameRate - 1) {
