@@ -4,18 +4,34 @@ let keyboard = new Keyboard();
 let IndexDelay = 33;
 let world;
 let heroBall = [Acco, Eleria, Kazim]
+let level;
+const renderPool = [initLvl1, initLvl2, initLvl3, initLvl4,]
 let heroNumber = getHeroNumber();
 
 let fullscreen = false;
+let playing = false;
 
 
 function init() {
     canvas = document.getElementById('mainCanvas');
-    world = new World(canvas, keyboard);
-
-    console.log('My Char is: ', world.character)
 
     addResizeEvList()
+}
+
+function start(levelID) {
+
+    renderPool[levelID - 1]();
+    let levelPool = [level1, level2, level3, level4]
+    level = levelPool[levelID - 1];
+
+    world = new World(canvas, keyboard);
+    playing = true;
+    console.log('My Char is: ', world.character)
+}
+
+function endLevel() {
+    playing = false;
+    world = {};
 }
 
 /**

@@ -1,5 +1,5 @@
 class World {
-    actualLevel = level1;
+    actualLevel = level;
     character = this.setHero(120, 180) //(2830, 180) for Boss-test;
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
@@ -23,10 +23,12 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
 
+
+        this.setWorld();
         this.givingRightImage()
         this.draw();
-        this.setWorld();
         this.canEnemysAttack();
+        // this.play();
     }
 
     /**
@@ -57,6 +59,15 @@ class World {
         this.character.world = this;
     }
 
+
+    play() {
+
+        this.draw();
+        this.canEnemysAttack();
+
+
+    }
+
     /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */
     draw() {
         this.collectObjects(this.supplys);
@@ -82,9 +93,11 @@ class World {
 
         let self = this;  //calling draw again
         setTimeout(function () {
-            requestAnimationFrame(function () {
-                self.draw();
-            })
+            if (playing) {
+                requestAnimationFrame(function () {
+                    self.draw();
+                })
+            }
         }, IndexDelay
         )
     }
@@ -136,8 +149,8 @@ class World {
         this.readyForMirror(mo);
 
         mo.drawSpritePic(this.ctx);
-        mo.drawHitbox(this.ctx);
-        if (mo instanceof Enemy) { mo.drawAggroArea(this.ctx) }
+        // mo.drawHitbox(this.ctx);
+        // if (mo instanceof Enemy) { mo.drawAggroArea(this.ctx) }
         // if (mo instanceof Character) { mo.drawCharAttackMeeleBox(this.ctx) }
         this.reverseMirroring(mo);
     }

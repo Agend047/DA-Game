@@ -113,7 +113,7 @@ class MovableObject extends GameObject {
      * Secoundly and mainly, sets currentFrame back to 0, when last frame is played.
      */
     updateFrames() {
-        if (this.newAnimation) { this.elapsedFrames = 0; this.currentFrame = 0 }
+        if (this.newAnimation) { this.elapsedFrames = 0; this.currentFrame = 0; }
         this.elapsedFrames++
         if (this.elapsedFrames % this.frameBuffer === 0) {
             if (this.currentFrame < this.frameRate - 1) {
