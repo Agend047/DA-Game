@@ -26,9 +26,7 @@ class World {
 
         this.setWorld();
         this.givingRightImage()
-        this.draw();
-        this.canEnemysAttack();
-        // this.play();
+        this.play();
     }
 
     /**
@@ -64,7 +62,18 @@ class World {
 
         this.draw();
         this.canEnemysAttack();
+        this.resetEnemyAttack();
+        this.controlEnemys()
 
+        let self = this;  //calling play again
+        setTimeout(function () {
+            if (playing) {
+                requestAnimationFrame(function () {
+                    self.play();
+                })
+            }
+        }, IndexDelay
+        )
 
     }
 
@@ -91,15 +100,6 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0)
 
-        let self = this;  //calling draw again
-        setTimeout(function () {
-            if (playing) {
-                requestAnimationFrame(function () {
-                    self.draw();
-                })
-            }
-        }, IndexDelay
-        )
     }
 
     /**
@@ -184,13 +184,31 @@ class World {
      * If so, it sets a variable to 'true', wich causes the enemy model to attack.
      */
     canEnemysAttack() {
-        setInterval(() => {
-            this.enemys.forEach((enemy) => {
-                if (this.character.isInRangeOf(enemy)) {
-                    enemy.playerNear = true;
-                } else { }
-            })
-        }, 1500);
+        this.enemys.forEach((enemy) => {
+            if (!(enemy.attacked) && this.character.isInRangeOf(enemy)) {
+                enemy.playerNear = true;
+            } else { }
+        })
+    }
+
+    /**
+     * Idea to reset Enemys attacks after a few Frames
+     */
+    resetEnemyAttack() {
+        this.enemys.forEach((enemy) => {
+            if (enemy.attacked) {
+                if (enemy.framesToNextAttack == 0) { enemy.attacked = false; }
+                else { enemy.framesToNextAttack-- }
+            }
+        })
+    }
+
+
+    controlEnemys() {
+        this.enemys.forEach((enemy) => {
+            if (enemy instanceof WalkerWarrior || enemy instanceof WalkerBerserker) { enemy.walkerAI() }
+            else if (enemy instanceof BossWarrior || enemy instanceof BossBerserker) { bossAI() }
+        })
     }
 
     /**

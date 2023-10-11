@@ -3,7 +3,10 @@ class Enemy extends MovableObject {
 
     speed;
     playerNear = false;
-    hitCounter = 0;
+    attacked = false;
+    framesToNextAttack = 0;
+    relaxFrames = 9; // Frames, an enemy Model has to wait, until it is allowed to attack again.
+    hitCounter = 0; //Variable for knock-back, if enemy gets hit
 
     constructor(pos_x, getY) {
 
@@ -16,19 +19,19 @@ class Enemy extends MovableObject {
    * The moves of the normal enemy Walker.
    */
     walkerAI() {
-        setInterval(() => {
-            if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
-            else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
-            else {
-                if (this.playerNear) {
-                    this.isPlayerLeft ? this.otherdirection = true : false;
-                    this.strike(this.animations.meele1)
-                } else {
-                    this.otherdirection = true;
-                    this.move()
-                }
+        // setInterval(() => {
+        if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+        else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
+        else {
+            if (this.playerNear) {
+                this.isPlayerLeft ? this.otherdirection = true : false;
+                this.strike(this.animations.meele1)
+            } else {
+                this.otherdirection = true;
+                this.move()
             }
-        }, this.globeDelay);
+        }
+        // }, this.globeDelay);
     }
 
     /**
@@ -47,6 +50,8 @@ class Enemy extends MovableObject {
      * and sets the 'playerNear' variable on false, so the enemy only attacks once, then walks on.
      */
     strike(attack) {
+        this.attacked = true;
+        this.framesToNextAttack = this.relaxFrames;
         this.loadImageSprite(attack)
         if (this.currentFrame == attack.dmgFrame - 1 && world.character.isInRangeOf(this)) {
             (world.character.applyDMG(attack.dmg))
@@ -98,19 +103,19 @@ class Enemy extends MovableObject {
      */
     bossAI() {
         if (this.playerEncountered) {
-            setInterval(() => {
-                if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
-                else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
-                else {
-                    if (this.playerNear) {
-                        this.isPlayerLeft ? this.otherdirection = true : false;
-                        this.strike(this.animations.meele1)
-                    } else {
-                        this.otherdirection = true;
-                        this.isPlayerLeft() ? this.move() : this.moveOther()
-                    }
+            // setInterval(() => {
+            if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+            else if (this.gotHit && this.hitCounter < 4) { this.knockBack() }
+            else {
+                if (this.playerNear) {
+                    this.isPlayerLeft ? this.otherdirection = true : false;
+                    this.strike(this.animations.meele1)
+                } else {
+                    this.otherdirection = true;
+                    this.isPlayerLeft() ? this.move() : this.moveOther()
                 }
-            }, this.globeDelay);
+            }
+            // }, this.globeDelay);
         }
     }
 
