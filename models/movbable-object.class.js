@@ -101,7 +101,7 @@ class MovableObject extends GameObject {
      * @returns true or false
      */
     isAboveGround() {
-        if ((this instanceof ShotableObject)) return true
+        if ((this instanceof ShootableObject)) return true
         else return this.pos_y < 180;
     }
 

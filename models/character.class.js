@@ -191,13 +191,13 @@ class Character extends MovableObject {
 
     /**
      * The projectile gets created as shootable object, 
-     * and will be added to the 'shotableObjects' Array at the World-Class
+     * and will be added to the 'ShootableObjects' Array at the World-Class
      */
     async fire(attack) {
         let projectile;
         if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180, this.otherdirection, attack.dmg) }
         else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190, this.otherdirection, attack.dmg) }
-        this.world.shotableObjects.push(projectile)
+        this.world.ShootableObjects.push(projectile)
     }
 
     /**

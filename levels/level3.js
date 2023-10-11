@@ -2,10 +2,10 @@ let level3;
 function initLvl3() {
     level3 = new Level(
         [
-            new WalkerWarrior(200),
-            new WalkerWarrior(200),
-            new WalkerWarrior(200),
-            new WalkerBerserker(300),
+            new WalkerWarrior(100),
+            // new WalkerWarrior(200),
+            // new WalkerWarrior(200),
+            // new WalkerBerserker(300),
         ],
 
         //clouds

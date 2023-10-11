@@ -16,6 +16,7 @@ function init() {
     canvas = document.getElementById('mainCanvas');
 
     addResizeEvList()
+    start(1)
 }
 
 function start(levelID) {

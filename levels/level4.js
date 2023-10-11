@@ -2,7 +2,7 @@ let level4;
 function initLvl4() {
     level4 = new Level(
         [
-            new WalkerWarrior(200),
+            new WalkerWarrior(800),
             new WalkerWarrior(200),
             new WalkerWarrior(200),
             new WalkerBerserker(300),

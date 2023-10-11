@@ -14,7 +14,7 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
-    shotableObjects = [];
+    ShootableObjects = [];
 
     // console.log(this.character.ammoPicture)
 
@@ -92,7 +92,7 @@ class World {
         this.addArrayToMap(this.coins)
         this.addArrayToMap(this.supplys)
 
-        this.addArrayToMap(this.shotableObjects);
+        this.addArrayToMap(this.ShootableObjects);
 
         this.addSpriteArrayToMap(this.enemys)
 
@@ -119,7 +119,7 @@ class World {
         this.readyForMirror(mo)
 
         this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
-        // if (mo instanceof ShotableObject) { mo.drawArrowArea(this.ctx) }
+        // if (mo instanceof ShootableObject) { mo.drawArrowArea(this.ctx) }
 
 
         this.reverseMirroring(mo)

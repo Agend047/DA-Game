@@ -1,4 +1,4 @@
-class ShotableObject extends MovableObject {
+class ShootableObject extends MovableObject {
 
     // hitableEnemys = [];
     speed = 18;
@@ -37,7 +37,7 @@ class ShotableObject extends MovableObject {
     /** This function controls the projectiles, fired by ranged heroes.
      * Sets a counter and basically does a delayed loop over the function.
      * Sets the direction for the projectile, and calls the end functions
-     * Will delete the projectiles out of the 'shotableObjects' array.
+     * Will delete the projectiles out of the 'ShootableObjects' array.
      */
     async shooting() {
         let counter = 0;
@@ -58,7 +58,7 @@ class ShotableObject extends MovableObject {
 
             if (this.pos_y > 400 || counter >= 38) {
                 clearInterval(shot)
-                world.shotableObjects.splice(0, 1)
+                world.ShootableObjects.splice(0, 1)
             }
         }, this.globeDelay);
     }
@@ -81,7 +81,7 @@ class ShotableObject extends MovableObject {
     }
 }
 
-class Arrow extends ShotableObject {
+class Arrow extends ShootableObject {
 
     constructor(pos_x, pos_y, otherDirection, dmg) {
         super(pos_x, pos_y, otherDirection, dmg)
@@ -96,7 +96,7 @@ class Arrow extends ShotableObject {
 }
 
 
-class Ignifaxius extends ShotableObject {
+class Ignifaxius extends ShootableObject {
 
     constructor(pos_x, pos_y, otherDirection, dmg) {
         super(pos_x, pos_y, otherDirection, dmg)

@@ -4,10 +4,10 @@ function initLvl1() {
         // Enemys
         [
             new WalkerWarrior(200),
-            // new WalkerBerserker(300),
-            // new WalkerWarrior(800),
-            // new WalkerWarrior(1600),
-            // new WalkerBerserker(2000),
+            new WalkerBerserker(300),
+            new WalkerWarrior(800),
+            new WalkerWarrior(1600),
+            new WalkerBerserker(2000),
             // new BossWarrior(719 * 4.8),
             // new BossBerserker(719 * 4.7)
         ],
