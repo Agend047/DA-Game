@@ -57,6 +57,7 @@ class Character extends MovableObject {
             this.updateStatusBar(1);
 
             if (this.isDead()) {
+
                 this.loadImageSprite(this.animations.dead);
 
             } else if (this.gotHit) {
@@ -67,13 +68,19 @@ class Character extends MovableObject {
                 // if (this.showFull && this.currentFrame < this.frameRate - 1) {
                 // }
 
+
+
                 //Attack animations and processes
                 if (this.world.keyboard.SPACE || this.attacking) {
+
                     //Meele attack
                     if (!this.attacking) {
+
                         this.attacking = true;
                         await this.meeleAttackIntervall(this.animations.meele1)
                         this.resetAttackBlocker()
+
+
                     }
                 } else if (this.world.keyboard.G) {
                     //Range attack, if one is there
@@ -130,10 +137,10 @@ class Character extends MovableObject {
             const interval = setInterval(() => {
                 if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
                 this.loadImageSprite(attack)
-
+                console.log('Attackintervall läuft')
                 if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); }
 
-                if (this.currentFrame == this.frameRate - 1) {
+                if (this.currentFrame == this.frameRate - 1 || this.isDead()) {
                     clearInterval(interval)
                     resolve()
                     // this.loadImageSprite(this.animations.idle2)
@@ -180,7 +187,7 @@ class Character extends MovableObject {
                     this.currentFrame++
                 }
 
-                if (this.currentFrame == this.frameRate - 1) {
+                if (this.currentFrame == this.frameRate - 1 || this.isDead()) {
                     clearInterval(interval)
                     resolve()
                     //this.loadImageSprite(this.animations.idle2)

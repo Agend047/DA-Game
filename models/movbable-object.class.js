@@ -97,7 +97,7 @@ class MovableObject extends GameObject {
 
     /**
      * Simple check, if something is still above the ground.
-     * If its a Shotable Object (Arrow) it will keep falling
+     * If its a Shootable Object (Arrow) it will keep falling
      * @returns true or false
      */
     isAboveGround() {

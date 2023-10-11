@@ -207,7 +207,7 @@ class World {
     controlEnemys() {
         this.enemys.forEach((enemy) => {
             if (enemy instanceof WalkerWarrior || enemy instanceof WalkerBerserker) { enemy.walkerAI() }
-            else if (enemy instanceof BossWarrior || enemy instanceof BossBerserker) { bossAI() }
+            else if (enemy instanceof BossWarrior || enemy instanceof BossBerserker) { enemy.bossAI() }
         })
     }
 

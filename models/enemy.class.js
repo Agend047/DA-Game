@@ -277,7 +277,7 @@ class OrcWarrior extends Enemy {
         dead: {
             imageSrc: 'img/enemys_orcs/orc_warrior/Dead2.png',
             frameRate: 4,
-            frameBuffer: 4,
+            frameBuffer: 3,
         },
     }
 
