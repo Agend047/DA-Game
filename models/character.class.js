@@ -21,6 +21,7 @@ class Character extends MovableObject {
 
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,)
+        // this.getAllAnimations();
         this.applyGravity();
         this.control();
     }
@@ -45,6 +46,8 @@ class Character extends MovableObject {
             this.world.camera_x = -this.pos_x + 120;
         }
     }
+
+
 
     /**
      * Here the Inputs from Keyboard get used to control the Character
@@ -146,18 +149,10 @@ class Character extends MovableObject {
     hitEnemys(attack) {
         let enemys = this.world.enemys
         enemys.forEach(enemy => {
-            if (!this.otherdirection) {
-                if (enemy.hitRight(this)) {
-                    enemy.applyDMG(attack.dmg)
-                    enemy.loadImageSprite(enemy.animations.hurt)
-                    console.log(enemy.LeP) //CONSOLE
-                }
-            } else {
-                if (enemy.hitLeft(this)) {
-                    enemy.applyDMG(attack.dmg)
-                    enemy.loadImageSprite(enemy.animations.hurt)
-                    console.log(enemy.LeP) //CONSOLE
-                }
+            if (!this.otherdirection && enemy.hitRight(this) || this.otherdirection && enemy.hitLeft(this)) {
+                enemy.applyDMG(attack.dmg)
+                enemy.loadImageSprite(enemy.animations.hurt)
+                console.log(enemy.LeP) //CONSOLE
             }
         });
     }
