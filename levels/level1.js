@@ -8,7 +8,7 @@ function initLvl1() {
             new WalkerWarrior(800),
             new WalkerWarrior(1600),
             new WalkerBerserker(2000),
-            // new BossWarrior(719 * 4.8),
+            new BossWarrior(719 * 4.8),
             // new BossBerserker(719 * 4.7)
         ],
 

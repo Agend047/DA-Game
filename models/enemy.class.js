@@ -19,7 +19,6 @@ class Enemy extends MovableObject {
    * The moves of the normal enemy Walker.
    */
     walkerAI() {
-        // setInterval(() => {
         if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
         else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
         else {
@@ -31,7 +30,6 @@ class Enemy extends MovableObject {
                 this.move()
             }
         }
-        // }, this.globeDelay);
     }
 
     /**
@@ -97,56 +95,53 @@ class Enemy extends MovableObject {
 
 
 
-    /**
-     * The Orc Bosses shall follow the player arround, so he may can run- but never hide.
-     * But he shall first have the encounter with the player, before hunting him!
-     */
-    bossAI() {
-        if (this.playerEncountered) {
-            // setInterval(() => {
-            if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
-            else if (this.gotHit && this.hitCounter < 4) { this.knockBack() }
-            else {
-                if (this.playerNear) {
-                    this.isPlayerLeft ? this.otherdirection = true : false;
-                    this.strike(this.animations.meele1)
-                } else {
-                    this.otherdirection = true;
-                    this.isPlayerLeft() ? this.move() : this.moveOther()
-                }
-            }
-            // }, this.globeDelay);
+    bossStatusCheck() {
+        if (!this.playerEncountered) { this.waitingForPlayer() }
+        else if (this.playerEncountered) {
+            if (this.encounterJump) { this.bossAI() }
+            else { this.playerEncounter() }
         }
     }
 
 
     waitingForPlayer() {
-        setTimeout(() => {
-            let waitIntervall = setInterval(() => {
-                if (world.character.pos_x > world.actualLevel.level_end_x - 600) {
+        if (world) {
+            if (world.character.pos_x > world.actualLevel.level_end_x - 600) {
 
-                    clearInterval(waitIntervall)
 
-                    this.playerEncountered = true;
-                    this.playerEncounter()
-                }
-            }, this.globeDelay);
-        }, 3000);
+                this.playerEncountered = true;
+            }
+        }
     }
 
 
     playerEncounter() {
-        // this.currentFrame = 4;
-        let jumping = setInterval(() => {
-            this.loadImageSprite(this.animations.jump)
-            this.pos_x -= this.speed * 10;
+        this.loadImageSprite(this.animations.jump)
+        this.pos_x -= this.speed * 10;
 
+        if (this.currentFrame == this.frameRate - 1) {
+            this.encounterJump = true;
 
-            if (this.currentFrame == this.frameRate - 1) {
-                clearInterval(jumping)
-                this.bossAI()
+        }
+    }
+
+    /**
+   * The Orc Bosses shall follow the player arround, so he may can run- but never hide.
+   * But he shall first have the encounter with the player, before hunting him!
+   */
+    bossAI() {
+
+        if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+        else if (this.gotHit && this.hitCounter < 4) { this.knockBack() }
+        else {
+            if (this.playerNear) {
+                this.isPlayerLeft ? this.otherdirection = true : false;
+                this.strike(this.animations.meele1)
+            } else {
+                this.otherdirection = true;
+                this.isPlayerLeft() ? this.move() : this.moveOther()
             }
-        }, this.globeDelay);
+        }
     }
 
 
@@ -422,6 +417,7 @@ class BossWarrior extends OrcWarrior {
 
     //If true, the Boss will start fighting the player
     playerEncountered = false;
+    encounterJump = false; //Did the Boss do the Initial Jump?
 
     constructor(pos_x) {
         let getY = 460 - 440
@@ -449,6 +445,7 @@ class BossBerserker extends OrcBerserker {
 
     //If true, the Boss will start fighting the player
     playerEncountered = false;
+    encounterJump = false; //Did the Boss do the Initial Jump?
 
     constructor(pos_x) {
         let getY = 460 - 520
