@@ -3,13 +3,13 @@ function initLvl1() {
     level1 = new Level(
         // Enemys
         [
-            new WalkerWarrior(200),
-            new WalkerBerserker(300),
-            new WalkerWarrior(800),
-            new WalkerWarrior(1600),
-            new WalkerBerserker(2000),
-            new BossWarrior(719 * 4.8),
-            // new BossBerserker(719 * 4.7)
+            new WalkerWarrior(200, 1),
+            new WalkerBerserker(300, 2),
+            new WalkerWarrior(800, 2),
+            new WalkerWarrior(1600, 3),
+            new WalkerBerserker(2000, 3),
+            // new BossWarrior(719 * 4.8),
+            new BossBerserker(719 * 4.7)
         ],
 
         //clouds
@@ -25,8 +25,8 @@ function initLvl1() {
             new Coin(300, 100, true),
             new Coin(200, 100, true),
             new Coin(200, 100, true),
-            new Coin(100, 100, true),
-            new Coin(300, 100, true),
+            // new Coin(100, 100, true),
+            // new Coin(300, 100, true),
             new Coin(300, 100, true),
             new Coin(300, 100, true),
             new Coin(3250, 100, false),
@@ -36,9 +36,9 @@ function initLvl1() {
 
         //Supplys
         [
-            new Ammounition(200, 300),
+            new Ammounition(300, 300),
             new Ammounition(1500, 150),
-            new HealthPotion(1000, 200),
+            // new HealthPotion(1000, 200),
             new HealthPotion(2400, 100),
         ],
 
