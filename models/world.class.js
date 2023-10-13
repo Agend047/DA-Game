@@ -16,7 +16,6 @@ class World {
     camera_x = 0;
     ShootableObjects = [];
 
-    // console.log(this.character.ammoPicture)
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

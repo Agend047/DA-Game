@@ -7,11 +7,15 @@ class Enemy extends MovableObject {
     framesToNextAttack = 0;
     relaxFrames = 9; // Frames, an enemy Model has to wait, until it is allowed to attack again.
     hitCounter = 0; //Variable for knock-back, if enemy gets hit
+    dropping; // {Number} like statusID 1 == Health, 2 == ammounition, 3 == Coins
+    canStillDrop = true;
 
-    constructor(pos_x, getY) {
+    constructor(pos_x, getY, dropID) {
 
         super(pos_x, getY,)
         this.speed = 0.2 + (Math.random() * 0.25);
+        this.dropping = dropID;
+        console.log(this.dropping)
     }
 
 
@@ -19,7 +23,10 @@ class Enemy extends MovableObject {
    * The moves of the normal enemy Walker.
    */
     walkerAI() {
-        if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+        if (this.isDead()) {
+            this.loadImageSprite(this.animations.dead)
+            if (this.canStillDrop && this.dropping) { this.drop() }
+        }
         else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
         else {
             if (this.playerNear) {
@@ -93,6 +100,20 @@ class Enemy extends MovableObject {
     }
 
 
+    //dropping == {Number} 1 == Health, 2 == ammounition, 3 == Coins 
+    drop() {
+        if (this.dropping && this.canStillDrop) {
+            console.log(this.canStillDrop)
+            this.canStillDrop = false;
+            if (this.dropping == 1) { world.supplys.push(new HealthPotion(this.pos_x + 40, this.pos_y + 100, false)) }
+            if (this.dropping == 2) { world.supplys.push(new Ammounition(this.pos_x + 40, this.pos_y + 100, false)); world.givingRightImage() }
+            if (this.dropping == 3) { world.coins.push(new Coin(this.pos_x + 40, this.pos_y + 100, false)) }
+        }
+    }
+
+
+
+    // BOSS AI
     /**
      * Simple check for what the Boss should do
      */
@@ -154,6 +175,10 @@ class Enemy extends MovableObject {
     }
 
 
+
+
+
+    // UNFINISHED HUNTER IDEAS
 
     /**
     * The Orc will follow the Player arround the Map.
@@ -285,9 +310,9 @@ class OrcWarrior extends Enemy {
         },
     }
 
-    constructor(pos_x, pos_y) {
+    constructor(pos_x, pos_y, dropID) {
 
-        super(pos_x, pos_y)
+        super(pos_x, pos_y, dropID)
         this.loadImageSprite(this.animations.walk)
     }
 }
@@ -353,9 +378,9 @@ class OrcBerserker extends Enemy {
         },
     }
 
-    constructor(pos_x, pos_y) {
+    constructor(pos_x, pos_y, dropID) {
 
-        super(pos_x, pos_y)
+        super(pos_x, pos_y, dropID)
         this.loadImageSprite(this.animations.walk)
     }
 
@@ -375,11 +400,11 @@ class WalkerWarrior extends OrcWarrior {
     hbmH = (-80);
 
 
-    constructor(min_x) {
+    constructor(min_x, dropID) {
         let pos_x = (min_x + Math.random() * 450)
         let getY = 240 + Math.random() * 15
 
-        super(pos_x, getY)
+        super(pos_x, getY, dropID)
         this.loadImageSprite(this.animations.idle)
         this.walkerAI();
     }
@@ -399,11 +424,11 @@ class WalkerBerserker extends OrcBerserker {
     hbmW = (-60)
     hbmH = (-80)
 
-    constructor(min_x) {
+    constructor(min_x, dropID) {
         let pos_x = (min_x + Math.random() * 450)
         let getY = 200 + Math.random() * 15
 
-        super(pos_x, getY)
+        super(pos_x, getY, dropID)
         this.loadImageSprite(this.animations.idle)
         this.walkerAI();
     }

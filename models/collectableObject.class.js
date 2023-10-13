@@ -25,6 +25,7 @@ class collectableObject extends GameObject {
      */
     collect(index, pl, world, statusID) {
 
+
         statusID = this.statusID; //@param {Number} statusID 1 == Health, 2 == ammounition, 3 == Coins
 
         let plStats = [pl.LeP, pl.ammunition, pl.collectedCoins]

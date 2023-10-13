@@ -137,7 +137,6 @@ class Character extends MovableObject {
             const interval = setInterval(() => {
                 if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
                 this.loadImageSprite(attack)
-                console.log('Attackintervall läuft')
                 if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); }
 
                 if (this.currentFrame == this.frameRate - 1 || this.isDead()) {
