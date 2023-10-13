@@ -55,6 +55,7 @@ class Character extends MovableObject {
     control() {
         setInterval(async () => {
             this.updateStatusBar(1);
+            this.updateStatusBar(2)
 
             if (this.isDead()) {
 
@@ -287,6 +288,7 @@ class Character extends MovableObject {
 class Acco extends Character {
     LeP = 48;
     maxLeP = 48;
+    RS = 3; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
 
     ammunition = 0;
     maxAmmunition = 0;
@@ -377,8 +379,9 @@ class Acco extends Character {
 class Eleria extends Character {
     LeP = 30;
     maxLeP = 30;
+    RS = 0; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
 
-    ammunition = 40;
+    ammunition = 20; //40
     maxAmmunition = 40;
     ammoPicture = 'img/collectables/Arrows_diagonal.png'
 
@@ -470,8 +473,9 @@ class Kazim extends Character {
 
     LeP = 34;
     maxLeP = 34;
+    RS = 0; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
 
-    ammunition = 42; //AsP
+    ammunition = 21; //AsP 42
     maxAmmunition = 42; //AsP
     ammoPicture = 'img/statusBars/mana_potion.png'
 

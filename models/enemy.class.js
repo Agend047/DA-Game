@@ -392,6 +392,7 @@ class WalkerWarrior extends OrcWarrior {
     height = 220;
 
     LeP = 16;
+    RS = 0;
 
     //Hitbox Modificators:
     hbmX = 25;
@@ -417,6 +418,7 @@ class WalkerBerserker extends OrcBerserker {
     height = 260;
 
     LeP = 32;
+    RS = 0;
 
     //Hitbox Modificators:
     hbmX = 25;
@@ -441,6 +443,7 @@ class BossWarrior extends OrcWarrior {
     height = 440;
 
     LeP = 32;
+    RS = 1;
     speed = 2;
 
     //Hitbox Modificators:
@@ -469,6 +472,7 @@ class BossBerserker extends OrcBerserker {
     height = 520;
 
     LeP = 64;
+    RS = 2;
     speed = 2;
 
     //Hitbox Modificators:

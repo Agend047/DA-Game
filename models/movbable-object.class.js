@@ -222,7 +222,7 @@ class MovableObject extends GameObject {
      * @param {Number} dmg Damage Characteristic of an attack property 
      */
     applyDMG(dmg) {
-        this.LeP = this.LeP - dmg;
+        this.LeP = this.LeP - (dmg - this.RS);
         if (this.LeP <= 0) { this.LeP = 0; }
         this.gotHit = true;
     }
