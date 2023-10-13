@@ -328,7 +328,7 @@ class Acco extends Character {
             frameRate: 6,
             frameBuffer: 2,
             dmgFrame: 5,
-            dmg: 8,
+            dmg: 10, //beginning: 8
             showFull: true,
         },
         meele2: {

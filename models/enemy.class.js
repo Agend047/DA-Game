@@ -93,8 +93,9 @@ class Enemy extends MovableObject {
     }
 
 
-
-
+    /**
+     * Simple check for what the Boss should do
+     */
     bossStatusCheck() {
         if (!this.playerEncountered) { this.waitingForPlayer() }
         else if (this.playerEncountered) {
@@ -104,17 +105,21 @@ class Enemy extends MovableObject {
     }
 
 
+    /**Here the Boss just waits for the player. As soon as 'world' is defined, he checks the players position
+     * If close enough, a variable will be set on "true", wich will cause the next Phase
+    */
     waitingForPlayer() {
         if (world) {
             if (world.character.pos_x > world.actualLevel.level_end_x - 600) {
-
-
                 this.playerEncountered = true;
             }
         }
     }
 
 
+    /** 
+     * The Player encounter gets played- the Boss jumps towards the player!
+     */
     playerEncounter() {
         this.loadImageSprite(this.animations.jump)
         this.pos_x -= this.speed * 10;
@@ -127,19 +132,23 @@ class Enemy extends MovableObject {
 
     /**
    * The Orc Bosses shall follow the player arround, so he may can run- but never hide.
-   * But he shall first have the encounter with the player, before hunting him!
+   * But he shall first have the encounter with the player, before following him!
    */
     bossAI() {
 
         if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
         else if (this.gotHit && this.hitCounter < 4) { this.knockBack() }
         else {
+            this.isPlayerLeft() ? this.otherdirection = true : this.otherdirection = false;
+
             if (this.playerNear) {
-                this.isPlayerLeft ? this.otherdirection = true : false;
                 this.strike(this.animations.meele1)
             } else {
-                this.otherdirection = true;
-                this.isPlayerLeft() ? this.move() : this.moveOther()
+                if (!world.character.isInRangeOf(this)) {
+                    this.otherdirection ? this.move() : this.moveOther()
+                } else {
+                    this.loadImageSprite(this.animations.idle)
+                }
             }
         }
     }
