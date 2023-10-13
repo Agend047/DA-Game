@@ -8,8 +8,8 @@ function initLvl1() {
             new WalkerWarrior(800, 2),
             new WalkerWarrior(1600, 3),
             new WalkerBerserker(2000, 3),
-            // new BossWarrior(719 * 4.8),
-            new BossBerserker(719 * 4.7)
+            new BossWarrior(719 * 4.8),
+            // new BossBerserker(719 * 4.7)
         ],
 
         //clouds

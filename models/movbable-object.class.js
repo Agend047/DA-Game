@@ -218,11 +218,15 @@ class MovableObject extends GameObject {
     }
 
     /**
-     * Subtracts the damage, wich an attack does from any live points.
+     * Reduced Damage by the Targets RS (Armour) Damage cannot be smaller than 0!
+     * Subtracts the damage, wich an attack does from any live points- 
+     * And variable 'gothit' will be set on true
      * @param {Number} dmg Damage Characteristic of an attack property 
      */
     applyDMG(dmg) {
-        this.LeP = this.LeP - (dmg - this.RS);
+        dmg = dmg - this.RS
+        if (dmg < 0) dmg = 0;
+        this.LeP = this.LeP - (dmg);
         if (this.LeP <= 0) { this.LeP = 0; }
         this.gotHit = true;
     }

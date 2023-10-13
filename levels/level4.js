@@ -1,11 +1,15 @@
 let level4;
 function initLvl4() {
     level4 = new Level(
+        // Enemys
         [
-            new WalkerWarrior(800),
-            new WalkerWarrior(200),
-            new WalkerWarrior(200),
-            new WalkerBerserker(300),
+            new WalkerWarrior(200, 1),
+            new WalkerBerserker(300, 2),
+            new WalkerWarrior(800, 2),
+            new WalkerWarrior(1600, 3),
+            new WalkerBerserker(2000, 3),
+            // new BossWarrior(719 * 4.8),
+            new BossBerserker(719 * 4.7)
         ],
 
         //clouds
@@ -13,25 +17,30 @@ function initLvl4() {
 
         //coins
         [
-            new Coin(100, 100),
-            new Coin(200, 100),
-            new Coin(300, 100),
-            new Coin(400, 100),
-            new Coin(500, 100),
-            new Coin(600, 100),
-            new Coin(200, 100),
-            new Coin(200, 100),
-            new Coin(100, 100),
-            new Coin(100, 100),
-            new Coin(300, 100),
-            new Coin(300, 100),
-            new Coin(300, 100),
-            new Coin(300, 100),
-            new Coin(300, 100),
+            new Coin(200, 100, true),
+            new Coin(300, 100, true),
+            new Coin(100, 100, true),
+            new Coin(400, 100, true),
+            new Coin(500, 100, true),
+            new Coin(300, 100, true),
+            new Coin(200, 100, true),
+            new Coin(200, 100, true),
+            // new Coin(100, 100, true),
+            // new Coin(300, 100, true),
+            new Coin(300, 100, true),
+            new Coin(300, 100, true),
+            new Coin(3250, 100, false),
+            new Coin(3250, 200, false),
+            new Coin(3300, 150, false),
         ],
 
-        //collectables
-        [],
+        //Supplys
+        [
+            new Ammounition(300, 300),
+            new Ammounition(1500, 150),
+            // new HealthPotion(1000, 200),
+            new HealthPotion(2400, 100),
+        ],
 
         //backgrounds
 
