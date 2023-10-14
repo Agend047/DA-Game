@@ -56,14 +56,16 @@ class World {
         this.character.world = this;
     }
 
-
+    /** Most important control function
+     * This draws and starts everything on the map and controls its actions
+     */
     play() {
 
         this.draw();
         this.canEnemysAttack();
         this.resetEnemyAttack();
         this.controlEnemys()
-
+        this.character.control();
         this.character.applyGravity()
 
         let self = this;  //calling play again
@@ -73,9 +75,7 @@ class World {
                     self.play();
                 })
             }
-        }, IndexDelay
-        )
-
+        }, IndexDelay)
     }
 
     /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */

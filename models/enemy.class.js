@@ -102,7 +102,6 @@ class Enemy extends MovableObject {
     //dropping == {Number} 1 == Health, 2 == ammounition, 3 == Coins 
     drop() {
         if (this.dropping && this.canStillDrop) {
-            console.log(this.canStillDrop)
             this.canStillDrop = false;
             if (this.dropping == 1) { world.supplys.push(new HealthPotion(this.pos_x + 40, this.pos_y + 100, false)) }
             if (this.dropping == 2) { world.supplys.push(new Ammounition(this.pos_x + 40, this.pos_y + 100, false)); world.givingRightImage() }

@@ -23,7 +23,7 @@ class Character extends MovableObject {
         super(pos_x, pos_y,)
         // this.getAllAnimations();
         this.applyGravity();
-        this.control();
+        // this.control();
     }
 
     /**Moving Char according to speed, 
@@ -52,79 +52,79 @@ class Character extends MovableObject {
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
-    control() {
-        setInterval(async () => {
-            this.updateStatusBar(1);
-            this.updateStatusBar(2)
+    async control() {
+        // setInterval(async () => {
+        this.updateStatusBar(1);
+        // this.updateStatusBar(2)
 
-            if (this.isDead()) {
+        if (this.isDead()) {
 
-                this.loadImageSprite(this.animations.dead);
+            this.loadImageSprite(this.animations.dead);
 
-            } else if (this.gotHit) {
-                this.loadImageSprite(this.animations.hurt)
+        } else if (this.gotHit) {
+            this.loadImageSprite(this.animations.hurt)
 
-            } else {
-                //Making sure, that important animations cannot get cancelled
-                // if (this.showFull && this.currentFrame < this.frameRate - 1) {
-                // }
+        } else {
+            //Making sure, that important animations cannot get cancelled
+            // if (this.showFull && this.currentFrame < this.frameRate - 1) {
+            // }
 
 
 
-                //Attack animations and processes
-                if (this.world.keyboard.SPACE || this.attacking) {
+            //Attack animations and processes
+            if (this.world.keyboard.SPACE || this.attacking) {
 
-                    //Meele attack
-                    if (!this.attacking) {
+                //Meele attack
+                if (!this.attacking) {
 
+                    this.attacking = true;
+                    await this.meeleAttackIntervall(this.animations.meele1)
+                    this.resetAttackBlocker()
+
+
+                }
+            } else if (this.world.keyboard.G) {
+                //Range attack, if one is there
+                this.world.keyboard.G = false;
+                if (this.animations.range) {
+                    if (this.enoughAmmo() && this.attacking == false) {
                         this.attacking = true;
-                        await this.meeleAttackIntervall(this.animations.meele1)
+                        this.subtractAmmo();
+                        await this.rangeAttackIntervall(this.animations.range)
+                        this.updateStatusBar(2)
                         this.resetAttackBlocker()
-
-
-                    }
-                } else if (this.world.keyboard.G) {
-                    //Range attack, if one is there
-                    this.world.keyboard.G = false;
-                    if (this.animations.range) {
-                        if (this.enoughAmmo() && this.attacking == false) {
-                            this.attacking = true;
-                            this.subtractAmmo();
-                            await this.rangeAttackIntervall(this.animations.range)
-                            this.updateStatusBar(2)
-                            this.resetAttackBlocker()
-                        }
-                    }
-                } else {
-                    //Basic Move & Jump Commands
-                    if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
-                        this.charMoveRight();
-                        if (!this.isAboveGround()) {
-                            this.loadImageSprite(this.animations.run)
-                        }
-                    }
-                    if (this.world.keyboard.LEFT && this.pos_x > 10) {
-                        this.charMoveLeft();
-                        if (!this.isAboveGround()) {
-                            this.loadImageSprite(this.animations.run)
-                        }
-                    }
-                    if (this.world.keyboard.UP) {
-                        this.jump();
-                        this.loadImageSprite(this.animations.jump)
-                    }
-                    if (this.world.keyboard.DOWN) {
-
-                    }
-                    //Idle Animation, if nothing is pressed
-                    if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
-                        if (!this.isAboveGround()) {
-                            this.loadImageSprite(this.animations.idle)
-                        }
                     }
                 }
+            } else {
+                //Basic Move & Jump Commands
+                if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
+                    this.charMoveRight();
+                    if (!this.isAboveGround()) {
+                        this.loadImageSprite(this.animations.run)
+                    }
+                }
+                if (this.world.keyboard.LEFT && this.pos_x > 10) {
+                    this.charMoveLeft();
+                    if (!this.isAboveGround()) {
+                        this.loadImageSprite(this.animations.run)
+                    }
+                }
+                if (this.world.keyboard.UP) {
+                    this.jump();
+                    this.loadImageSprite(this.animations.jump)
+                }
+                if (this.world.keyboard.DOWN) {
+
+                }
+                //Idle Animation, if nothing is pressed
+                if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
+                    if (this.isAboveGround()) {
+                        this.loadImageSprite(this.animations.jump) //while standing
+                    } else { this.loadImageSprite(this.animations.idle) } //while falling
+                }
             }
-        }, this.globeDelay)
+        }
+        // }, this.globeDelay)
     }
 
     /**
@@ -329,7 +329,7 @@ class Acco extends Character {
             frameRate: 6,
             frameBuffer: 2,
             dmgFrame: 5,
-            dmg: 10, //beginning: 8
+            dmg: 8,
             showFull: true,
         },
         meele2: {
