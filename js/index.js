@@ -10,15 +10,21 @@ let heroNumber = getHeroNumber();
 
 let fullscreen = false;
 let playing = false;
+let playMusic = false;
 
 
 function init() {
     canvas = document.getElementById('mainCanvas');
 
     addResizeEvList()
-    start(1)
+    // start(1)
 }
 
+/**
+ * Starting specific level out of levelPool.
+ * @param {Array} levelPool  Collection of the Levels as Variables
+ * @param {Number} levelID The Number of the Choosen level
+ */
 function start(levelID) {
 
     renderPool[levelID - 1]();
@@ -30,9 +36,26 @@ function start(levelID) {
     console.log('My Char is: ', world.character)
 }
 
+//Clears the 'world' Variable, and ends the 'play()' function inside of the world.
 function endLevel() {
     playing = false;
     world = {};
+}
+
+
+/**
+ * Either pauses or continues the loaded level at the paused point,
+ * depending on the status of 'playing'
+ */
+function pauseGame() {
+    if (playing) {
+        playing = false;
+        document.getElementById('pause_btn').innerHTML = 'Continue'
+    } else {
+        playing = true;
+        world.play();
+        document.getElementById('pause_btn').innerHTML = 'Pause Game'
+    }
 }
 
 /**
