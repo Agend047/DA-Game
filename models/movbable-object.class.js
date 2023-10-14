@@ -16,15 +16,24 @@ class MovableObject extends GameObject {
     deathAnimationPlayed = false; //Used, so death animations only play once!
 
 
-    constructor(pos_x, pos_y, frameRate, imageSrc) {
+    constructor(pos_x, pos_y, frameRate) {
         super(pos_x, pos_y,)
         this.frameRate = frameRate;
     }
 
 
-    /**
+    /** Tipp von Nico um Blinken zu beheben:
      * Die Draw funktion, die das allererste Element lädt, VOR dem ersten berechnen der Elapsedframes reinsetzen.
+     * (Ist bereits der Fall)
      */
+
+    preLoadImages() {
+        Object.keys(this.animations).forEach(key => {
+            let img = new Image();
+            img.src = this.animations[key].imageSrc;
+            this.animations[key].image = img;
+        })
+    }
 
 
     /**
@@ -34,8 +43,11 @@ class MovableObject extends GameObject {
     loadImageSprite(key) {
         this.checkNewAnimation(key)
 
-        this.img = new Image();
-        this.img.src = key.imageSrc;
+        if (key.img) { this.img = key.img }
+        else {
+            this.img = new Image();
+            this.img.src = key.imageSrc;
+        }
 
         this.frameRate = key.frameRate;
         this.frameBuffer = key.frameBuffer;

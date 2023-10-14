@@ -15,7 +15,6 @@ class Enemy extends MovableObject {
         super(pos_x, getY,)
         this.speed = 0.2 + (Math.random() * 0.25);
         this.dropping = dropID;
-        console.log(this.dropping)
     }
 
 
@@ -314,6 +313,7 @@ class OrcWarrior extends Enemy {
 
         super(pos_x, pos_y, dropID)
         this.loadImageSprite(this.animations.walk)
+        this.preLoadImages();
     }
 }
 
@@ -382,6 +382,7 @@ class OrcBerserker extends Enemy {
 
         super(pos_x, pos_y, dropID)
         this.loadImageSprite(this.animations.walk)
+        this.preLoadImages();
     }
 
 }

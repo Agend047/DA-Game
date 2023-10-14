@@ -372,6 +372,7 @@ class Acco extends Character {
         super(pos_x, pos_y,)
         this.loadImageSprite(this.animations.idle)
         this.setStatusBars();
+        this.preLoadImages();
     }
 
 }
@@ -449,7 +450,7 @@ class Eleria extends Character {
         super(pos_x, pos_y,);
         this.loadImageSprite(this.animations.idle)
         this.setStatusBars();
-
+        this.preLoadImages();
     }
 
     /**
@@ -544,6 +545,7 @@ class Kazim extends Character {
 
         this.loadImageSprite(this.animations.idle);
         this.setStatusBars();
+        this.preLoadImages();
     }
 
     /**
