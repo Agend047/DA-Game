@@ -37,6 +37,10 @@ function start(levelID) {
     playing = true;
     console.log('My Char is: ', world.character)
 
+    document.getElementById('startGame_btn').style.display = 'none';
+    document.getElementById('pause_btn').style.display = 'block';
+
+
     document.getElementById('start_overlay').style.display = 'none'
 }
 
