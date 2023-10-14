@@ -12,6 +12,8 @@ let fullscreen = false;
 let playing = false;
 let playMusic = false;
 
+const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 });
+
 
 function init() {
     canvas = document.getElementById('mainCanvas');
@@ -99,28 +101,51 @@ function addResizeEvList() {
 
 function setFullScreen() {
     let main = document.getElementById('mainDiv')
-    // main.requestFullscreen()//#endregion
+    // main.requestFullscreen()
+    if (!fullscreen) {
+        enterFullscreen(main)
 
-    try {
-        if (canvas.requestFullscreen) {
-            main.requestFullscreen() //.then(adjustCanvasSizeOnFullscreen);
-        } else if (main.mozRequestFullScreen) { // Firefox
-            main.mozRequestFullScreen()//.then(adjustCanvasSizeOnFullscreen);
-        } else if (main.webkitRequestFullscreen) { // Chrome, Safari und Opera
-            main.webkitRequestFullscreen()//.then(adjustCanvasSizeOnFullscreen);
-        } else if (main.msRequestFullscreen) { // IE/Edge
-            main.msRequestFullscreen()//.then(adjustCanvasSizeOnFullscreen);
-        }
-    } catch (err) {
-        alert(err)
+
+
+        modifyStatusBar(1)
+        let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
+        canvas.style.transform = 'scale(' + scaleFactor + ')'
+        fullscreen = true;
+        console.log(fullscreen)
+    } else {
+        exitFullscreen(main)
     }
 
+}
 
-    modifyStatusBar(1)
-    let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
-    canvas.style.transform = 'scale(' + scaleFactor + ')'
-    fullscreen = true;
 
+function enterFullscreen(main) {
+    try {
+        if (canvas.requestFullscreen) {
+            main.requestFullscreen();
+        } else if (main.mozRequestFullScreen) { // Firefox
+            main.mozRequestFullScreen();
+        } else if (main.webkitRequestFullscreen) { // Chrome, Safari und Opera
+            main.webkitRequestFullscreen();
+        } else if (main.msRequestFullscreen) { // IE/Edge
+            main.msRequestFullscreen();
+        }
+    } catch (err) { alert(err) }
+}
+
+
+function exitFullscreen(main) {
+    try {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari und Opera
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    } catch (err) { alert(err) }
 }
 
 
@@ -148,7 +173,7 @@ function resizeCanvas() {
 
         modifyStatusBar(0)
 
-        world.character.setStatusBars()
+        if (world) { world.character.setStatusBars() }
     } else { fullscreen = false; }
 }
 
@@ -178,8 +203,10 @@ function modifyStatusBar(key) {
     }
 
 
-    key ? world.character.screenMod = 8 : world.character.screenMod = 4;
-    world.character.setStatusBars()
+    if (world) {
+        key ? world.character.screenMod = 8 : world.character.screenMod = 4;
+        world.character.setStatusBars()
+    }
 }
 
 

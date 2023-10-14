@@ -71,11 +71,12 @@ canvas {
 }
 
 .Menu_btn {
-    border-radius: 200px;
-    background-color: green;
+    border-radius: 250px;
+    background-color: #1a7a3e;
     border-color: black;
     border-width: 1px;
     border-style: solid;
+    z-index: 10;
 }
 
 .Menu_btn:hover {
@@ -84,9 +85,19 @@ canvas {
 
 #fullscreen_btn {}
 
-#pause_btn {}
+#pause_btn {
+    display: none;
+}
 
-#startGame_btn {}
+#startGame_btn {
+    position: absolute;
+    /* top: 0; */
+    /* right: 50%; */
+    bottom: 24%;
+    left: 45%;
+    height: 10%;
+    width: 6%;
+}
 
 
 
