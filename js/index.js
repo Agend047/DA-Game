@@ -34,6 +34,8 @@ function start(levelID) {
     world = new World(canvas, keyboard);
     playing = true;
     console.log('My Char is: ', world.character)
+
+    document.getElementById('start_overlay').style.display = 'none'
 }
 
 //Clears the 'world' Variable, and ends the 'play()' function inside of the world.

@@ -56,19 +56,20 @@
             </div>
         </span>
 
-        <span class="overCanvas">
+        <span class="OverCanvas">
             <canvas id="mainCanvas" width="720" height="480">
             </canvas>
 
-            <button id="fullscreen_btn" onclick="setFullScreen()">Fullscreen</button>
+            <span id="player_btns">
+                <button id="fullscreen_btn" class="Menu_btn" onclick="setFullScreen()">Fullscreen</button>
 
-            <button id="pause_btn" onclick="pauseGame()"> Pause Game </button>
+                <button id="pause_btn" class="Menu_btn" onclick="pauseGame()"> Pause Game </button>
 
-            <button id="startGame_btn" onclick="start(1)">Start Game</button>
-
-            <img id="Start_overlay" class=" canvas_overlay_pic" src="img/title_pics/Start-overlay.png" alt="">
-            <img id="Lost_overlay" class="canvas_overlay_pic" src="img/title_pics/Game-over_overlay.png" alt="">
-            <img id="Victory_overlay" class="canvas_overlay_pic" src="img/title_pics/Level-clear_overlay.png" alt="">
+                <button id="startGame_btn" class="Menu_btn" onclick="start(1)">Start Game</button>
+            </span>
+            <img id="start_overlay" class="Canvas_overlay_pic" src="img/title_pics/Start-overlay.png" alt="">
+            <img id="lost_overlay" class="Canvas_overlay_pic" src="img/title_pics/Game-over_overlay.png" alt="">
+            <img id="victory_overlay" class="Canvas_overlay_pic" src="img/title_pics/Level-clear_overlay.png" alt="">
             <!-- <div class="overlay">Dieses Div liegt über dem Canvas.</div> -->
         </span>
     </main>
