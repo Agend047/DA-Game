@@ -155,7 +155,7 @@ class Enemy extends MovableObject {
    */
     bossAI() {
 
-        if (this.isDead()) { this.loadImageSprite(this.animations.dead) }
+        if (this.isDead()) { endGame(1); this.loadImageSprite(this.animations.dead) }
         else if (this.gotHit && this.hitCounter < 4) { this.knockBack() }
         else {
             this.isPlayerLeft() ? this.otherdirection = true : this.otherdirection = false;

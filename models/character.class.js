@@ -59,6 +59,7 @@ class Character extends MovableObject {
 
         if (this.isDead()) {
 
+            endGame(0)
             this.loadImageSprite(this.animations.dead);
 
         } else if (this.gotHit) {

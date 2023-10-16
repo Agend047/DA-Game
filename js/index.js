@@ -133,6 +133,7 @@ function enterFullscreen(main) {
             main.msRequestFullscreen();
         }
     } catch (err) { alert(err) }
+    toggleOverlayFullscreen();
 }
 
 
@@ -148,9 +149,8 @@ function exitFullscreen(main) {
             document.msExitFullscreen();
         }
     } catch (err) { alert(err) }
+    toggleOverlayFullscreen()
 }
-
-
 
 
 function calculateScaleFactor(maxWidth, maxHeight) {
@@ -179,6 +179,13 @@ function resizeCanvas() {
     } //else { fullscreen = false; }
 }
 
+function toggleOverlayFullscreen() {
+    let overlays = document.getElementsByClassName('Canvas_overlay_pic')
+    for (let overlay of overlays) {
+        overlay.classList.toggle('fullSize')
+    }
+}
+
 
 /**
  * Upscaling - Downscaling of Status Bars for FullScreen or normal screen
@@ -204,7 +211,6 @@ function modifyStatusBar(key) {
         pic.style.width = picWidthArray[key]
     }
 
-
     if (world) {
         key ? world.character.screenMod = 8 : world.character.screenMod = 4;
         world.character.setStatusBars()
@@ -227,6 +233,34 @@ function setIntervalX(callback, delay, repetitions) {
             clearInterval(intervalID);
         }
     }, delay);
+}
+
+/**
+ * The function ends the Game
+ * @param {Number} status 0 == Player died; 1 == Endboss died;
+ */
+async function endGame(status) {
+    await lastTicks()
+    playing = false;
+    let screenPic;
+    if (status) { screenPic = document.getElementById('victory_overlay'); }
+    if (!status) { screenPic = document.getElementById('lost_overlay'); }
+
+    screenPic.style.display = 'block'
+}
+
+function lastTicks() {
+    IndexDelay = 66;
+    return new Promise((resolve, reject) => {
+        let count = 0
+        let counter = setInterval(() => {
+            count++
+            if (count == 30) {
+                clearInterval(counter)
+                resolve();
+            }
+        }, IndexDelay);
+    })
 }
 
 
