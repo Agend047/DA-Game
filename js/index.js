@@ -181,7 +181,7 @@ function resizeCanvas() {
 
 
 /**
- * Upscaling - Downscaling of Status Bars
+ * Upscaling - Downscaling of Status Bars for FullScreen or normal screen
  * @param {Number} key 0 == Downscaling, 1 == Upscaling
  */
 function modifyStatusBar(key) {

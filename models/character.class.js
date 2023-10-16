@@ -5,8 +5,6 @@ class Character extends MovableObject {
     attacking = false; //Will be true, if char is attacking, so the animation wont get called twice.
     collectedCoins = 0;
 
-
-
     height = 280;
     width = 140;
 
@@ -15,6 +13,8 @@ class Character extends MovableObject {
     abmY = 155
     abmW = (-80)
     abmH = (-190)
+
+    dmgDealed = false;
 
     screenMod = 4; //Screen Modificator. On Fullscreen, it will be 8!
 
@@ -138,9 +138,12 @@ class Character extends MovableObject {
             const interval = setInterval(() => {
                 if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
                 this.loadImageSprite(attack)
-                if (this.currentFrame == attack.dmgFrame) { this.hitEnemys(attack); }
+                if (this.currentFrame == attack.dmgFrame && !this.dmgDealed) {
+                    this.hitEnemys(attack);
+                }
 
-                if (this.currentFrame == this.frameRate - 1 || this.isDead()) {
+                if (this.currentFrame >= this.frameRate - 1 || this.isDead()) {
+                    this.dmgDealed = false;
                     clearInterval(interval)
                     resolve()
                     // this.loadImageSprite(this.animations.idle2)
@@ -162,6 +165,7 @@ class Character extends MovableObject {
                 console.log(enemy.LeP) //CONSOLE
             }
         });
+        this.dmgDealed = true;
     }
 
 
@@ -182,12 +186,12 @@ class Character extends MovableObject {
                 if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
                 this.loadImageSprite(attack)
 
-                if (this.currentFrame == attack.shotFrame) {
+                if (this.currentFrame == attack.shotFrame && !this.dmgDealed) {
                     this.fire(attack)
-                    this.currentFrame++
                 }
 
                 if (this.currentFrame == this.frameRate - 1 || this.isDead()) {
+                    this.dmgDealed = false;
                     clearInterval(interval)
                     resolve()
                     //this.loadImageSprite(this.animations.idle2)
@@ -205,6 +209,8 @@ class Character extends MovableObject {
         if (this instanceof Eleria) { projectile = new Arrow(this.pos_x + 100, this.pos_y + 180, this.otherdirection, attack.dmg) }
         else if (this instanceof Kazim) { projectile = new Ignifaxius(this.pos_x + 100, this.pos_y + 190, this.otherdirection, attack.dmg) }
         this.world.ShootableObjects.push(projectile)
+
+        this.dmgDealed = true;
     }
 
     /**
@@ -224,6 +230,8 @@ class Character extends MovableObject {
      * Initial Drawing of the Player Status Bars.
      */
     setStatusBars() {
+        fullscreen ? this.screenMod = 8 : this.screenMod = 4;
+
         let healthBar = document.getElementById('health_bg_max');
         healthBar.style.width = (this.maxLeP * this.screenMod) + "px";
 
