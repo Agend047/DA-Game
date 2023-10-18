@@ -40,7 +40,6 @@ function start(levelID) {
     document.getElementById('startGame_btn').style.display = 'none';
     // document.getElementById('pause_btn').style.display = 'block';
 
-
     document.getElementById('start_overlay').style.display = 'none'
 }
 
@@ -50,10 +49,12 @@ function endLevel() {
     world = {};
 }
 
-
+/**
+ * Pausing game (if it runs) and shows controls
+ */
 function showControls() {
-    pauseGame();
-    let instructionDiv = document.getElementById('instruction_part');
+    if (world) pauseGame();
+    let instructionDiv = document.getElementById('instruction_scroll');
     instructionDiv.classList.toggle('d-none');
 }
 

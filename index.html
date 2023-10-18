@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -61,21 +61,22 @@
             </canvas>
 
             <button id="startGame_btn" class="Menu_btn" onclick="start(1)">
-                <img src="img/icons/play-button.png" alt="Start">
+                <img src="img/icons/play-button.png" class="Menu_img" alt="Start">
             </button>
 
             <span id="player_btns">
-                <button id="fullscreen_btn" class="Menu_btn" onclick="setFullScreen()">
-                    <img id="fullScreen_img" src="img/icons/fullscreen.png" alt="">
+                <button id="control_btn" class="Menu_btn" onclick="showControls()">
+                    <img id="control_img" class="Menu_img" src="img/icons/console.png" alt="Control">
                 </button>
-
-                <button id="control_btn" class="Menu_btn" onclick="showControls()">C</button>
                 <!-- <button id="pause_btn" class="Menu_btn" onclick="pauseGame()"> P </button> -->
+                <button id="fullscreen_btn" class="Menu_btn" onclick="setFullScreen()">
+                    <img id="fullScreen_img" class="Menu_img" src="img/icons/fullscreen.png" alt="">
+                </button>
             </span>
 
 
-            <span id="instruction_part" class="Canvas_overlay_div d-none">
-                <div class="inner_div">
+            <span id="instruction_scroll" class="Canvas_overlay_div d-none">
+                <div class="inner_div scroll_bg">
                     <h3>Instructions</h3>
                     <table>
                         <tr>
@@ -129,36 +130,6 @@
                 <p>Kazim</p>
             </button>
         </span>
-    </span>
-
-    <span class="instruction_div">
-        <h3>Instructions</h3>
-        <table>
-            <tr>
-                <th>Keyboard</th>
-                <th>Action</th>
-            </tr>
-            <tr>
-                <td>W</td>
-                <td>Jump</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>Move left</td>
-            </tr>
-            <tr>
-                <td>D</td>
-                <td>Move right</td>
-            </tr>
-            <tr>
-                <td>Space</td>
-                <td>Meele Attack</td>
-            </tr>
-            <tr>
-                <td>G</td>
-                <td>Range Attack (Only Eleria & Kazim)</td>
-            </tr>
-        </table>
     </span>
 
 </body>
