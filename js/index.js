@@ -22,6 +22,32 @@ function init() {
     // start(1)
 }
 
+
+/**
+ * Sets the HeroID in Storage
+ * @param {Number} heroNumber Index of Choosen Hero in the Array, who has to be set
+ */
+function createHero(heroNumber) {
+    localStorage.setItem('heroNumber', JSON.stringify(heroNumber));
+
+    window.location.reload();
+}
+
+/**
+ * Loads set hero Number of local Storage, for world-class and more.
+ * @returns the set Number of the hero, or 0, if none was set before-
+ */
+function getHeroNumber() {
+    let numberFromStorage
+    numberFromStorage = localStorage.getItem('heroNumber')
+    if (numberFromStorage) {
+        let heroNumber = JSON.parse(numberFromStorage)
+        return heroNumber;
+    }
+    else
+        return 0;
+}
+
 /**
  * Starting specific level out of levelPool.
  * @param {Array} levelPool  Collection of the Levels as Variables
@@ -74,29 +100,57 @@ function pauseGame() {
 }
 
 /**
- * Sets the HeroID in Storage
- * @param {Number} heroNumber Index of Choosen Hero in the Array, who has to be set
+ * Simple restart function to clear the world-Variable and start the current Level again from the start
  */
-function createHero(heroNumber) {
-    localStorage.setItem('heroNumber', JSON.stringify(heroNumber));
-
-    window.location.reload();
+function restart() {
+    endLevel();
+    start(level);
 }
 
 /**
- * Loads set hero Number of local Storage, for world-class and more.
- * @returns the set Number of the hero, or 0, if none was set before-
+ * The function ends the Game
+ * @param {Number} status 0 == Player died; 1 == Endboss died;
  */
-function getHeroNumber() {
-    let numberFromStorage
-    numberFromStorage = localStorage.getItem('heroNumber')
-    if (numberFromStorage) {
-        let heroNumber = JSON.parse(numberFromStorage)
-        return heroNumber;
-    }
-    else
-        return 0;
+async function endGame(status) {
+    await lastTicks();
+    playing = false;
+    // let screenPic;
+    if (status) { loadVictory(); };
+    if (!status) { loadDefeat(); };
 }
+
+
+function loadVictory() {
+    let screenPic = document.getElementById('victory_overlay');
+    screenPic.style.display = 'block';
+}
+
+function loadDefeat() {
+    let screenPic = document.getElementById('lost_overlay');
+    document.getElementById('restartGame_btn').classList.remove('d-none')
+    screenPic.style.display = 'block';
+}
+
+/**
+ * Making 30 last, far slower Intervals, so the player sees that the game ends.
+ * @returns the resolved promise, as soon, as it was resolved (after 30 frames)
+ */
+function lastTicks() {
+    IndexDelay = 66;
+    return new Promise((resolve, reject) => {
+        let count = 0
+        let counter = setInterval(() => {
+            count++
+            if (count == 30) {
+                clearInterval(counter)
+                resolve();
+            }
+        }, IndexDelay);
+    })
+}
+
+
+// FULLSCREEN FUNCTIONS
 
 /**
  * Small, but important. Adding an Eventlistener, wich will trigger on every
@@ -188,6 +242,7 @@ function resizeCanvas() {
         canvas.style.transform = 'scale(1)'
 
         modifyStatusBar(0)
+        toggleOverlayFullscreen();
 
         if (world) { world.character.setStatusBars() }
     } //else { fullscreen = false; }
@@ -259,34 +314,6 @@ function setIntervalX(callback, delay, repetitions) {
             clearInterval(intervalID);
         }
     }, delay);
-}
-
-/**
- * The function ends the Game
- * @param {Number} status 0 == Player died; 1 == Endboss died;
- */
-async function endGame(status) {
-    await lastTicks()
-    playing = false;
-    let screenPic;
-    if (status) { screenPic = document.getElementById('victory_overlay'); }
-    if (!status) { screenPic = document.getElementById('lost_overlay'); }
-
-    screenPic.style.display = 'block'
-}
-
-function lastTicks() {
-    IndexDelay = 66;
-    return new Promise((resolve, reject) => {
-        let count = 0
-        let counter = setInterval(() => {
-            count++
-            if (count == 30) {
-                clearInterval(counter)
-                resolve();
-            }
-        }, IndexDelay);
-    })
 }
 
 

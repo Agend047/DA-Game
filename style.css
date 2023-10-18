@@ -150,6 +150,12 @@ canvas {
     /* width: 6%; */
 }
 
+#restartGame_btn {
+    position: absolute;
+    bottom: 16%;
+    width: 22%;
+}
+
 
 .scroll_bg {
     background-image: url('img/title_pics/scroll.png');
