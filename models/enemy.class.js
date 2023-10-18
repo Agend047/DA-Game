@@ -142,6 +142,7 @@ class Enemy extends MovableObject {
     playerEncounter() {
         this.loadImageSprite(this.animations.jump)
         this.pos_x -= this.speed * 10;
+        this.LeP = this.maxLeP;
 
         if (this.currentFrame == this.frameRate - 1) {
             this.encounterJump = true;
@@ -443,6 +444,7 @@ class BossWarrior extends OrcWarrior {
     height = 440;
 
     LeP = 32;
+    maxLeP = 32;
     RS = 1;
     speed = 2;
 
@@ -472,6 +474,7 @@ class BossBerserker extends OrcBerserker {
     height = 520;
 
     LeP = 64;
+    maxLeP = 64;
     RS = 2;
     speed = 2;
 

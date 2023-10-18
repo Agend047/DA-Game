@@ -64,9 +64,10 @@ class World {
         this.draw();
         this.canEnemysAttack();
         this.resetEnemyAttack();
-        this.controlEnemys()
+        this.controlEnemys();
         this.character.control();
-        this.character.applyGravity()
+        this.character.applyGravity();
+        // this.controlProjectiles();
 
         let self = this;  //calling play again
         setTimeout(function () {
@@ -204,12 +205,20 @@ class World {
         })
     }
 
-
+    /** Giving enemys the correct AI */
     controlEnemys() {
         this.enemys.forEach((enemy) => {
             if (enemy instanceof WalkerWarrior || enemy instanceof WalkerBerserker) { enemy.walkerAI() }
             else if (enemy instanceof BossWarrior || enemy instanceof BossBerserker) { enemy.bossStatusCheck() }
         })
+    }
+
+
+    /**Doesnt work now, may later */
+    controlProjectiles() {
+        for (let projectile of this.ShootableObjects) {
+            projectile.shooting();
+        }
     }
 
     /**

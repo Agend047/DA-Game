@@ -44,21 +44,23 @@ class ShootableObject extends MovableObject {
         if (this.otherDirection) this.pos_x -= 100;
 
         const shot = setInterval(() => {
-            counter++
+            if (playing) {
+                counter++
 
-            this.otherDirection ? this.moveLeft() : this.moveRight();
+                this.otherDirection ? this.moveLeft() : this.moveRight();
 
-            if (counter <= 30) {
-                if (this.checkForCollision()) {
-                    counter = 38;
+                if (counter <= 30) {
+                    if (this.checkForCollision()) {
+                        counter = 38;
+                    }
                 }
-            }
 
-            if (counter == 30) { this.runOut(shot) }
+                if (counter == 30) { this.runOut(shot) }
 
-            if (this.pos_y > 400 || counter >= 38) {
-                clearInterval(shot)
-                world.ShootableObjects.splice(0, 1)
+                if (this.pos_y > 400 || counter >= 38) {
+                    clearInterval(shot)
+                    world.ShootableObjects.splice(0, 1)
+                }
             }
         }, this.globeDelay);
     }
