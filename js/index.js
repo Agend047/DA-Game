@@ -103,21 +103,28 @@ function addResizeEvList() {
 }
 
 
+/**
+ * Controling the functions, wich makes the Picture goes Fullscreen.
+ * Because the normal FUllscreen-request doesnt work for the whole <maim>,
+ * i calculate the zoom i need and save it in the scaleFactor - variable.
+ * 
+ */
 function setFullScreen() {
     let main = document.getElementById('mainDiv')
 
     if (!fullscreen) {
         enterFullscreen(main)
         modifyStatusBar(1)
+        toggleFullSreenPic(1)
         let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
         canvas.style.transform = 'scale(' + scaleFactor + ')'
         fullscreen = true;
 
     } else {
         exitFullscreen(main)
+        toggleFullSreenPic(0)
         fullscreen = false;
     }
-
 }
 
 
@@ -215,6 +222,18 @@ function modifyStatusBar(key) {
         key ? world.character.screenMod = 8 : world.character.screenMod = 4;
         world.character.setStatusBars()
     }
+}
+
+/**
+ * Sets the Fullscreen Picture to what we need right now- in one function. The DA loves that.
+ * @param {Number} indicator 0 == Leaving fullscreen, 1 == entering Fullscreen
+ */
+function toggleFullSreenPic(indicator) {
+    let img = document.getElementById('fullScreen_img')
+
+
+    if (indicator) img.src = 'img/icons/exit-fullscreen.png';
+    if (!indicator) img.src = 'img/icons/fullscreen.png';
 }
 
 
