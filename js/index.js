@@ -38,7 +38,7 @@ function start(levelID) {
     console.log('My Char is: ', world.character)
 
     document.getElementById('startGame_btn').style.display = 'none';
-    document.getElementById('pause_btn').style.display = 'block';
+    // document.getElementById('pause_btn').style.display = 'block';
 
 
     document.getElementById('start_overlay').style.display = 'none'
@@ -51,6 +51,12 @@ function endLevel() {
 }
 
 
+function showControls() {
+    pauseGame();
+    let instructionDiv = document.getElementById('instruction_part');
+    instructionDiv.classList.toggle('d-none');
+}
+
 /**
  * Either pauses or continues the loaded level at the paused point,
  * depending on the status of 'playing'
@@ -58,11 +64,11 @@ function endLevel() {
 function pauseGame() {
     if (playing) {
         playing = false;
-        document.getElementById('pause_btn').innerHTML = 'Continue'
+        // document.getElementById('pause_btn').innerHTML = 'Continue'
     } else {
         playing = true;
         world.play();
-        document.getElementById('pause_btn').innerHTML = 'Pause Game'
+        // document.getElementById('pause_btn').innerHTML = 'Pause Game'
     }
 }
 

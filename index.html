@@ -69,14 +69,47 @@
                     <img id="fullScreen_img" src="img/icons/fullscreen.png" alt="">
                 </button>
 
-                <button id="pause_btn" class="Menu_btn" onclick="pauseGame()"> Pause Game </button>
-
+                <button id="control_btn" class="Menu_btn" onclick="showControls()">C</button>
+                <!-- <button id="pause_btn" class="Menu_btn" onclick="pauseGame()"> P </button> -->
             </span>
 
-            <img id="start_overlay" class="Canvas_overlay_pic" src="img/title_pics/Start-overlay_V3.png" alt="">
+
+            <span id="instruction_part" class="Canvas_overlay_div d-none">
+                <div class="inner_div">
+                    <h3>Instructions</h3>
+                    <table>
+                        <tr>
+                            <th>Keyboard</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>W</td>
+                            <td>Jump</td>
+                        </tr>
+                        <tr>
+                            <td>A</td>
+                            <td>Move left</td>
+                        </tr>
+                        <tr>
+                            <td>D</td>
+                            <td>Move right</td>
+                        </tr>
+                        <tr>
+                            <td>Space</td>
+                            <td>Meele Attack</td>
+                        </tr>
+                        <tr>
+                            <td>G</td>
+                            <td>Range Attack (Only Eleria & Kazim)</td>
+                        </tr>
+                    </table>
+                </div>
+            </span>
+
+            <img id="start_overlay" class="Canvas_overlay_pic" src="img/title_pics/Start-overlay_V4R.png" alt="">
             <div id="choose-hero-overlay" class="Canvas_overlay_pic"></div>
-            <img id="lost_overlay" class="Canvas_overlay_pic" src="img/title_pics/Game-over_V2.png" alt="">
-            <img id="victory_overlay" class="Canvas_overlay_pic " src="img/title_pics/Level-clear_V3.png" alt="">
+            <img id="lost_overlay" class="Canvas_overlay_pic" src="img/title_pics/Game-over_V3R.png" alt="">
+            <img id="victory_overlay" class="Canvas_overlay_pic " src="img/title_pics/Level-clear_V4R.png" alt="">
             <!-- <div class="overlay">Dieses Div liegt über dem Canvas.</div> -->
         </span>
     </main>
@@ -98,7 +131,7 @@
         </span>
     </span>
 
-    <span class="constructions">
+    <span class="instruction_div">
         <h3>Instructions</h3>
         <table>
             <tr>
