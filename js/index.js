@@ -5,6 +5,7 @@ let IndexDelay = 33;
 let world;
 let heroBall = [Acco, Eleria, Kazim]
 let level;
+let choosenLevel;
 const renderPool = [initLvl1, initLvl2, initLvl3, initLvl4,]
 let heroNumber = getHeroNumber();
 
@@ -57,9 +58,8 @@ function getHeroNumber() {
  */
 function start(levelID) {
     if (stoppingThingsCounter == 0) {
-        renderPool[levelID - 1]();
-        let levelPool = [level1, level2, level3, level4]
-        level = levelPool[levelID - 1];
+
+        setLevel(levelID);
 
         world = new World(canvas, keyboard);
         playing = true;
@@ -71,6 +71,18 @@ function start(levelID) {
         document.getElementById('start_overlay').style.display = 'none'
     }
 }
+
+/**
+ * Sets the level we want to play
+ * @param {Number} lvlID ID of the choosen level
+ */
+function setLevel(lvlID) {
+    renderPool[lvlID - 1]();
+    let levelPool = [level1, level2, level3, level4];
+    level = levelPool[lvlID - 1];
+    choosenLevel = lvlID;
+}
+
 
 /**
  * Pausing game (if it runs) and shows controls
@@ -147,10 +159,15 @@ function loadDefeat() {
  * Simple restart function to clear the world-Variable and start the current Level again from the start
  */
 function restart() {
+    IndexDelay = 33;
+
     document.getElementById('restartGame_btn').classList.add('d-none');
     document.getElementById('lost_overlay').style.display = 'none';
 
     resetWorld();
+
+    setLevel(choosenLevel);
+
     world = new World(canvas, keyboard);
     playing = true;
     console.log('My Char is: ', world.character)
