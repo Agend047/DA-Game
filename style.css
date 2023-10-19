@@ -271,3 +271,12 @@ canvas {
     background-color: #192231;
     color: #740019;
 }
+
+.pressDiv {
+    padding-top: 20px;
+}
+
+.pressDiv a {
+    color: rgb(58, 58, 58);
+    font-size: large;
+}
