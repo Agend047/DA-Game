@@ -80,6 +80,7 @@ function endLevel() {
  */
 function showControls() {
     if (world) pauseGame();
+    // else { document.getElementById('startGame_btn').disabled = true; }
     let instructionDiv = document.getElementById('instruction_scroll');
     instructionDiv.classList.toggle('d-none');
 }
@@ -104,7 +105,13 @@ function pauseGame() {
  */
 function restart() {
     endLevel();
-    start(level);
+    world = new World(canvas, keyboard);
+    playing = true;
+    console.log('My Char is: ', world.character)
+
+    document.getElementById('restartGame_btn').classList.add('d-none');
+
+    document.getElementById('lost_overlay').style.display = 'none'
 }
 
 /**
@@ -127,7 +134,7 @@ function loadVictory() {
 
 function loadDefeat() {
     let screenPic = document.getElementById('lost_overlay');
-    document.getElementById('restartGame_btn').classList.remove('d-none')
+    document.getElementById('restartGame_btn').classList.remove('d-none');
     screenPic.style.display = 'block';
 }
 
@@ -180,7 +187,8 @@ function setFullScreen() {
         let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
         canvas.style.transform = 'scale(' + scaleFactor + ')'
         fullscreen = true;
-
+        //Buttons Menu Class: 84px height/width
+        upscaleThings()
     } else {
         exitFullscreen(main)
         toggleFullSreenPic(0)
@@ -233,6 +241,16 @@ function calculateScaleFactor(maxWidth, maxHeight) {
     return Math.min(scaleX, scaleY);
 }
 
+function upscaleThings() {
+    $('Menu_btn').css('height', '84px')
+    $('Menu_btn').css('width', '84px')
+}
+
+
+function downscaleThings() {
+    $('Menu_btn').css('height', '48px')
+    $('Menu_btn').css('width', '48px')
+}
 
 /**
  * Bringing everything back to normal size

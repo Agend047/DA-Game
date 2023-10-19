@@ -6,7 +6,7 @@ class Character extends MovableObject {
     collectedCoins = 0;
 
     height = 280;
-    width = 140;
+    width = 180;
 
     // AttackBox Meele Modificators:
     abmX = 80

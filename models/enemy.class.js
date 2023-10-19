@@ -389,7 +389,7 @@ class OrcBerserker extends Enemy {
 
 class WalkerWarrior extends OrcWarrior {
 
-    width = 110;
+    width = 140;
     height = 220;
 
     LeP = 16;
@@ -415,7 +415,7 @@ class WalkerWarrior extends OrcWarrior {
 
 class WalkerBerserker extends OrcBerserker {
 
-    width = 140;
+    width = 180;
     height = 260;
 
     LeP = 32;
@@ -440,7 +440,7 @@ class WalkerBerserker extends OrcBerserker {
 
 class BossWarrior extends OrcWarrior {
 
-    width = 220;
+    width = 260;
     height = 440;
 
     LeP = 32;
