@@ -4,6 +4,7 @@ class Character extends MovableObject {
     world;
     attacking = false; //Will be true, if char is attacking, so the animation wont get called twice.
     collectedCoins = 0;
+    endStarted = false;
 
     height = 280;
     width = 180;
@@ -59,7 +60,7 @@ class Character extends MovableObject {
 
         if (this.isDead()) {
 
-            endGame(0)
+            if (!this.endStarted) { endGame(0); this.endStarted = true; }
             this.loadImageSprite(this.animations.dead);
 
         } else if (this.gotHit) {
@@ -387,7 +388,7 @@ class Acco extends Character {
 }
 
 class Eleria extends Character {
-    LeP = 1//30;
+    LeP = 30;
     maxLeP = 30;
     RS = 0; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
 

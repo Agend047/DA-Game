@@ -8,6 +8,8 @@ let level;
 const renderPool = [initLvl1, initLvl2, initLvl3, initLvl4,]
 let heroNumber = getHeroNumber();
 
+let stoppingThingsCounter = 0; //Many things can cause the game to pause. If they do, they will add to this counter. Is it 0, the game can play
+
 let fullscreen = false;
 let playing = false;
 let playMusic = false;
@@ -54,65 +56,49 @@ function getHeroNumber() {
  * @param {Number} levelID The Number of the Choosen level
  */
 function start(levelID) {
+    if (stoppingThingsCounter == 0) {
+        renderPool[levelID - 1]();
+        let levelPool = [level1, level2, level3, level4]
+        level = levelPool[levelID - 1];
 
-    renderPool[levelID - 1]();
-    let levelPool = [level1, level2, level3, level4]
-    level = levelPool[levelID - 1];
+        world = new World(canvas, keyboard);
+        playing = true;
+        console.log('My Char is: ', world.character)
 
-    world = new World(canvas, keyboard);
-    playing = true;
-    console.log('My Char is: ', world.character)
+        document.getElementById('startGame_btn').style.display = 'none';
+        // document.getElementById('pause_btn').style.display = 'block';
 
-    document.getElementById('startGame_btn').style.display = 'none';
-    // document.getElementById('pause_btn').style.display = 'block';
-
-    document.getElementById('start_overlay').style.display = 'none'
-}
-
-//Clears the 'world' Variable, and ends the 'play()' function inside of the world.
-function endLevel() {
-    playing = false;
-    world = {};
+        document.getElementById('start_overlay').style.display = 'none'
+    }
 }
 
 /**
  * Pausing game (if it runs) and shows controls
  */
+let controlPause = false; //only important for this single function
 function showControls() {
-    if (world) pauseGame();
+    if (!controlPause) { pauseGame(); controlPause = true; }
+    else { continueGame(); controlPause = false; }
     // else { document.getElementById('startGame_btn').disabled = true; }
     let instructionDiv = document.getElementById('instruction_scroll');
     instructionDiv.classList.toggle('d-none');
 }
 
-/**
- * Either pauses or continues the loaded level at the paused point,
- * depending on the status of 'playing'
- */
+/** Gets called, if something wants the game to stop.*/
 function pauseGame() {
-    if (playing) {
-        playing = false;
-        // document.getElementById('pause_btn').innerHTML = 'Continue'
-    } else {
-        playing = true;
-        world.play();
-        // document.getElementById('pause_btn').innerHTML = 'Pause Game'
+    stoppingThingsCounter++
+    playing = false;
+}
+
+/** Gets called, if something wants the game to continue, but only continues, if nothing else causes the game to stop! */
+function continueGame() {
+    stoppingThingsCounter--
+    if (stoppingThingsCounter == 0) {
+        if (world) { playing = true; world.play() };
     }
 }
 
-/**
- * Simple restart function to clear the world-Variable and start the current Level again from the start
- */
-function restart() {
-    endLevel();
-    world = new World(canvas, keyboard);
-    playing = true;
-    console.log('My Char is: ', world.character)
 
-    document.getElementById('restartGame_btn').classList.add('d-none');
-
-    document.getElementById('lost_overlay').style.display = 'none'
-}
 
 /**
  * The function ends the Game
@@ -120,22 +106,9 @@ function restart() {
  */
 async function endGame(status) {
     await lastTicks();
-    playing = false;
-    // let screenPic;
+    pauseGame();
     if (status) { loadVictory(); };
     if (!status) { loadDefeat(); };
-}
-
-
-function loadVictory() {
-    let screenPic = document.getElementById('victory_overlay');
-    screenPic.style.display = 'block';
-}
-
-function loadDefeat() {
-    let screenPic = document.getElementById('lost_overlay');
-    document.getElementById('restartGame_btn').classList.remove('d-none');
-    screenPic.style.display = 'block';
 }
 
 /**
@@ -148,6 +121,7 @@ function lastTicks() {
         let count = 0
         let counter = setInterval(() => {
             count++
+            console.log(count)
             if (count == 30) {
                 clearInterval(counter)
                 resolve();
@@ -155,6 +129,39 @@ function lastTicks() {
         }, IndexDelay);
     })
 }
+
+/**Loads the Victory screen */
+function loadVictory() {
+    let screenPic = document.getElementById('victory_overlay');
+    screenPic.style.display = 'block';
+}
+
+/**Loads the defeat screen */
+function loadDefeat() {
+    let screenPic = document.getElementById('lost_overlay');
+    document.getElementById('restartGame_btn').classList.remove('d-none');
+    screenPic.style.display = 'block';
+}
+
+/**
+ * Simple restart function to clear the world-Variable and start the current Level again from the start
+ */
+function restart() {
+    document.getElementById('restartGame_btn').classList.add('d-none');
+    document.getElementById('lost_overlay').style.display = 'none';
+
+    resetWorld();
+    world = new World(canvas, keyboard);
+    playing = true;
+    console.log('My Char is: ', world.character)
+}
+
+//Clears the 'world' Variable, and ends the 'play()' function inside of the world.
+function resetWorld() {
+    playing = false;
+    world = {};
+}
+
 
 
 // FULLSCREEN FUNCTIONS
@@ -175,28 +182,27 @@ function addResizeEvList() {
  * Controling the functions, wich makes the Picture goes Fullscreen.
  * Because the normal FUllscreen-request doesnt work for the whole <maim>,
  * i calculate the zoom i need and save it in the scaleFactor - variable.
- * 
  */
 function setFullScreen() {
     let main = document.getElementById('mainDiv')
 
     if (!fullscreen) {
-        enterFullscreen(main)
-        modifyStatusBar(1)
-        toggleFullSreenPic(1)
+        enterFullscreen(main);
+        toggleFullSreenPic(1);
         let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
         canvas.style.transform = 'scale(' + scaleFactor + ')'
         fullscreen = true;
-        //Buttons Menu Class: 84px height/width
-        upscaleThings()
+        modifyStatusBar(1);
+        upscaleBtns()
     } else {
-        exitFullscreen(main)
-        toggleFullSreenPic(0)
+        exitFullscreen(main);
+        toggleFullSreenPic(0);
+        downscaleBtns();
         fullscreen = false;
     }
 }
 
-
+/**Enters fullscreen */
 function enterFullscreen(main) {
     try {
         if (canvas.requestFullscreen) {
@@ -212,7 +218,7 @@ function enterFullscreen(main) {
     toggleOverlayFullscreen();
 }
 
-
+/**Exits fullscreen */
 function exitFullscreen(main) {
     try {
         if (document.exitFullscreen) {
@@ -241,15 +247,37 @@ function calculateScaleFactor(maxWidth, maxHeight) {
     return Math.min(scaleX, scaleY);
 }
 
-function upscaleThings() {
-    $('Menu_btn').css('height', '84px')
-    $('Menu_btn').css('width', '84px')
+/**Scales the Menu Buttons up for fullscreen view */
+function upscaleBtns() {
+
+    let menubtns = document.getElementsByClassName('Menu_btn');
+    for (let element of menubtns) {
+        element.style.height = '84px';
+        element.style.width = '84px';
+    };
+
+    let menuImgs = document.getElementsByClassName('Menu_img');
+    for (let img of menuImgs) {
+        img.style.height = '48px';
+        img.style.width = '48px';
+    };
+
 }
 
+/**Scales the Menu Buttons down for normal view */
+function downscaleBtns() {
 
-function downscaleThings() {
-    $('Menu_btn').css('height', '48px')
-    $('Menu_btn').css('width', '48px')
+    let menubtns = document.getElementsByClassName('Menu_btn');
+    for (let element of menubtns) {
+        element.style.height = '48px';
+        element.style.width = '48px';
+    };
+
+    let menuImgs = document.getElementsByClassName('Menu_img');
+    for (let img of menuImgs) {
+        img.style.height = '32px';
+        img.style.width = '32px';
+    };
 }
 
 /**
@@ -279,7 +307,6 @@ function toggleOverlayFullscreen() {
  * @param {Number} key 0 == Downscaling, 1 == Upscaling
  */
 function modifyStatusBar(key) {
-
     let PlayerBars = document.getElementById('PlayerBars');
     key ? PlayerBars.style.paddingLeft = '10%' : PlayerBars.style.paddingLeft = '0px';
     key ? PlayerBars.style.paddingTop = '4%' : PlayerBars.style.paddingTop = '0px';

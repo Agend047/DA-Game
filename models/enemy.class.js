@@ -128,7 +128,7 @@ class Enemy extends MovableObject {
      * If close enough, a variable will be set on "true", wich will cause the next Phase
     */
     waitingForPlayer() {
-        if (world) {
+        if (world && world.character) {
             if (world.character.pos_x > world.actualLevel.level_end_x - 600) {
                 this.playerEncountered = true;
             }
