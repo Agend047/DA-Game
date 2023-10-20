@@ -9,11 +9,11 @@ let choosenLevel;
 const renderPool = [initLvl1, initLvl2, initLvl3, initLvl4,]
 let heroNumber = getHeroNumber();
 
-let stoppingThingsCounter = 0; //Many things can cause the game to pause. If they do, they will add to this counter. Is it 0, the game can play
-
 let fullscreen = false;
 let playing = false;
 let playMusic = false;
+let gameEnded = false;
+
 
 const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 });
 
@@ -57,19 +57,18 @@ function getHeroNumber() {
  * @param {Number} levelID The Number of the Choosen level
  */
 function start(levelID) {
-    if (stoppingThingsCounter == 0) {
+    IndexDelay = 33;
+    gameEnded = false;
+    setLevel(levelID);
 
-        setLevel(levelID);
+    world = new World(canvas, keyboard);
+    playing = true;
+    console.log('My Char is: ', world.character)
 
-        world = new World(canvas, keyboard);
-        playing = true;
-        console.log('My Char is: ', world.character)
+    document.getElementById('startGame_btn').classList.add('d-none');
+    // document.getElementById('pause_btn').style.display = 'block';
 
-        document.getElementById('startGame_btn').style.display = 'none';
-        // document.getElementById('pause_btn').style.display = 'block';
-
-        document.getElementById('start_overlay').style.display = 'none'
-    }
+    document.getElementById('start_overlay').classList.add('d-none');
 }
 
 /**
@@ -91,25 +90,19 @@ let controlPause = false; //only important for this single function
 function showControls() {
     if (!controlPause) { pauseGame(); controlPause = true; }
     else { continueGame(); controlPause = false; }
-    // else { document.getElementById('startGame_btn').disabled = true; }
     let instructionDiv = document.getElementById('instruction_scroll');
     instructionDiv.classList.toggle('d-none');
 }
 
 /** Gets called, if something wants the game to stop.*/
 function pauseGame() {
-    stoppingThingsCounter++
     playing = false;
 }
 
 /** Gets called, if something wants the game to continue, but only continues, if nothing else causes the game to stop! */
 function continueGame() {
-    stoppingThingsCounter--
-    if (stoppingThingsCounter == 0) {
-        if (world) { playing = true; world.play() };
-    }
+    if (world && !gameEnded) { playing = true; world.play() };
 }
-
 
 
 /**
@@ -119,6 +112,8 @@ function continueGame() {
 async function endGame(status) {
     await lastTicks();
     pauseGame();
+    gameEnded = true;
+
     if (status) { loadVictory(); };
     if (!status) { loadDefeat(); };
 }
@@ -133,7 +128,6 @@ function lastTicks() {
         let count = 0
         let counter = setInterval(() => {
             count++
-            console.log(count)
             if (count == 30) {
                 clearInterval(counter)
                 resolve();
@@ -146,13 +140,24 @@ function lastTicks() {
 function loadVictory() {
     let screenPic = document.getElementById('victory_overlay');
     screenPic.style.display = 'block';
+    document.getElementById('nextLvl_btn').classList.remove('d-none');
+
 }
 
 /**Loads the defeat screen */
 function loadDefeat() {
     let screenPic = document.getElementById('lost_overlay');
-    document.getElementById('restartGame_btn').classList.remove('d-none');
     screenPic.style.display = 'block';
+    document.getElementById('restartGame_btn').classList.remove('d-none');
+}
+
+/** Starting the next level */
+function nextLevel() {
+    let screenPic = document.getElementById('victory_overlay');
+    screenPic.style.display = 'none';
+    document.getElementById('nextLvl_btn').classList.add('d-none');
+    if (choosenLevel <= renderPool.length) start(choosenLevel + 1)
+    else { document.getElementById('credits_screen').classList.remove('d-none') };
 }
 
 /**
@@ -179,6 +184,13 @@ function resetWorld() {
     world = {};
 }
 
+
+function toMainMenu() {
+    resetWorld();
+    document.getElementById('start_overlay').classList.remove('d-none')
+    document.getElementById('startGame_btn').classList.remove('d-none')
+    document.getElementById('credits_screen').classList.add('d-none');
+}
 
 
 // FULLSCREEN FUNCTIONS

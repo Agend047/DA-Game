@@ -1,6 +1,6 @@
 class World {
     actualLevel = level;
-    character = this.setHero(120, 180) //(2830, 180) for Boss-test;
+    character = this.setHero(120, 180) //(2830, 180) for Boss-test; (120, 180) normal
     enemys = this.actualLevel.enemys;
     clouds = this.actualLevel.clouds;
 

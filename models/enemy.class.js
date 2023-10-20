@@ -9,6 +9,8 @@ class Enemy extends MovableObject {
     hitCounter = 0; //Variable for knock-back, if enemy gets hit
     dropping; // {Number} like statusID 1 == Health, 2 == ammounition, 3 == Coins
     canStillDrop = true;
+    endStarted = false; //Making sure, the end sequence only will start once
+
 
     constructor(pos_x, getY, dropID) {
 
@@ -156,7 +158,10 @@ class Enemy extends MovableObject {
    */
     bossAI() {
 
-        if (this.isDead()) { endGame(1); this.loadImageSprite(this.animations.dead) }
+        if (this.isDead()) {
+            if (!this.endStarted) { endGame(1); this.endStarted = true; };
+            this.loadImageSprite(this.animations.dead)
+        }
         else if (this.gotHit && this.hitCounter < 4) { this.knockBack() }
         else {
             this.isPlayerLeft() ? this.otherdirection = true : this.otherdirection = false;
