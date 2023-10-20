@@ -6,8 +6,10 @@ function initLvl3() {
             new WalkerWarrior(200, 1),
             new WalkerBerserker(300, 2),
             new WalkerWarrior(800, 2),
+            new WalkerWarrior(1000),
             new WalkerWarrior(1600, 3),
-            new WalkerBerserker(2000, 3),
+            new WalkerBerserker(1800, 3),
+            new WalkerBerserker(2200, 3),
             // new BossWarrior(719 * 4.8),
             new BossBerserker(719 * 4.7)
         ],
@@ -49,21 +51,25 @@ function initLvl3() {
             new Background(719, 480, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Sky.png'),
             new Background(719 * 2, 480, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Sky.png'),
             new Background(719 * 3, 480, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Sky.png'),
+            new Background(719 * 4, 480, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Sky.png'),
 
             new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/BG_Decor.png'),
             new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/BG_Decor.png'),
             new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/BG_Decor.png'),
             new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/BG_Decor.png'),
+            new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/BG_Decor.png'),
 
             new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Middle_Decor.png'),
             new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Middle_Decor.png'),
             new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Middle_Decor.png'),
             new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Middle_Decor.png'),
+            new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Middle_Decor.png'),
 
             new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Foreground.png'),
             new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Foreground.png'),
             new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Foreground.png'),
             new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Foreground.png'),
+            new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_03/Layers/Foreground.png'),
         ],
 
         level_end_x = (719 * 4)

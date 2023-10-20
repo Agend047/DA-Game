@@ -48,21 +48,25 @@ function initLvl2() {
             new Background(719, 480, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Sky.png'),
             new Background(719 * 2, 480, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Sky.png'),
             new Background(719 * 3, 480, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Sky.png'),
+            new Background(719 * 4, 480, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Sky.png'),
 
             new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/BG_Decor.png'),
             new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/BG_Decor.png'),
             new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/BG_Decor.png'),
             new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/BG_Decor.png'),
+            new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/BG_Decor.png'),
 
             new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Middle_Decor.png'),
             new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Middle_Decor.png'),
             new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Middle_Decor.png'),
             new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Middle_Decor.png'),
+            new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Middle_Decor.png'),
 
             new Background(0, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Foreground.png'),
             new Background(720, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Foreground.png'),
             new Background(719 * 2, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Foreground.png'),
             new Background(719 * 3, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Foreground.png'),
+            new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Foreground.png'),
         ],
 
         level_end_x = (719 * 4)
