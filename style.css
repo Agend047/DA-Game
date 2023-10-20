@@ -85,9 +85,7 @@ canvas {
     height: 100%;
 }
 
-#start_overlay {
-    display: block;
-}
+#start_overlay {}
 
 #choose-hero-overlay {
     display: none;
@@ -235,7 +233,7 @@ canvas {
 #playerAmmo_bar {
     background-color: blue;
     height: 100%;
-    width: 100%;
+    width: 50%;
 }
 
 #playerCoins_bar {
