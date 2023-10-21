@@ -87,9 +87,6 @@ canvas {
 
 #start_overlay {}
 
-#choose-hero-overlay {
-    display: none;
-}
 
 #lost_overlay {
     display: none;
@@ -110,10 +107,7 @@ canvas {
     z-index: 4;
 }
 
-#control_img {
-    /* width: 32px;
-    height: 32px; */
-}
+#control_img {}
 
 .Menu_btn {
     border-radius: 250px;
@@ -142,16 +136,9 @@ canvas {
     display: none;
 }
 
-
-
 #startGame_btn {
     position: absolute;
-    /* top: 0; */
-    /* right: 50%; */
     bottom: 17%;
-    /* left: 45%; */
-    /* height: 10%; */
-    /* width: 6%; */
 }
 
 #restartGame_btn {
@@ -179,6 +166,7 @@ canvas {
 
 
 /* Player Status Bars */
+
 #PlayerBars {
     position: absolute;
     display: flex;
@@ -242,23 +230,70 @@ canvas {
     width: 0%;
 }
 
-
-
-/* Hero-Choose area for develop phase */
-.overDiv {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
+#intro_div {
+    display: none;
 }
 
-.buttonDiv {
-    width: 400px;
+.intro_scroll {
+    /* display: flex; */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+    margin-top: 15%;
+    font-family: Algerian Font;
+}
+
+
+/* HERO SELECTION */
+
+#select_hero_overlay {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.choose_div {
+    /* width: 50%; */
     display: flex;
     justify-content: space-between;
 }
 
+
+.hero_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 5%;
+    width: 20%;
+}
+
+.hero_div:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 50px 10px black;
+}
+
+.display_img {
+    width: 60%;
+}
+
+.hero_scroll {
+    width: 100%;
+    height: fit-content;
+    background-image: url('img/title_pics/scroll.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
 .heroChoice {
     border-radius: 5px;
+    width: 100%;
 }
 
 .heroChoice:hover {
@@ -281,8 +316,8 @@ canvas {
 }
 
 .kazim {
-    background-color: #192231;
-    color: #740019;
+    background-color: #0f141d;
+    color: #aa0505;
 }
 
 .pressDiv {

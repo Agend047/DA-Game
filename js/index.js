@@ -7,7 +7,7 @@ let heroBall = [Acco, Eleria, Kazim]
 let level;
 let choosenLevel;
 const renderPool = [initLvl1, initLvl2, initLvl3, initLvl4,]
-let heroNumber = getHeroNumber();
+let heroNumber;
 
 let fullscreen = false;
 let playing = false;
@@ -30,25 +30,8 @@ function init() {
  * Sets the HeroID in Storage
  * @param {Number} heroNumber Index of Choosen Hero in the Array, who has to be set
  */
-function createHero(heroNumber) {
-    localStorage.setItem('heroNumber', JSON.stringify(heroNumber));
-
-    window.location.reload();
-}
-
-/**
- * Loads set hero Number of local Storage, for world-class and more.
- * @returns the set Number of the hero, or 0, if none was set before-
- */
-function getHeroNumber() {
-    let numberFromStorage
-    numberFromStorage = localStorage.getItem('heroNumber')
-    if (numberFromStorage) {
-        let heroNumber = JSON.parse(numberFromStorage)
-        return heroNumber;
-    }
-    else
-        return 0;
+function createHero(heroID) {
+    heroNumber = heroID;
 }
 
 /**
@@ -184,12 +167,28 @@ function resetWorld() {
     world = {};
 }
 
-
+/** Menu function, leads to main Menu */
 function toMainMenu() {
     resetWorld();
-    document.getElementById('start_overlay').classList.remove('d-none')
-    document.getElementById('startGame_btn').classList.remove('d-none')
+    document.getElementById('start_overlay').classList.remove('d-none');
+    document.getElementById('startGame_btn').classList.remove('d-none');
     document.getElementById('credits_screen').classList.add('d-none');
+}
+
+/** Menu function, leads to Intro */
+function toIntro() {
+    document.getElementById('start_overlay').classList.add('d-none')
+    document.getElementById('intro_div').style.display = 'flex';
+}
+
+/** Menu function, leads to the part, where a hero can be choosen. */
+function toHeroSelection() {
+    document.getElementById('intro_div').style.display = 'none';
+    document.getElementById('select_hero_overlay').style.display = 'flex';
+}
+
+function closeHeroSelection() {
+    document.getElementById('select_hero_overlay').style.display = 'none';
 }
 
 

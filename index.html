@@ -60,7 +60,7 @@
             <canvas id="mainCanvas" width="720" height="480">
             </canvas>
 
-            <button id="startGame_btn" class="Menu_btn" onclick="start(1)">
+            <button id="startGame_btn" class="Menu_btn" onclick="toIntro()">
                 <img src="img/icons/play-button.png" class="Menu_img" alt="Start">
             </button>
 
@@ -116,8 +116,57 @@
             </span>
 
             <img id="start_overlay" class="Canvas_overlay_pic" src="img/title_pics/Start-overlay_V4R.png" alt="">
-            <div id="choose-hero-overlay" class="Canvas_overlay_div"></div>
+
+            <div id="intro_div" class="Canvas_overlay_div">
+                <div class="intro_scroll scroll_bg">
+                    <p> Can you fell the ground tremble, <br>
+                        do you see the smoke on the horizon? <br>
+                        Can you hear the drums beat? <br>
+                        thousands there must be. <br>
+                        <br>
+                        There they stand, in formation! <br>
+                        Breathing the touch of death. <br>
+                        Filled with hatred and anger, <br>
+                        they only seek our end. <br>
+                    </p>
+                    <button class="Menu_btn" onclick="toHeroSelection()">
+                        <img src="img/icons/right-arrow.png" alt="Continue">
+                    </button>
+                </div>
+            </div>
+
+            <div id="select_hero_overlay" class="Canvas_overlay_div">
+                <h1>Choose your hero</h1>
+                <span class="choose_div">
+                    <div class="hero_div" onclick="createHero(0), closeHeroSelection(), start(1)">
+                        <img class="display_img" src="img/title_pics/Acco_display.png" alt="">
+                        <button class="heroChoice acco">
+                            <p>Acco</p>
+                        </button>
+                        <div class="hero_scroll">A warrior out of the Horaisan Empire.<br> Wears heavy Armour and a
+                            strong Sword, but has no range attack.</div>
+                    </div>
+                    <div class="hero_div" onclick="createHero(1), closeHeroSelection(), start(1)">
+                        <img class="display_img" src="img/title_pics/Eleria_display.png" alt="">
+                        <button class="heroChoice eleria">
+                            <p>Eleria</p>
+                        </button>
+                        <div class="hero_scroll">A Glade Elven Keeper.<br> Very agile, but weak in meele combat.
+                            Collects Arrows for her strong bow!</div>
+                    </div>
+                    <div class="hero_div" onclick="createHero(2), closeHeroSelection(), start(1)">
+                        <img class="display_img" src="img/title_pics/Kazim_display.png" alt="">
+                        <button class="heroChoice kazim">
+                            <p>Kazim</p>
+                        </button>
+                        <div class="hero_scroll">A Fire Mage from the Elemental Councel of Drakonia!<br> Uses the
+                            mighty 'Ignifaxius' and collects Mana potions.</div>
+                    </div>
+                </span>
+            </div>
+
             <img id="lost_overlay" class="Canvas_overlay_pic" src="img/title_pics/Game-over_V3R.png" alt="">
+
             <img id="victory_overlay" class="Canvas_overlay_pic " src="img/title_pics/Level-clear_V4R.png" alt="">
 
             <div id="credits_screen" class="Canvas_overlay_div d-none">
@@ -139,23 +188,6 @@
             <!-- <div class="overlay">Dieses Div liegt über dem Canvas.</div> -->
         </span>
     </main>
-
-
-
-    <span class="overDiv">
-        <h3> Choose your Hero!</h3>
-        <span class="buttonDiv">
-            <button class="heroChoice acco" onclick="createHero(0)">
-                <p>Acco</p>
-            </button>
-            <button class="heroChoice eleria" onclick="createHero(1)">
-                <p>Eleria</p>
-            </button>
-            <button class="heroChoice kazim" onclick="createHero(2)">
-                <p>Kazim</p>
-            </button>
-        </span>
-    </span>
 
     <div class="pressDiv">
         <a href="impressum.html">Impressum</a>
