@@ -222,10 +222,12 @@ function setFullScreen() {
         fullscreen = true;
         modifyStatusBar(1);
         upscaleBtns()
+        upscaleTxt();
     } else {
         exitFullscreen(main);
         toggleFullSreenPic(0);
         downscaleBtns();
+        downscaleTxt();
         fullscreen = false;
     }
 }
@@ -277,7 +279,6 @@ function calculateScaleFactor(maxWidth, maxHeight) {
 
 /**Scales the Menu Buttons up for fullscreen view */
 function upscaleBtns() {
-
     let menubtns = document.getElementsByClassName('Menu_btn');
     for (let element of menubtns) {
         element.style.height = '84px';
@@ -289,7 +290,6 @@ function upscaleBtns() {
         img.style.height = '48px';
         img.style.width = '48px';
     };
-
 }
 
 /**Scales the Menu Buttons down for normal view */
@@ -308,16 +308,25 @@ function downscaleBtns() {
     };
 }
 
-/**
- * Bringing everything back to normal size
- */
+/** Some texts need to be changed for fullscreen */
+function upscaleTxt() {
+    document.getElementById('intro_text').style.paddingTop = '10%';
+}
+
+/** Some texts need to be changed for fullscreen, and changed back on exit. */
+function downscaleTxt() {
+    document.getElementById('intro_text').style.paddingTop = '5%';
+}
+
+/** Bringing everything back to normal size */
 function resizeCanvas() {
     if (!fullscreen) {
         canvas.style.transform = 'scale(1)'
-
+        toggleFullSreenPic()
         modifyStatusBar(0)
         toggleOverlayFullscreen();
-
+        downscaleBtns();
+        downscaleTxt();
         if (world) { world.character.setStatusBars() }
     } //else { fullscreen = false; }
 }

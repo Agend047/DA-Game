@@ -232,6 +232,8 @@ canvas {
 
 #intro_div {
     display: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 .intro_scroll {
@@ -240,9 +242,13 @@ canvas {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 50%;
-    margin-top: 15%;
+    height: 60%;
+    margin-top: 10%;
     font-family: Algerian Font;
+}
+
+#intro_text {
+    padding-top: 5%;
 }
 
 
