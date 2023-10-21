@@ -103,23 +103,23 @@
             </span>
 
 
-            <img id="start_overlay" class="Canvas_overlay_pic" src="img/title_pics/Start-overlay_V4R.png" alt="">
+            <img id="start_overlay" class="Canvas_screen_div" src="img/title_pics/Start-overlay_V4R.png" alt="">
             <button id="startGame_btn" class="Menu_btn" onclick="toIntro()">
                 <img src="img/icons/play-button.png" class="Menu_img" alt="Start">
             </button>
 
 
-            <div id="intro_div" class="Canvas_overlay_div">
+            <div id="intro_div" class="Canvas_screen_div">
                 <div class="intro_scroll scroll_bg">
-                    <p id="intro_text"> Can you fell the ground tremble, <br>
+                    <p id="intro_text"> Can you feel the ground tremble, <br>
                         do you see the smoke on the horizon? <br>
-                        Can you hear the drums beat? <br>
-                        thousands there must be. <br>
+                        Can you hear the drum beat? <br>
+                        Thousands there must be. <br>
                         <br>
                         There they stand, in formation! <br>
                         Breathing the touch of death. <br>
                         Filled with hatred and anger, <br>
-                        they only seek our end. <br>
+                        they seek to end us all. <br>
                     </p>
                 </div>
                 <button class="Menu_btn" onclick="toHeroSelection()">
@@ -128,7 +128,7 @@
             </div>
 
 
-            <div id="select_hero_overlay" class="Canvas_overlay_div">
+            <div id="select_hero_overlay" class="Canvas_screen_div">
                 <h1>Choose your hero</h1>
                 <span class="choose_div">
                     <div class="hero_div" onclick="createHero(0), closeHeroSelection(), start(1)">
@@ -161,10 +161,12 @@
 
             <img id="lost_overlay" class="Canvas_overlay_pic" src="img/title_pics/Game-over_V3R.png" alt="">
             <div id="lost_btns">
-                <button id="restartGame_btn" class="Menu_btn " onclick="restart()">
-                    Try <br> again
+                <button id="restartGame_btn" class="Menu_btn " onclick="unloadDefeatMenu(), restart()">
+                    <img src="img/icons/stand-up.png" alt="Try again">
                 </button>
-                <button class="Menu_btn" onclick="toMainMenu()">Main Menu</button>
+                <button class="Menu_btn" onclick="unloadDefeatMenu(), toMainMenu()">
+                    <img src="img/icons/home.png" alt="Menu">
+                </button>
             </div>
 
 
@@ -175,19 +177,23 @@
             </button>
 
 
-            <div id="credits_screen" class="Canvas_overlay_div d-none">
-                <div class="inner_div">
+            <div id="credits_screen" class="Canvas_overlay_div ">
+                <div class="credits_div">
                     Thank you for Playing!
                     <br>
-                    <p>Credits:
-                        <br> <b> Vanessa Kaspar </b><br>for editing the Sprites <br>
+                    <p>Credits:<br><br>
+                        <b> Vanessa Kaspar </b><br>for the amazing Heroes<br>
                         <b> My DSA group </b> <br> you are a great Inspiration! <br>
-                        <b>Developer Academy</b> for the great course! <br>
+                        without you, this would have been a game about<br>a Mexican guy jumping on chickens! <br>
+                        <b>Developer Academy</b> <br>for the great course! <br>
                         <br> Special thanks to <br>
                         <b>Amir Qaud</b> <br>
+                        <b>Lisa</b>
                     </p>
 
-                    <button class="Menu_btn" onclick="toMainMenu()">Main Menu</button>
+                    <button class="Menu_btn" onclick="toMainMenu()">
+                        <img src="img/icons/home.png" alt="Menu">
+                    </button>
                 </div>
 
             </div>

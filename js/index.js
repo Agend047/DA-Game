@@ -144,14 +144,16 @@ function nextLevel() {
     else { document.getElementById('credits_screen').classList.remove('d-none') };
 }
 
+function unloadDefeatMenu() {
+    document.getElementById('lost_btns').style.display = 'none';
+    document.getElementById('lost_overlay').style.display = 'none';
+}
+
 /**
  * Simple restart function to clear the world-Variable and start the current Level again from the start
  */
 function restart() {
     IndexDelay = 33;
-
-    document.getElementById('lost_btns').style.display = 'none';
-    document.getElementById('lost_overlay').style.display = 'none';
 
     resetWorld();
 
