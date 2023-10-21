@@ -48,10 +48,10 @@ function start(levelID) {
     playing = true;
     console.log('My Char is: ', world.character)
 
-    document.getElementById('startGame_btn').classList.add('d-none');
+    // document.getElementById('startGame_btn').classList.add('d-none');
     // document.getElementById('pause_btn').style.display = 'block';
 
-    document.getElementById('start_overlay').classList.add('d-none');
+    // document.getElementById('start_overlay').classList.add('d-none');
 }
 
 /**
@@ -131,7 +131,8 @@ function loadVictory() {
 function loadDefeat() {
     let screenPic = document.getElementById('lost_overlay');
     screenPic.style.display = 'block';
-    document.getElementById('restartGame_btn').classList.remove('d-none');
+
+    document.getElementById('lost_btns').style.display = 'flex';
 }
 
 /** Starting the next level */
@@ -149,7 +150,7 @@ function nextLevel() {
 function restart() {
     IndexDelay = 33;
 
-    document.getElementById('restartGame_btn').classList.add('d-none');
+    document.getElementById('lost_btns').style.display = 'none';
     document.getElementById('lost_overlay').style.display = 'none';
 
     resetWorld();
@@ -177,7 +178,8 @@ function toMainMenu() {
 
 /** Menu function, leads to Intro */
 function toIntro() {
-    document.getElementById('start_overlay').classList.add('d-none')
+    document.getElementById('start_overlay').classList.add('d-none');
+    document.getElementById('startGame_btn').classList.add('d-none');
     document.getElementById('intro_div').style.display = 'flex';
 }
 

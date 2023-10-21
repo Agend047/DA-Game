@@ -142,14 +142,19 @@ canvas {
 }
 
 #restartGame_btn {
-    position: absolute;
-    bottom: 16%;
-    width: 22%;
+    width: 100%;
 }
 
 #nextLvl_btn {
     position: absolute;
     bottom: 26%;
+}
+
+#lost_btns {
+    position: absolute;
+    display: none;
+    bottom: 10%;
+    z-index: 2;
 }
 
 

@@ -60,18 +60,6 @@
             <canvas id="mainCanvas" width="720" height="480">
             </canvas>
 
-            <button id="startGame_btn" class="Menu_btn" onclick="toIntro()">
-                <img src="img/icons/play-button.png" class="Menu_img" alt="Start">
-            </button>
-
-            <button id="restartGame_btn" class="Menu_btn d-none" onclick="restart()">
-                <p>Try again?</p>
-            </button>
-
-            <button id="nextLvl_btn" class="Menu_btn d-none" onclick="nextLevel()">
-                <img src="img/icons/right-arrow.png" alt="Continue">
-            </button>
-
             <span id="player_btns">
                 <button id="control_btn" class="Menu_btn" onclick="showControls()">
                     <img id="control_img" class="Menu_img" src="img/icons/console.png" alt="Control">
@@ -81,7 +69,6 @@
                     <img id="fullScreen_img" class="Menu_img" src="img/icons/fullscreen.png" alt="">
                 </button>
             </span>
-
 
             <span id="instruction_scroll" class="Canvas_overlay_div d-none">
                 <div class="inner_div scroll_bg">
@@ -115,7 +102,12 @@
                 </div>
             </span>
 
+
             <img id="start_overlay" class="Canvas_overlay_pic" src="img/title_pics/Start-overlay_V4R.png" alt="">
+            <button id="startGame_btn" class="Menu_btn" onclick="toIntro()">
+                <img src="img/icons/play-button.png" class="Menu_img" alt="Start">
+            </button>
+
 
             <div id="intro_div" class="Canvas_overlay_div">
                 <div class="intro_scroll scroll_bg">
@@ -134,6 +126,7 @@
                     <img src="img/icons/right-arrow.png" alt="Continue">
                 </button>
             </div>
+
 
             <div id="select_hero_overlay" class="Canvas_overlay_div">
                 <h1>Choose your hero</h1>
@@ -165,9 +158,22 @@
                 </span>
             </div>
 
+
             <img id="lost_overlay" class="Canvas_overlay_pic" src="img/title_pics/Game-over_V3R.png" alt="">
+            <div id="lost_btns">
+                <button id="restartGame_btn" class="Menu_btn " onclick="restart()">
+                    Try <br> again
+                </button>
+                <button class="Menu_btn" onclick="toMainMenu()">Main Menu</button>
+            </div>
+
+
 
             <img id="victory_overlay" class="Canvas_overlay_pic " src="img/title_pics/Level-clear_V4R.png" alt="">
+            <button id="nextLvl_btn" class="Menu_btn d-none" onclick="nextLevel()">
+                <img src="img/icons/right-arrow.png" alt="Continue">
+            </button>
+
 
             <div id="credits_screen" class="Canvas_overlay_div d-none">
                 <div class="inner_div">

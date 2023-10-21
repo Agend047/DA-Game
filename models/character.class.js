@@ -388,7 +388,7 @@ class Acco extends Character {
 }
 
 class Eleria extends Character {
-    LeP = 30;
+    LeP = 1 //30;
     maxLeP = 30;
     RS = 0; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
 
