@@ -108,7 +108,7 @@ canvas {
 
 /* Menu Buttons */
 
-#player_btns {
+#top_right_btns {
     position: absolute;
     top: 2%;
     right: 10%;
@@ -187,6 +187,21 @@ canvas {
     width: 100%;
     margin-top: 6%;
 }
+
+/* Mobile Control Buttons */
+
+#mobile_btns {
+    position: absolute;
+    bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 4;
+    width: 90%;
+}
+
+#left_ctr_btns {}
+
+#rigth_ctr_btns {}
 
 /* Player Status Bars */
 

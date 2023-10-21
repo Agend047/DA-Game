@@ -60,7 +60,8 @@
             <canvas id="mainCanvas" width="720" height="480">
             </canvas>
 
-            <span id="player_btns">
+
+            <span id="top_right_btns">
                 <button id="control_btn" class="Menu_btn" onclick="showControls()">
                     <img id="control_img" class="Menu_img" src="img/icons/console.png" alt="Control">
                 </button>
@@ -68,6 +69,18 @@
                 <button id="fullscreen_btn" class="Menu_btn" onclick="setFullScreen()">
                     <img id="fullScreen_img" class="Menu_img" src="img/icons/fullscreen.png" alt="">
                 </button>
+            </span>
+
+            <span id="mobile_btns">
+                <div id="left_ctr_btns">
+                    <button class="ctrl_btn Menu_btn">LEFT</button>
+                    <button class="ctrl_btn Menu_btn">UP</button>
+                    <button class="ctrl_btn Menu_btn">RIGHT</button>
+                </div>
+                <div id="right_ctr_btns">
+                    <button class="ctrl_btn Menu_btn">MEELE</button>
+                    <button class="ctrl_btn Menu_btn">RANGED</button>
+                </div>
             </span>
 
             <span id="instruction_scroll" class="Canvas_overlay_div d-none">
@@ -170,7 +183,6 @@
             </div>
 
 
-
             <img id="victory_overlay" class="Canvas_overlay_pic " src="img/title_pics/Level-clear_V4R.png" alt="">
             <button id="nextLvl_btn" class="Menu_btn d-none" onclick="nextLevel()">
                 <img src="img/icons/right-arrow.png" alt="Continue">
@@ -195,7 +207,6 @@
                         <img src="img/icons/home.png" alt="Menu">
                     </button>
                 </div>
-
             </div>
             <!-- <div class="overlay">Dieses Div liegt über dem Canvas.</div> -->
         </span>
