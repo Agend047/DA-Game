@@ -140,7 +140,7 @@ function nextLevel() {
     let screenPic = document.getElementById('victory_overlay');
     screenPic.style.display = 'none';
     document.getElementById('nextLvl_btn').classList.add('d-none');
-    if (choosenLevel <= renderPool.length) start(choosenLevel + 1)
+    if (choosenLevel++ <= renderPool.length) { start(choosenLevel) }
     else { document.getElementById('credits_screen').classList.remove('d-none') };
 }
 

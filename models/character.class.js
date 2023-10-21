@@ -71,8 +71,6 @@ class Character extends MovableObject {
             // if (this.showFull && this.currentFrame < this.frameRate - 1) {
             // }
 
-
-
             //Attack animations and processes
             if (this.world.keyboard.SPACE || this.attacking) {
 
@@ -392,7 +390,7 @@ class Eleria extends Character {
     maxLeP = 30;
     RS = 0; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
 
-    ammunition = 20; //40
+    ammunition = 40;
     maxAmmunition = 40;
     ammoPicture = 'img/collectables/Arrows_diagonal.png'
 
@@ -484,9 +482,9 @@ class Kazim extends Character {
 
     LeP = 34;
     maxLeP = 34;
-    RS = 0; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
+    RS = 1; //Armour 'Rüstungsschutz, incoming dmg will be reduced by this
 
-    ammunition = 21; //AsP 42
+    ammunition = 42; //AsP 42
     maxAmmunition = 42; //AsP
     ammoPicture = 'img/statusBars/mana_potion.png'
 

@@ -69,6 +69,6 @@ function initLvl2() {
             new Background(719 * 4, 500, 'img/5_background/forest/Cartoon_Forest_BG_02/Layers/Foreground.png'),
         ],
 
-        level_end_x = (719 * 4)
+        level_end_x = (719 * 4.8)
     )
 }
