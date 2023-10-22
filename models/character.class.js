@@ -56,7 +56,6 @@ class Character extends MovableObject {
     async control() {
         // setInterval(async () => {
         this.updateStatusBar(1);
-        // this.updateStatusBar(2)
 
         if (this.isDead()) {
 
@@ -76,12 +75,9 @@ class Character extends MovableObject {
 
                 //Meele attack
                 if (!this.attacking) {
-
                     this.attacking = true;
                     await this.meeleAttackIntervall(this.animations.meele1)
                     this.resetAttackBlocker()
-
-
                 }
             } else if (this.world.keyboard.G) {
                 //Range attack, if one is there

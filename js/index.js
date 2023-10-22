@@ -423,7 +423,8 @@ function prepareTouchControls() {
     });
 
     document.getElementById('nextLvl_btn').addEventListener('touchstart', (e) => {
-        if (choosenLevel++ < renderPool.length) {
+        let nextLevel = choosenLevel + 1
+        if (nextLevel < renderPool.length) {
             showTouchControls();
         }
     });

@@ -22,11 +22,7 @@ class MovableObject extends GameObject {
     }
 
 
-    /** Tipp von Nico um Blinken zu beheben:
-     * Die Draw funktion, die das allererste Element lädt, VOR dem ersten berechnen der Elapsedframes reinsetzen.
-     * (Ist bereits der Fall)
-     */
-
+    /** Pre loading thje image Sprites at the animations */
     preLoadImages() {
         Object.keys(this.animations).forEach(key => {
             let img = new Image();

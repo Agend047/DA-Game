@@ -25,6 +25,8 @@ class World {
 
         this.setWorld();
         this.givingRightImage()
+        this.character.updateStatusBar(2)
+        this.character.updateStatusBar(3)
         this.play();
     }
 
