@@ -2,15 +2,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: darkgrey; */
     font-family: Algerian Font;
     /* Im not totaly sure, why this font-family keeps beeing white. But it works! */
     height: 100%;
     margin: 0;
     overflow: hidden;
     background-image: url('img/title_pics/landscape_bg.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100vh;
+    width: 100vw;
 
 }
 
@@ -192,8 +194,8 @@ canvas {
 
 #mobile_btns {
     position: absolute;
-    bottom: 2%;
-    display: flex;
+    bottom: 4%;
+    display: none;
     justify-content: space-between;
     z-index: 4;
     width: 90%;

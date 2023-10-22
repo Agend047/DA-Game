@@ -20,8 +20,9 @@ const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 })
 
 function init() {
     canvas = document.getElementById('mainCanvas');
-
-    addResizeEvList()
+    prepareTouchControls()
+    giveTouchBtnsEvents();
+    addResizeEvList();
     // start(1)
 }
 
@@ -95,8 +96,8 @@ function continueGame() {
 async function endGame(status) {
     await lastTicks();
     pauseGame();
+    hideTouchControls();
     gameEnded = true;
-
     if (status) { loadVictory(); };
     if (!status) { loadDefeat(); };
 }
@@ -400,6 +401,96 @@ function setIntervalX(callback, delay, repetitions) {
             clearInterval(intervalID);
         }
     }, delay);
+}
+
+/**A simple check on a few icons. If the elements get touched, the touch-controls will be shown! */
+function prepareTouchControls() {
+
+    document.getElementById('acco_div').addEventListener('touchstart', (e) => {
+        showTouchControls(0);
+    });
+
+    document.getElementById('eleria_div').addEventListener('touchstart', (e) => {
+        showTouchControls(1);
+    });
+
+    document.getElementById('kazim_div').addEventListener('touchstart', (e) => {
+        showTouchControls(2);
+    });
+
+    document.getElementById('restartGame_btn').addEventListener('touchstart', (e) => {
+        showTouchControls();
+    });
+
+    document.getElementById('nextLvl_btn').addEventListener('touchstart', (e) => {
+        if (choosenLevel++ <= renderPool.length) {
+            showTouchControls();
+        }
+    });
+}
+
+/**
+ * Simple: shows the touch contols 
+ * @param {*} number 
+ */
+function showTouchControls(number) {
+    document.getElementById('mobile_btns').style.display = 'flex';
+
+    if (heroNumber == 0 || number == 0) { document.getElementById('ranged_touch_btn').style.display = 'none'; }
+}
+
+/**If not plying, the controls shall not be shown */
+function hideTouchControls() {
+    document.getElementById('mobile_btns').style.display = 'none';
+}
+
+//Giving Event Listeners to mobile control buttons
+function giveTouchBtnsEvents() {
+
+    document.getElementById('left_touch_btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    })
+    document.getElementById('left_touch_btn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    })
+
+    document.getElementById('up_touch_btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.UP = true;
+    })
+    document.getElementById('up_touch_btn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.UP = false;
+    })
+
+    document.getElementById('right_touch_btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    })
+    document.getElementById('right_touch_btn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    })
+
+    document.getElementById('meele_touch_btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    })
+    document.getElementById('meele_touch_btn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    })
+
+    document.getElementById('ranged_touch_btn').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.G = true;
+    })
+    document.getElementById('ranged_touch_btn').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.G = false;
+    })
 }
 
 
