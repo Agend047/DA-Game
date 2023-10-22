@@ -43,7 +43,21 @@ canvas {
     max-width: none;
     max-height: none;
     transform-origin: center;
+    display: block;
 }
+
+@media (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
+
 
 
 /* Basics for Overlays & Buttons */
@@ -129,6 +143,18 @@ canvas {
     z-index: 2;
     height: 48px;
     width: 48px;
+}
+
+@media (max-width: 720px) {
+    .Menu_btn {
+        width: 24px;
+        height: 24px;
+    }
+
+    .Menu_img {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 .Menu_btn:hover {
