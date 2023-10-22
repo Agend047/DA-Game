@@ -22,7 +22,7 @@ body {
 }
 
 .d-none {
-    display: none;
+    display: none !important
 }
 
 main {
@@ -45,20 +45,6 @@ canvas {
     transform-origin: center;
     display: block;
 }
-
-@media (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
-}
-
-@media (max-height: 480px) {
-    canvas {
-        height: 100vh;
-    }
-}
-
-
 
 /* Basics for Overlays & Buttons */
 .overlay {
@@ -95,14 +81,19 @@ canvas {
     height: 100%;
 }
 
+#instruction_scroll {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
 .inner_div {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: center;
     width: 100%;
-    margin-top: 17%;
 }
 
 .fullSize {
@@ -145,7 +136,7 @@ canvas {
     width: 48px;
 }
 
-@media (max-width: 720px) {
+/* @media (max-width: 720px) {
     .Menu_btn {
         width: 24px;
         height: 24px;
@@ -155,7 +146,7 @@ canvas {
         width: 18px;
         height: 18px;
     }
-}
+} */
 
 .Menu_btn:hover {
     cursor: pointer;
@@ -227,9 +218,20 @@ canvas {
     width: 90%;
 }
 
-#left_ctr_btns {}
+#left_ctrl_btns {}
 
-#rigth_ctr_btns {}
+#up_btn_div {
+    display: flex;
+    justify-content: center;
+}
+
+#side_btns_div {}
+
+#right_ctrl_btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Player Status Bars */
 
@@ -399,4 +401,40 @@ canvas {
 .pressDiv a {
     color: rgb(58, 58, 58);
     font-size: large;
+}
+
+@media (max-width: 720px) {
+    #mainDiv {
+        width: 100%;
+    }
+
+    #fullscreen_btn {
+        display: none;
+    }
+
+    canvas {
+        width: 100%;
+    }
+}
+
+@media (max-height: 480px) {
+    h1 {
+        display: none;
+    }
+
+    #fullscreen_btn {
+        display: none;
+    }
+
+    .pressDiv {
+        display: none;
+    }
+
+    #mainDiv {
+        height: 100%;
+    }
+
+    canvas {
+        height: 100%;
+    }
 }
