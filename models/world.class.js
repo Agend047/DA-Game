@@ -35,7 +35,6 @@ class World {
     * @returns 
     */
     setHero(x, y) {
-        console.log(heroNumber)
         return new heroBall[heroNumber](x, y);
     }
 

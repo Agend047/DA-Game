@@ -73,13 +73,23 @@
 
             <span id="mobile_btns">
                 <div id="left_ctr_btns">
-                    <button class="ctrl_btn Menu_btn">LEFT</button>
-                    <button class="ctrl_btn Menu_btn">UP</button>
-                    <button class="ctrl_btn Menu_btn">RIGHT</button>
+                    <button id="left_touch_btn" class="ctrl_btn Menu_btn">
+                        <img src="img/icons/arrow-left.png" alt="left" class="ctrl_img">
+                    </button>
+                    <button id="up_touch_btn" class="ctrl_btn Menu_btn">
+                        <img src="img/icons/arrow-up.png" alt="up" class="ctrl_img">
+                    </button>
+                    <button id="right_touch_btn" class="ctrl_btn Menu_btn">
+                        <img src="img/icons/arrow-right.png" alt="right" class="ctrl_img">
+                    </button>
                 </div>
                 <div id="right_ctr_btns">
-                    <button class="ctrl_btn Menu_btn">MEELE</button>
-                    <button class="ctrl_btn Menu_btn">RANGED</button>
+                    <button id="meele_touch_btn" class="ctrl_btn Menu_btn">
+                        <img src="img/icons/meele-strike.png" alt="Meele" class="ctrl_img">
+                    </button>
+                    <button id="ranged_touch_btn" class="ctrl_btn Menu_btn">
+                        <img src="img/icons/ranged.png" alt="Ranged" class="ctrl_img">
+                    </button>
                 </div>
             </span>
 
@@ -144,7 +154,7 @@
             <div id="select_hero_overlay" class="Canvas_screen_div">
                 <h1>Choose your hero</h1>
                 <span class="choose_div">
-                    <div class="hero_div" onclick="createHero(0), closeHeroSelection(), start(1)">
+                    <div id="acco_div" class="hero_div" onclick="createHero(0), closeHeroSelection(), start(1)">
                         <img class="display_img" src="img/title_pics/Acco_display.png" alt="">
                         <button class="heroChoice acco">
                             <p>Acco</p>
@@ -152,7 +162,7 @@
                         <div class="hero_scroll">A warrior out of the Horaisan Empire.<br> Wears heavy Armour and a
                             strong Sword, but has no range attack.</div>
                     </div>
-                    <div class="hero_div" onclick="createHero(1), closeHeroSelection(), start(1)">
+                    <div id="eleria_div" class="hero_div" onclick="createHero(1), closeHeroSelection(), start(1)">
                         <img class="display_img" src="img/title_pics/Eleria_display.png" alt="">
                         <button class="heroChoice eleria">
                             <p>Eleria</p>
@@ -160,7 +170,7 @@
                         <div class="hero_scroll">A Glade Elven Keeper.<br> Very agile, but weak in meele combat.
                             Collects Arrows for her strong bow!</div>
                     </div>
-                    <div class="hero_div" onclick="createHero(2), closeHeroSelection(), start(1)">
+                    <div id="kazim_div" class="hero_div" onclick="createHero(2), closeHeroSelection(), start(1)">
                         <img class="display_img" src="img/title_pics/Kazim_display.png" alt="">
                         <button class="heroChoice kazim">
                             <p>Kazim</p>
