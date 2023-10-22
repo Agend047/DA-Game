@@ -423,7 +423,7 @@ function prepareTouchControls() {
     });
 
     document.getElementById('nextLvl_btn').addEventListener('touchstart', (e) => {
-        if (choosenLevel++ <= renderPool.length) {
+        if (choosenLevel++ < renderPool.length) {
             showTouchControls();
         }
     });
@@ -431,7 +431,7 @@ function prepareTouchControls() {
 
 /**
  * Simple: shows the touch contols 
- * @param {*} number 
+ * @param {Number} number The ID of the choosen hero
  */
 function showTouchControls(number) {
     document.getElementById('mobile_btns').style.display = 'flex';
