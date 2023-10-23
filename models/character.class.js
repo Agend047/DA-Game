@@ -65,7 +65,7 @@ class Character extends MovableObject {
                 //Meele attack
                 if (!this.attacking) {
                     this.attacking = true;
-                    if (this.meeleAtkCounter <= 20) {
+                    if (this.meeleAtkCounter <= 20 && this.animations.meele2) {
                         await this.meeleAttackIntervall(this.animations.meele2)
                         this.meeleAtkCounter = 19;
                     } else {
