@@ -155,7 +155,7 @@ class Character extends MovableObject {
         enemys.forEach(enemy => {
             if (!this.otherdirection && enemy.hitRight(this) || this.otherdirection && enemy.hitLeft(this)) {
                 enemy.applyDMG(attack.dmg)
-                enemy.loadImageSprite(enemy.animations.hurt)
+                if (!enemy.isDead()) { enemy.loadImageSprite(enemy.animations.hurt) }
                 console.log(enemy.LeP) //CONSOLE
             }
         });
@@ -168,8 +168,7 @@ class Character extends MovableObject {
         this.attacking = false;
     }
 
-    /** Char makes a ranged attack, and fires a shot.
-     * 
+    /** Char makes a ranged attack     
      * @param {Object} attack The used attack, with all parameters
      * @returns a Promise, wich gets resolved at the end, so the rest of the code will wait
      */

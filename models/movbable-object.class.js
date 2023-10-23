@@ -22,7 +22,7 @@ class MovableObject extends GameObject {
     }
 
 
-    /** Pre loading thje image Sprites at the animations */
+    /** Pre loading thje image Sprites for the animations. Makes everything a bit smoother */
     preLoadImages() {
         Object.keys(this.animations).forEach(key => {
             let img = new Image();
@@ -39,13 +39,11 @@ class MovableObject extends GameObject {
     loadImageSprite(key) {
         this.checkNewAnimation(key)
 
-        if (key.image) {
-            this.img = key.image
-        }
-        else {
+        if (key.image) { this.img = key.image }
+
+        else { //At the beginning some sprites are not ready.
             this.img = new Image();
             this.img.src = key.imageSrc;
-            console.log(this.img)
         }
 
         this.frameRate = key.frameRate;
