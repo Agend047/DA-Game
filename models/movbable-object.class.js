@@ -39,10 +39,13 @@ class MovableObject extends GameObject {
     loadImageSprite(key) {
         this.checkNewAnimation(key)
 
-        if (key.img) { this.img = key.img }
+        if (key.image) {
+            this.img = key.image
+        }
         else {
             this.img = new Image();
             this.img.src = key.imageSrc;
+            console.log(this.img)
         }
 
         this.frameRate = key.frameRate;

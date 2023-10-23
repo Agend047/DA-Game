@@ -513,7 +513,7 @@ class Kazim extends Character {
             frameRate: 10, //CHANGE PLS (11 or 8)
             frameBuffer: 2,
             dmgFrame: 8,
-            dmg: 4, // wanted, but will always be doubled
+            dmg: 8,
             showFull: true,
         },
         range: {
