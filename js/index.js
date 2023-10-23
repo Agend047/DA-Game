@@ -17,13 +17,12 @@ let gameEnded = false;
 
 const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 });
 
-
+//Some preparing functions, for all the possibilitys i can provide in this chaotic universe.
 function init() {
     canvas = document.getElementById('mainCanvas');
     prepareTouchControls()
     giveTouchBtnsEvents();
     addResizeEvList();
-    // start(1)
 }
 
 
@@ -34,6 +33,9 @@ function init() {
 function createHero(heroID) {
     heroNumber = heroID;
 }
+
+
+// MENU NAVIGATION AND LEVEL ORGANIZING
 
 /**
  * Starting specific level out of levelPool.
@@ -48,11 +50,6 @@ function start(levelID) {
     world = new World(canvas, keyboard);
     playing = true;
     console.log('My Char is: ', world.character)
-
-    // document.getElementById('startGame_btn').classList.add('d-none');
-    // document.getElementById('pause_btn').style.display = 'block';
-
-    // document.getElementById('start_overlay').classList.add('d-none');
 }
 
 /**
@@ -65,7 +62,6 @@ function setLevel(lvlID) {
     level = levelPool[lvlID - 1];
     choosenLevel = lvlID;
 }
-
 
 /**
  * Pausing game (if it runs) and shows controls
@@ -87,7 +83,6 @@ function pauseGame() {
 function continueGame() {
     if (world && !gameEnded) { playing = true; world.play() };
 }
-
 
 /**
  * The function ends the Game
@@ -210,7 +205,6 @@ function addResizeEvList() {
     });
 }
 
-
 /**
  * Controling the functions, wich makes the Picture goes Fullscreen.
  * Because the normal FUllscreen-request doesnt work for the whole <main>,
@@ -269,7 +263,6 @@ function exitFullscreen(main) {
     } catch (err) { alert(err) }
     toggleOverlayFullscreen()
 }
-
 
 function calculateScaleFactor(maxWidth, maxHeight) {
     const viewportWidth = window.innerWidth;
@@ -338,13 +331,13 @@ function resizeCanvas() {
     }
 }
 
+/** To work in fullscreen, overlays need to be bigger! */
 function toggleOverlayFullscreen() {
     let overlays = document.getElementsByClassName('Canvas_overlay_pic')
     for (let overlay of overlays) {
         overlay.classList.toggle('fullSize')
     }
 }
-
 
 /**
  * Upscaling - Downscaling of Status Bars for FullScreen or normal screen
@@ -386,8 +379,6 @@ function toggleFullSreenPic(indicator) {
     if (!indicator) img.src = 'img/icons/fullscreen.png';
 }
 
-
-
 /**
  * Helper function, that allows me to use intervalls for an amount of uses.
  * @param {Function} callback the function, i want to delay
@@ -403,6 +394,9 @@ function setIntervalX(callback, delay, repetitions) {
         }
     }, delay);
 }
+
+
+// TOUCHSCREEN
 
 /**A simple check on a few icons. If the elements get touched, the touch-controls will be shown! */
 function prepareTouchControls() {
@@ -433,7 +427,7 @@ function prepareTouchControls() {
 
 /**
  * Simple: shows the touch contols 
- * @param {Number} number The ID of the choosen hero
+ * @param {Number} number The ID of the choosen hero, so only the needed controls will be shown
  */
 function showTouchControls(number) {
     document.getElementById('mobile_btns').style.display = 'flex';
@@ -441,7 +435,7 @@ function showTouchControls(number) {
     if (heroNumber == 0 || number == 0) { document.getElementById('ranged_touch_btn').style.display = 'none'; }
 }
 
-/**If not plying, the controls shall not be shown */
+/**If not plying, the controls shall not be seen */
 function hideTouchControls() {
     document.getElementById('mobile_btns').style.display = 'none';
 }
@@ -495,7 +489,7 @@ function giveTouchBtnsEvents() {
     })
 }
 
-
+/** Keyboard Controls */
 window.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
 
@@ -601,26 +595,3 @@ window.addEventListener('keyup', (e) => {
 
     }
 })
-
-
-/**
- * IDEEN FÜR CHARAKTERE
- * 
- * //Harald, Phexgeweihter
- * Sammelt und wirft: Messer
- * Sprunghöhe: Normal
- * Attacke: Mittlerer Schaden
- * Fähigkeit: Schleichen (Immung gegen Angriffe)
- * 
- * //Eleria, Elfische Bewahrerin
- * Sammelt und Schießt: Pfeile
- * Sprunghöhe: Hoch
- * Attacke: Niedriger Schaden
- * Fähigkeit: Heilung
- * 
- * //Oldor, Zwergischer Krieger
- * Sammelt und Wirft: Äxte
- * Sprunghöhe: Niedrig
- * Attacke: Hoher Schaden 
- * Fähigkeit: Rage (Mehr Schaden)
- */

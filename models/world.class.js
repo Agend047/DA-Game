@@ -215,7 +215,6 @@ class World {
         })
     }
 
-
     /**Doesnt work now, may later */
     controlProjectiles() {
         for (let projectile of this.ShootableObjects) {
@@ -237,8 +236,6 @@ class World {
             }
         }
     }
-
-
 }
 
 

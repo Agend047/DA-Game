@@ -48,8 +48,6 @@ class Character extends MovableObject {
         }
     }
 
-
-
     /**
      * Here the Inputs from Keyboard get used to control the Character
      */
@@ -457,18 +455,13 @@ class Eleria extends Character {
         this.preLoadImages();
     }
 
-    /**
-     * 
-     * @returns true, if Eleria got enough Arrows left.
-     */
+    /** @returns true, if Eleria got enough Arrows left. */
     enoughAmmo() {
         return (this.ammunition >= 2)
 
     }
 
-    /**
-     * An arrow gets shot away, and is gone for good.
-     */
+    /** An arrow gets shot away, and is gone for good. */
     subtractAmmo() {
         this.ammunition -= 2;
     }
