@@ -49,7 +49,7 @@ class Enemy extends MovableObject {
         this.loadImageSprite(this.animations.hurt)
         this.hitCounter++
 
-        if (this.hitCounter == 8) this.gotHit = false;
+        if (this.hitCounter >= 8) this.gotHit = false; this.hitCounter = 0;
     }
 
     /** Enemy single Strike. Plays the Attack animation

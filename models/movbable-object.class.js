@@ -60,6 +60,8 @@ class MovableObject extends GameObject {
     checkNewAnimation(key) {
         if (key.showFull && this.lastloaded !== key) {
             this.newAnimation = true;
+            // console.log('Objekt: ', this)
+            // console.log('key: ', key)
         }
         else this.newAnimation = false
     }

@@ -155,7 +155,6 @@ class Character extends MovableObject {
         enemys.forEach(enemy => {
             if (!this.otherdirection && enemy.hitRight(this) || this.otherdirection && enemy.hitLeft(this)) {
                 enemy.applyDMG(attack.dmg)
-                if (!enemy.isDead()) { enemy.loadImageSprite(enemy.animations.hurt) }
                 console.log(enemy.LeP) //CONSOLE
             }
         });
