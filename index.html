@@ -189,7 +189,7 @@
 
 
             <img id="lost_overlay" class="Canvas_overlay_pic" src="img/title_pics/Game-over_V3R.png" alt="">
-            <div id="lost_btns">
+            <div id="lost_btns" class="lvl_end_btns">
                 <button id="restartGame_btn" class="Menu_btn " onclick="unloadDefeatMenu(), restart()">
                     <img src="img/icons/stand-up.png" alt="Try again">
                 </button>
@@ -200,10 +200,14 @@
 
 
             <img id="victory_overlay" class="Canvas_overlay_pic " src="img/title_pics/Level-clear_V4R.png" alt="">
-            <button id="nextLvl_btn" class="Menu_btn d-none" onclick="nextLevel()">
-                <img src="img/icons/right-arrow.png" alt="Continue">
-            </button>
-
+            <div id="victory_btns" class="lvl_end_btns">
+                <button class="Menu_btn" onclick="unloadVictoryMenu(), toMainMenu()">
+                    <img src="img/icons/home.png" alt="Menu">
+                </button>
+                <button id="nextLvl_btn" class="Menu_btn" onclick="nextLevel()">
+                    <img src="img/icons/right-arrow.png" alt="Continue">
+                </button>
+            </div>
 
             <div id="credits_screen" class="Canvas_overlay_div d-none">
                 <div class="credits_div">

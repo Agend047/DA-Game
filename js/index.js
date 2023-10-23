@@ -119,7 +119,7 @@ function lastTicks() {
 function loadVictory() {
     let screenPic = document.getElementById('victory_overlay');
     screenPic.style.display = 'block';
-    document.getElementById('nextLvl_btn').classList.remove('d-none');
+    document.getElementById('victory_btns').style.display = 'flex';
 
 }
 
@@ -133,9 +133,7 @@ function loadDefeat() {
 
 /** Starting the next level */
 function nextLevel() {
-    let screenPic = document.getElementById('victory_overlay');
-    screenPic.style.display = 'none';
-    document.getElementById('nextLvl_btn').classList.add('d-none');
+    unloadVictoryMenu();
     if (choosenLevel++ < renderPool.length) { start(choosenLevel) }
     else { document.getElementById('credits_screen').classList.remove('d-none') };
 }
@@ -143,6 +141,14 @@ function nextLevel() {
 function unloadDefeatMenu() {
     document.getElementById('lost_btns').style.display = 'none';
     document.getElementById('lost_overlay').style.display = 'none';
+}
+
+function unloadVictoryMenu() {
+    let screenPic = document.getElementById('victory_overlay');
+    screenPic.style.display = 'none';
+
+    document.getElementById('victory_btns').style.display = 'none';
+
 }
 
 /**

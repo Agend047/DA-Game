@@ -158,18 +158,22 @@ canvas {
     width: 100%;
 }
 
-#nextLvl_btn {
-    position: absolute;
-    bottom: 26%;
-}
+#nextLvl_btn {}
 
-#lost_btns {
+.lvl_end_btns {
     position: absolute;
-    display: none;
-    bottom: 10%;
     z-index: 2;
 }
 
+#lost_btns {
+    display: none;
+    bottom: 10%;
+}
+
+#victory_btns {
+    display: none;
+    bottom: 26%;
+}
 
 .scroll_bg {
     background-image: url('img/title_pics/scroll.png');
