@@ -200,8 +200,8 @@ function closeHeroSelection() {
 // FULLSCREEN FUNCTIONS
 
 /**
- * Small, but important. Adding an Eventlistener, wich will trigger on every
- * rezising of the window
+ * Small, but important if someone uses the "ESC" Button to leave fullscreen-mode. 
+ * Adding an Eventlistener, wich will trigger on every rezising of the window.
  */
 function addResizeEvList() {
     let mainDiv = document.getElementById('mainDiv');
@@ -213,7 +213,7 @@ function addResizeEvList() {
 
 /**
  * Controling the functions, wich makes the Picture goes Fullscreen.
- * Because the normal FUllscreen-request doesnt work for the whole <maim>,
+ * Because the normal FUllscreen-request doesnt work for the whole <main>,
  * i calculate the zoom i need and save it in the scaleFactor - variable.
  */
 function setFullScreen() {
@@ -226,8 +226,9 @@ function setFullScreen() {
         canvas.style.transform = 'scale(' + scaleFactor + ')'
         fullscreen = true;
         modifyStatusBar(1);
-        upscaleBtns()
+        upscaleBtns();
         upscaleTxt();
+        main.focus();
     } else {
         exitFullscreen(main);
         toggleFullSreenPic(0);
@@ -274,11 +275,9 @@ function calculateScaleFactor(maxWidth, maxHeight) {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    // Berechnen Sie den horizontalen und vertikalen Skalierungsfaktor basierend auf der maximalen Breite und Höhe
     const scaleX = viewportWidth / maxWidth;
     const scaleY = viewportHeight / maxHeight;
 
-    // Verwenden Sie den kleineren der beiden Skalierungsfaktoren, um sicherzustellen, dass das Canvas auf den Bildschirm passt
     return Math.min(scaleX, scaleY);
 }
 
@@ -323,9 +322,11 @@ function downscaleTxt() {
     document.getElementById('intro_text').style.paddingTop = '5%';
 }
 
-/** Bringing everything back to normal size */
+/** Bringing everything back to normal size after using "ESC" to leave fullscreen Mode 
+ * (It caused me many headeches to fix every problem, wich this button triggers)
+*/
 function resizeCanvas() {
-    if (!fullscreen) {
+    if (document.fullscreenElement !== mainDiv) {
         canvas.style.transform = 'scale(1)'
         toggleFullSreenPic()
         modifyStatusBar(0)
@@ -333,7 +334,8 @@ function resizeCanvas() {
         downscaleBtns();
         downscaleTxt();
         if (world) { world.character.setStatusBars() }
-    } //else { fullscreen = false; }
+        fullscreen = false;
+    }
 }
 
 function toggleOverlayFullscreen() {
@@ -379,7 +381,6 @@ function modifyStatusBar(key) {
  */
 function toggleFullSreenPic(indicator) {
     let img = document.getElementById('fullScreen_img')
-
 
     if (indicator) img.src = 'img/icons/exit-fullscreen.png';
     if (!indicator) img.src = 'img/icons/fullscreen.png';
