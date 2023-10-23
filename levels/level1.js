@@ -39,7 +39,7 @@ function initLvl1() {
         [
             new Ammounition(300, 300),
             new Ammounition(1500, 150),
-            // new HealthPotion(1000, 200),
+            new HealthPotion(1000, 200),
             new HealthPotion(2400, 100),
         ],
 

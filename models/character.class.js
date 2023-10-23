@@ -9,6 +9,8 @@ class Character extends MovableObject {
     height = 280;
     width = 180;
 
+    meeleAtkCounter = 20; //For Chars with multiple meele attacks. After a meele can a different, stronger meele attack be used for some frames
+
     // AttackBox Meele Modificators:
     abmX = 80
     abmY = 155
@@ -22,9 +24,7 @@ class Character extends MovableObject {
 
     constructor(pos_x, pos_y,) {
         super(pos_x, pos_y,)
-        // this.getAllAnimations();
         this.applyGravity();
-        // this.control();
     }
 
     /**Moving Char according to speed, 
@@ -41,9 +41,6 @@ class Character extends MovableObject {
     charMoveLeft() {
         this.moveLeft();
         if (this.world.camera_x < 0 && this.pos_x < (world.actualLevel.level_end_x - 600)) {
-            // console.log('1ter: ', this.pos_x)
-            // console.log('2ter: ', world.actualLevel.level_end_x - 720)
-
             this.world.camera_x = -this.pos_x + 120;
         }
     }
@@ -52,11 +49,9 @@ class Character extends MovableObject {
      * Here the Inputs from Keyboard get used to control the Character
      */
     async control() {
-        // setInterval(async () => {
         this.updateStatusBar(1);
-
+        this.meeleAtkCounter++
         if (this.isDead()) {
-
             if (!this.endStarted) { endGame(0); this.endStarted = true; }
             this.loadImageSprite(this.animations.dead);
 
@@ -64,18 +59,20 @@ class Character extends MovableObject {
             this.loadImageSprite(this.animations.hurt)
 
         } else {
-            //Making sure, that important animations cannot get cancelled
-            // if (this.showFull && this.currentFrame < this.frameRate - 1) {
-            // }
-
             //Attack animations and processes
-            if (this.world.keyboard.SPACE || this.attacking) {
 
+            if (this.world.keyboard.SPACE || this.attacking) {
                 //Meele attack
                 if (!this.attacking) {
                     this.attacking = true;
-                    await this.meeleAttackIntervall(this.animations.meele1)
-                    this.resetAttackBlocker()
+                    if (this.meeleAtkCounter <= 20) {
+                        await this.meeleAttackIntervall(this.animations.meele2)
+                        this.meeleAtkCounter = 19;
+                    } else {
+                        await this.meeleAttackIntervall(this.animations.meele1)
+                        this.meeleAtkCounter = 10;
+                    }
+                    this.resetAttackBlocker();
                 }
             } else if (this.world.keyboard.G) {
                 //Range attack, if one is there
@@ -103,6 +100,11 @@ class Character extends MovableObject {
                         this.loadImageSprite(this.animations.run)
                     }
                 }
+
+                if (this.world.keyboard.LEFT && this.world.keyboard.RIGHT) {
+                    this.loadImageSprite(this.animations.idle)
+                }
+
                 if (this.world.keyboard.UP) {
                     this.jump();
                     this.loadImageSprite(this.animations.jump)
@@ -118,7 +120,6 @@ class Character extends MovableObject {
                 }
             }
         }
-        // }, this.globeDelay)
     }
 
     /**
@@ -140,7 +141,6 @@ class Character extends MovableObject {
                     this.dmgDealed = false;
                     clearInterval(interval)
                     resolve()
-                    // this.loadImageSprite(this.animations.idle2)
                 }
             }, this.globeDelay);
         })
@@ -186,7 +186,6 @@ class Character extends MovableObject {
                     this.dmgDealed = false;
                     clearInterval(interval)
                     resolve()
-                    //this.loadImageSprite(this.animations.idle2)
                 }
             }, this.globeDelay);
         })
@@ -275,7 +274,6 @@ class Character extends MovableObject {
 
     /**
      * Gets the Percentage of the Bar, we want to draw.
-     * 
      * @param {Number} curr current Amount of used Status (health, ammounition or coins)
      * @param {Number} max Max amount of used Status (health, ammounition or coins)
      * @returns Percentage of current amount to max amount
