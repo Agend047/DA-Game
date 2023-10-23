@@ -103,7 +103,6 @@ class World {
         this.drawSprite(this.character)
 
         this.ctx.translate(-this.camera_x, 0)
-
     }
 
     /**
@@ -124,7 +123,6 @@ class World {
 
         this.ctx.drawImage(mo.img, mo.pos_x, mo.pos_y, mo.width, mo.height)
         // if (mo instanceof ShootableObject) { mo.drawArrowArea(this.ctx) }
-
 
         this.reverseMirroring(mo)
     }

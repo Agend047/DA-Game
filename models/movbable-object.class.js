@@ -58,12 +58,8 @@ class MovableObject extends GameObject {
      * @param {Object} key The Animation that shall be played
     */
     checkNewAnimation(key) {
-        if (key.showFull && this.lastloaded !== key) {
-            this.newAnimation = true;
-            // console.log('Objekt: ', this)
-            // console.log('key: ', key)
-        }
-        else this.newAnimation = false
+        if (key.showFull && this.lastloaded !== key) { this.newAnimation = true; }
+        else this.newAnimation = false;
     }
 
     //Constant moving for enemys to right side.
@@ -121,10 +117,10 @@ class MovableObject extends GameObject {
 
 
     /**
-     * Support function for Sprotes:
-     * If dead, and death animation was already played, doesnt do anything more.
+     * Support function for Sprites:
      * On the one Hand, takes care that the animated Sprites wont move to quickly by counting 'elapsedFrames'
      * Secoundly and mainly, sets currentFrame back to 0, when last frame is played.
+     * If dead, and death animation was already played, doesnt do anything more.
      */
     updateFrames() {
         if (this.newAnimation) { this.elapsedFrames = 0; this.currentFrame = 0; }

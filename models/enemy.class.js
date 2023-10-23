@@ -178,10 +178,6 @@ class Enemy extends MovableObject {
         }
     }
 
-
-
-
-
     // UNFINISHED HUNTER IDEAS
 
     /**
@@ -244,20 +240,11 @@ class Enemy extends MovableObject {
     }
 }
 
-class Chicken extends Enemy {
-    width = 140;
-    height = 100;
-
-    constructor(min_x) {
-        super(min_x).loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
-    }
-}
-
 class OrcWarrior extends Enemy {
 
     speed = 1;
     jumpSpeed = 8;
-    frameRate = 8; //Needed?
+    frameRate = 8;
 
 
     //aggroBox Modificator
@@ -327,7 +314,7 @@ class OrcBerserker extends Enemy {
 
     speed = 1;
     jumpSpeed = 8;
-    frameRate = 8; //Needed?
+    frameRate = 8;
 
     //aggroBox Modificator
     abmX = 25;
@@ -459,8 +446,7 @@ class BossWarrior extends OrcWarrior {
     hbmW = (-120);
     hbmH = (-160);
 
-    //If true, the Boss will start fighting the player
-    playerEncountered = false;
+    playerEncountered = false;  //If true, the Boss will start fighting the player
     encounterJump = false; //Did the Boss do the Initial Jump?
 
     constructor(pos_x) {
@@ -489,8 +475,8 @@ class BossBerserker extends OrcBerserker {
     hbmW = (-160);
     hbmH = (-190);
 
-    //If true, the Boss will start fighting the player
-    playerEncountered = false;
+
+    playerEncountered = false; //If true, the Boss will start fighting the player
     encounterJump = false; //Did the Boss do the Initial Jump?
 
     constructor(pos_x) {
