@@ -39,11 +39,17 @@
         }
     </style>
 
+    <script>
+        function backToMainPage() {
+            window.location.href = "index.html";
+        }
+    </script>
+
 </head>
 
 <body>
 
-    <button href="index.html" id="back_btn" class="Menu_btn">
+    <button id="back_btn" class="Menu_btn" onclick="backToMainPage()">
         <img src="img/icons/arrow-left.png" alt="Back">
     </button>
 

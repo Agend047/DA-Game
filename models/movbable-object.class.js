@@ -205,7 +205,7 @@ class MovableObject extends GameObject {
      */
     hitRight(mo) {
         return (this.pos_x + this.hbmX + this.width + this.hbmW) >= (mo.pos_x + mo.abmX) &&
-            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.width) &&
+            (this.pos_x + this.hbmX) <= (mo.pos_x + mo.abmX + mo.width + mo.abmW) &&
             (this.pos_y + this.hbmY + this.height + this.hbmH) >= mo.pos_y + mo.hbmY &&
             (this.pos_y + this.hbmY) <= mo.pos_y + mo.hbmY + mo.height + mo.hbmH
     }

@@ -12,9 +12,9 @@ class Character extends MovableObject {
     meeleAtkCounter = 20; //For Chars with multiple meele attacks. After a meele can a different, stronger meele attack be used for some frames
 
     // AttackBox Meele Modificators:
-    abmX = 80
+    abmX = 70
     abmY = 155
-    abmW = (-80)
+    abmW = (-100)
     abmH = (-190)
 
     dmgDealed = false;
