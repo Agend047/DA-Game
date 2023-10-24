@@ -6,6 +6,8 @@ class Acco extends Character {
     ammunition = 0;
     maxAmmunition = 0;
     ammoPicture = '';
+    ammoSound = '';
+
 
     speed = 10;
     jumpSpeed = 8;

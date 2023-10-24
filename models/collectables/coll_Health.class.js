@@ -2,6 +2,7 @@ class HealthPotion extends collectableObject {
     height = 50;
     width = 50;
     statusID = 1;
+    collectSound = new Audio('audio/drink_potion.mp3');
 
 
     constructor(min_x, min_y) {

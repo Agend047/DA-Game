@@ -19,7 +19,7 @@ class collectableObject extends GameObject {
 
     /**
      * Here, the Items get removed from the level, and added to the players Status.
-     * @param {Number} index Index inside the array
+     * @param {Number} index Index of collectable Object inside the array
      * @param {Object} pl Player object
      * @param {Object} world World Object
      */
@@ -39,6 +39,7 @@ class collectableObject extends GameObject {
             if (statusID === 2) pl.ammunition += 6;
             if (statusID === 3) pl.collectedCoins++;
 
+            this.collectSound.play();
             pl.checkStatusMax();
             pl.updateStatusBar(statusID);
 

@@ -3,6 +3,7 @@ class Coin extends collectableObject {
     height = 50;
     width = 50;
     statusID = 3;
+    collectSound = new Audio('audio/Coin.mp3');
 
     constructor(min_x, min_y, mixablePlace) {
 

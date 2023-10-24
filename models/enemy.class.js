@@ -106,7 +106,7 @@ class Enemy extends MovableObject {
         if (this.dropping && this.canStillDrop) {
             this.canStillDrop = false;
             if (this.dropping == 1) { world.supplys.push(new HealthPotion(this.pos_x + 40, this.pos_y + 100, false)) }
-            if (this.dropping == 2) { world.supplys.push(new Ammounition(this.pos_x + 40, this.pos_y + 100, false)); world.givingRightImage() }
+            if (this.dropping == 2) { world.supplys.push(new Ammounition(this.pos_x + 40, this.pos_y + 100, false)); world.makeSupplysfit() }
             if (this.dropping == 3) { world.coins.push(new Coin(this.pos_x + 40, this.pos_y + 100, false)) }
         }
     }

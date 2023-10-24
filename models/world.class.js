@@ -24,7 +24,7 @@ class World {
 
 
         this.setWorld();
-        this.givingRightImage()
+        this.makeSupplysfit();
         this.character.updateStatusBar(2)
         this.character.updateStatusBar(3)
         this.play();
@@ -45,10 +45,11 @@ class World {
      * Setting the right picture for the ammounition collectables in the level.
      * Depends on a property of the choosen hero!
      */
-    givingRightImage() {
+    makeSupplysfit() {
         for (let supply of this.supplys) {
             if (supply.statusID == 2) {
                 supply.loadImage(this.character.ammoPicture)
+                supply.collectSound = new Audio(this.character.ammoSound);
             }
         }
     }

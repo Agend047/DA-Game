@@ -5,7 +5,8 @@ class Eleria extends Character {
 
     ammunition = 40;
     maxAmmunition = 40;
-    ammoPicture = 'img/collectables/Arrows_diagonal.png'
+    ammoPicture = 'img/collectables/Arrows_diagonal.png';
+    ammoSound = 'audio/take_arrows.mp3';
 
     speed = 14;
     jumpSpeed = 10;

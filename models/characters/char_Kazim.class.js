@@ -6,7 +6,9 @@ class Kazim extends Character {
 
     ammunition = 42; //AsP 42
     maxAmmunition = 42; //AsP
-    ammoPicture = 'img/statusBars/mana_potion.png'
+    ammoPicture = 'img/statusBars/mana_potion.png';
+    ammoSound = 'audio/drink_potion.mp3';
+
 
 
     speed = 12;
