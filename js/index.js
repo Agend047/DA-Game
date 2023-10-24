@@ -368,7 +368,7 @@ function modifyStatusBar(key) {
         pic.style.width = picWidthArray[key]
     }
 
-    if (world) {
+    if (world && world.character) {
         key ? world.character.screenMod = 8 : world.character.screenMod = 4;
         world.character.setStatusBars()
     }
