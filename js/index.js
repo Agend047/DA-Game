@@ -11,7 +11,7 @@ let heroNumber;
 
 let fullscreen = false;
 let playing = false;
-let playMusic = false;
+let playMusic = true;
 let gameEnded = false;
 
 
@@ -61,6 +61,19 @@ function setLevel(lvlID) {
     let levelPool = [level1, level2, level3, level4];
     level = levelPool[lvlID - 1];
     choosenLevel = lvlID;
+}
+
+
+function playOrMute() {
+    let soundImg = document.getElementById('sound_img');
+
+    if (playMusic) {
+        playMusic = false;
+        soundImg.src = 'img/icons/sound_off.png'
+    } else {
+        playMusic = true;
+        soundImg.src = 'img/icons/sound_on.png';
+    }
 }
 
 /**
