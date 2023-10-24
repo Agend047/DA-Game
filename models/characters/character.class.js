@@ -136,7 +136,7 @@ class Character extends MovableObject {
      */
     meeleAttackIntervall(attack) {
         return new Promise((resolve, reject) => {
-
+            this.playSound(attack);
             const interval = setInterval(() => {
                 if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
                 this.loadImageSprite(attack)
@@ -178,7 +178,7 @@ class Character extends MovableObject {
      */
     rangeAttackIntervall(attack) {
         return new Promise((resolve, reject) => {
-
+            this.playSound(attack);
             const interval = setInterval(() => {
                 if (this.gotHit) this.gotHit = false; //Needed to prevent a bug wich keept player in a state of starting an attack, and start the hurt-Animation.
                 this.loadImageSprite(attack)
@@ -273,5 +273,15 @@ class Character extends MovableObject {
      */
     getPercentage(curr, max) {
         return (100 / max) * curr
+    }
+
+    /**
+     * Just playing the sound of when something happens
+     * @param {Object} key The Animation that was played.
+     */
+    playSound(key) {
+        if (key.sound && playMusic) {
+            key.sound.play();
+        }
     }
 }

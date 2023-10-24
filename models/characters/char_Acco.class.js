@@ -46,6 +46,7 @@ class Acco extends Character {
             dmgFrame: 5,
             dmg: 8,
             showFull: true,
+            sound: new Audio('audio/strike_1.mp3'),
         },
         meele2: {
             imageSrc: 'img/heroes/Acco/Attack_2.png',
@@ -54,6 +55,7 @@ class Acco extends Character {
             dmgFrame: 2,
             dmg: 8,
             showFull: true,
+            sound: new Audio('audio/strike_2.mp3'),
         },
         meele3: {
             imageSrc: 'img/heroes/Acco/Attack_3.png',

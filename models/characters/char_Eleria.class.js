@@ -47,6 +47,7 @@ class Eleria extends Character {
             dmgFrame: 3,
             dmg: 4,
             showFull: true,
+            sound: new Audio('audio/bow_meele_V1.mp3'),
         },
         range: {
             imageSrc: 'img/heroes/Eleria_new/Shot_1.png',
@@ -55,6 +56,8 @@ class Eleria extends Character {
             shotFrame: 12,
             dmg: 9,
             showFull: true,
+            sound: new Audio('audio/bow_V2.mp3'),
+            hitSound: new Audio('audio/bow_hitting.mp3'),
         },
         hurt: {
             imageSrc: 'img/heroes/Eleria_new/Hurt.png',
