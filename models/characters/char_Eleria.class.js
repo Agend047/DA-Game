@@ -5,6 +5,7 @@ class Eleria extends Character {
 
     ammunition = 40;
     maxAmmunition = 40;
+    ammoBarPic = 'img/statusBars/quiver3.png';
     ammoPicture = 'img/collectables/Arrows_diagonal.png';
     ammoSound = 'audio/take_arrows.mp3';
 

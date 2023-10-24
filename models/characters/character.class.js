@@ -233,7 +233,7 @@ class Character extends MovableObject {
             let ammoBar = document.getElementById('ammo_bg_max');
             ammoBar.style.width = (this.maxAmmunition * this.screenMod) + "px";
             let ammoPic = document.getElementById('ammo_pic');
-            ammoPic.src = this.ammoPicture
+            ammoPic.src = this.ammoBarPic;
 
         } else { document.getElementById('ammo_property').style.display = 'none'; }
 
