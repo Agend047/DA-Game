@@ -20,6 +20,10 @@ let drums;
 let runningSound;
 let acco_strike1;
 let acco_strike2;
+let eleria_meele;
+let eleria_ranged;
+let kazim_meele
+let kazim_igni;
 
 const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 });
 
@@ -40,6 +44,12 @@ function defineSounds() {
     runningSound = document.getElementById('walk_sound');
     acco_strike1 = document.getElementById('acco_strike1');
     acco_strike2 = document.getElementById('acco_strike2');
+
+    eleria_ranged = document.getElementById('eleria_ranged');
+    eleria_meele = document.getElementById('eleria_meele');
+
+    kazim_meele = document.getElementById('kazim_meele');
+    kazim_igni = document.getElementById('kazim_igni');
 }
 
 

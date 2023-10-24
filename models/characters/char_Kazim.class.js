@@ -49,6 +49,7 @@ class Kazim extends Character {
             dmgFrame: 8,
             dmg: 8,
             showFull: true,
+            sound: kazim_meele,
         },
         range: {
             imageSrc: 'img/heroes/Kazim_new/Attack_3no_igni.png',
@@ -57,6 +58,7 @@ class Kazim extends Character {
             shotFrame: 5,
             dmg: 16,
             showFull: true,
+            sound: kazim_igni,
         },
         hurt: {
             imageSrc: 'img/heroes/Kazim_new/Hurt.png',
