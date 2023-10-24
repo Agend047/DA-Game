@@ -42,7 +42,6 @@ class collectableObject extends GameObject {
             this.collectSound.play();
             pl.checkStatusMax();
             pl.updateStatusBar(statusID);
-
         }
     }
 }
