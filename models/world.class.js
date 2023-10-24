@@ -63,14 +63,12 @@ class World {
      * This draws and starts everything on the map and controls its actions
      */
     play() {
-
         this.draw();
         this.canEnemysAttack();
         this.resetEnemyAttack();
         this.controlEnemys();
         this.character.control();
         this.character.applyGravity();
-        // this.controlProjectiles();
 
         let self = this;  //calling play again
         setTimeout(function () {
@@ -84,23 +82,18 @@ class World {
 
     /** Drawing all the objets into the Canvas, and calling draw again after a timeout to animate. */
     draw() {
-        this.collectObjects(this.supplys);
-        this.collectObjects(this.coins);
-
+        this.collecting();
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.ctx.translate(this.camera_x, 0)
-        this.addArrayToMap(this.backgroundObjects)
-        this.addArrayToMap(this.clouds)
 
+        this.addArrayToMap(this.backgroundObjects)
         this.addArrayToMap(this.coins)
         this.addArrayToMap(this.supplys)
-
         this.addArrayToMap(this.ShootableObjects);
 
         this.addSpriteArrayToMap(this.enemys)
-
         this.drawSprite(this.character)
 
         this.ctx.translate(-this.camera_x, 0)
@@ -219,6 +212,12 @@ class World {
         for (let projectile of this.ShootableObjects) {
             projectile.shooting();
         }
+    }
+
+    /** Plays the collectObjects function for the things that can be collected */
+    collecting() {
+        this.collectObjects(this.supplys);
+        this.collectObjects(this.coins);
     }
 
     /**

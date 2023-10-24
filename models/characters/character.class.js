@@ -54,8 +54,7 @@ class Character extends MovableObject {
         this.updateStatusBar(1);
         this.meeleAtkCounter++
         if (this.isDead()) {
-            if (!this.endStarted) { endGame(0); this.endStarted = true; }
-            this.loadImageSprite(this.animations.dead);
+            this.passAway();
         } else if (this.gotHit) {
             this.loadImageSprite(this.animations.hurt)
         } else {
@@ -68,6 +67,13 @@ class Character extends MovableObject {
             }
         }
     }
+
+    /** Loads Death animation and starts the last ticks before the end. */
+    passAway() {
+        if (!this.endStarted) { endGame(0); this.endStarted = true; }
+        this.loadImageSprite(this.animations.dead);
+    }
+
 
     /**
      * Overlooking the Meele attack of the Character. 

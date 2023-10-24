@@ -300,7 +300,6 @@ function upscaleBtns() {
 
 /**Scales the Menu Buttons down for normal view */
 function downscaleBtns() {
-
     let menubtns = document.getElementsByClassName('Menu_btn');
     for (let element of menubtns) {
         element.style.height = '48px';
