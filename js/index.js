@@ -11,18 +11,65 @@ let heroNumber;
 
 let fullscreen = false;
 let playing = false;
-let playMusic = true;
 let gameEnded = false;
 
+//Sounds
+let playMusic = true;
+let ambiente;
+let drums;
+let runningSound;
+let acco_strike1;
+let acco_strike2;
 
 const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 });
 
 //Some preparing functions, for all the possibilitys i can provide in this chaotic universe.
 function init() {
     canvas = document.getElementById('mainCanvas');
+    defineSounds();
     prepareTouchControls()
     giveTouchBtnsEvents();
     addResizeEvList();
+}
+
+
+/** Defining the Sounds for the Game */
+function defineSounds() {
+    ambiente = document.getElementById('ambiente');
+    drums = document.getElementById('drums');
+    runningSound = document.getElementById('walk_sound');
+    acco_strike1 = document.getElementById('acco_strike1');
+    acco_strike2 = document.getElementById('acco_strike2');
+}
+
+
+/** Simple changing a variable and the image of it. */
+function playOrMute() {
+    let soundImg = document.getElementById('sound_img');
+
+    if (playMusic) {
+        playMusic = false;
+        soundImg.src = 'img/icons/sound_off.png'
+    } else {
+        playMusic = true;
+        soundImg.src = 'img/icons/sound_on.png';
+    }
+    basicMusic();
+}
+
+
+function basicMusic() {
+    if (playMusic) {
+        ambiente.play();
+        ambiente.loop = true;
+        drums.play();
+        drums.loop = true;
+    }
+    else {
+        ambiente.pause();
+        drums.pause();
+        runningSound.pause();
+    }
 }
 
 
@@ -61,19 +108,6 @@ function setLevel(lvlID) {
     let levelPool = [level1, level2, level3, level4];
     level = levelPool[lvlID - 1];
     choosenLevel = lvlID;
-}
-
-
-function playOrMute() {
-    let soundImg = document.getElementById('sound_img');
-
-    if (playMusic) {
-        playMusic = false;
-        soundImg.src = 'img/icons/sound_off.png'
-    } else {
-        playMusic = true;
-        soundImg.src = 'img/icons/sound_on.png';
-    }
 }
 
 /**
@@ -193,6 +227,7 @@ function toMainMenu() {
 
 /** Menu function, leads to Intro */
 function toIntro() {
+    basicMusic();
     document.getElementById('start_overlay').classList.add('d-none');
     document.getElementById('startGame_btn').classList.add('d-none');
     document.getElementById('intro_div').style.display = 'flex';

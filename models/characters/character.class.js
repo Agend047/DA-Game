@@ -36,6 +36,10 @@ class Character extends MovableObject {
         if (this.world.camera_x > - (world.actualLevel.level_end_x - 720) && this.pos_x > 120) {
             this.world.camera_x = -this.pos_x + 120;
         }
+        if (!this.isAboveGround()) {
+            this.loadImageSprite(this.animations.run)
+            if (runningSound.paused) runningSound.play();
+        }
     }
 
     /**
@@ -47,6 +51,11 @@ class Character extends MovableObject {
         if (this.world.camera_x < 0 && this.pos_x < (world.actualLevel.level_end_x - 600)) {
             this.world.camera_x = -this.pos_x + 120;
         }
+        if (!this.isAboveGround()) {
+            this.loadImageSprite(this.animations.run)
+            if (runningSound.paused) runningSound.play();
+        }
+
     }
 
     /** Here the Inputs from Keyboard get used to control the Character */
@@ -72,6 +81,7 @@ class Character extends MovableObject {
     passAway() {
         if (!this.endStarted) { endGame(0); this.endStarted = true; }
         this.loadImageSprite(this.animations.dead);
+
     }
 
 
@@ -111,11 +121,9 @@ class Character extends MovableObject {
     basicMoves() {
         if (this.world.keyboard.RIGHT && this.pos_x < (world.actualLevel.level_end_x - this.width)) {
             this.charMoveRight();
-            if (!this.isAboveGround()) { this.loadImageSprite(this.animations.run) }
         }
         if (this.world.keyboard.LEFT && this.pos_x > 10) {
             this.charMoveLeft();
-            if (!this.isAboveGround()) { this.loadImageSprite(this.animations.run) }
         }
         if (this.world.keyboard.LEFT && this.world.keyboard.RIGHT) { this.loadImageSprite(this.animations.idle) }
         if (this.world.keyboard.UP) {
