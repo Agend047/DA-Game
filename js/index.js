@@ -151,9 +151,7 @@ function unloadVictoryMenu() {
 
 }
 
-/**
- * Simple restart function to clear the world-Variable and start the current Level again from the start
- */
+/** Simple restart function to clear the world-Variable and start the current Level again from the start */
 function restart() {
     IndexDelay = 33;
 
@@ -222,13 +220,11 @@ function setFullScreen() {
     if (!fullscreen) {
         enterFullscreen(main);
         toggleFullSreenPic(1);
-        let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
-        canvas.style.transform = 'scale(' + scaleFactor + ')'
+        zoomIn();
         fullscreen = true;
         modifyStatusBar(1);
         upscaleBtns();
         upscaleTxt();
-        main.focus();
     } else {
         exitFullscreen(main);
         toggleFullSreenPic(0);
@@ -238,7 +234,7 @@ function setFullScreen() {
     }
 }
 
-/**Enters fullscreen */
+/** Enters fullscreen */
 function enterFullscreen(main) {
     try {
         if (canvas.requestFullscreen) {
@@ -254,7 +250,7 @@ function enterFullscreen(main) {
     toggleOverlayFullscreen();
 }
 
-/**Exits fullscreen */
+/** Exits fullscreen */
 function exitFullscreen(main) {
     try {
         if (document.exitFullscreen) {
@@ -270,6 +266,13 @@ function exitFullscreen(main) {
     toggleOverlayFullscreen()
 }
 
+/** Getting the perfect Zoom-Factor and upscaling the Canvas */
+function zoomIn() {
+    let scaleFactor = calculateScaleFactor(720 * 0.86, 480 * 0.86)
+    canvas.style.transform = 'scale(' + scaleFactor + ')'
+}
+
+/** Calculating the perfect Factor for Zooming to Fullscreen */
 function calculateScaleFactor(maxWidth, maxHeight) {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -321,7 +324,8 @@ function downscaleTxt() {
     document.getElementById('intro_text').style.paddingTop = '5%';
 }
 
-/** Bringing everything back to normal size after using "ESC" to leave fullscreen Mode 
+/** 
+ * Bringing everything back to normal size after using "ESC" to leave fullscreen Mode 
  * (It caused me many headeches to fix every problem, wich this button triggers)
 */
 function resizeCanvas() {
@@ -446,7 +450,7 @@ function hideTouchControls() {
     document.getElementById('mobile_btns').style.display = 'none';
 }
 
-//Giving Event Listeners to mobile control buttons
+/** Giving Event Listeners to mobile control buttons */
 function giveTouchBtnsEvents() {
 
     document.getElementById('left_touch_btn').addEventListener('touchstart', (e) => {

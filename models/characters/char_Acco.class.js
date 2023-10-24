@@ -63,12 +63,6 @@ class Acco extends Character {
             dmg: 14,
             showFull: true,
         },
-        // range: { //Acco does not have a ranged attack!
-        //     imageSrc: 'img/heroes/Acco/Idle.png',
-        //     frameRate: 8,
-        //     frameBuffer: 3,
-        //     showFull: false
-        // },
         hurt: {
             imageSrc: 'img/heroes/Acco/Hurt.png',
             frameRate: 3,
