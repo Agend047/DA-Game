@@ -45,7 +45,7 @@ class Character extends MovableObject {
     /**
      * Moving Char according to speed, 
      * and checking camera placement to move camera for no visible black Screen on the left side. 
-     * */
+     */
     charMoveLeft() {
         this.moveLeft();
         if (this.world.camera_x < 0 && this.pos_x < (world.actualLevel.level_end_x - 600)) {

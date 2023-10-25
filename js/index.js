@@ -18,12 +18,32 @@ let playMusic = true;
 let ambiente;
 let drums;
 let runningSound;
+let runningSound2;
 let acco_strike1;
 let acco_strike2;
 let eleria_meele;
 let eleria_ranged;
 let kazim_meele
 let kazim_igni;
+
+let meele_kill_1;
+let meele_kill_2;
+let meele_kill_3;
+let range_kill_1;
+let range_kill_2;
+let burning;
+
+
+
+
+
+
+
+
+
+
+
+
 
 const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 });
 
@@ -42,6 +62,8 @@ function defineSounds() {
     ambiente = document.getElementById('ambiente');
     drums = document.getElementById('drums');
     runningSound = document.getElementById('walk_sound');
+    runningSound2 = document.getElementById('walk_sound2');
+
     acco_strike1 = document.getElementById('acco_strike1');
     acco_strike2 = document.getElementById('acco_strike2');
 
@@ -50,6 +72,13 @@ function defineSounds() {
 
     kazim_meele = document.getElementById('kazim_meele');
     kazim_igni = document.getElementById('kazim_igni');
+
+    meele_kill_1 = document.getElementById('meele_kill_1');
+    meele_kill_2 = document.getElementById('meele_kill_2');
+    meele_kill_3 = document.getElementById('meele_kill_3');
+    range_kill_1 = document.getElementById('range_kill_1');
+    range_kill_2 = document.getElementById('range_kill_2');
+    burning = document.getElementById('burning');
 }
 
 
