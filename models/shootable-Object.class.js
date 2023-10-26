@@ -2,6 +2,7 @@ class ShootableObject extends MovableObject {
 
     // hitableEnemys = [];
     speed = 18;
+    gravityAcceleration = 0.5
 
     hbmX = 0;
     hbmY = 0;
@@ -55,8 +56,7 @@ class ShootableObject extends MovableObject {
                     }
                 }
 
-                if (counter == 30) { this.runOut(shot) }
-
+                if (counter >= 18) { this.runOut(shot, counter) }
                 if (this.pos_y > 400 || counter >= 38) {
                     clearInterval(shot)
                     world.ShootableObjects.splice(0, 1)
@@ -90,10 +90,10 @@ class Arrow extends ShootableObject {
         this.loadImage('img/heroes/Eleria_new/Arrow.png')
     }
 
-    // Applys Gravity, so the arrow will fall to the ground
+    /** Applys Gravity, so the arrow will fall to the ground */
     runOut(shot) {
         this.applyGravity()
-        this.speed = 7;
+        this.dmg = 4;
     }
 }
 
@@ -105,13 +105,11 @@ class Ignifaxius extends ShootableObject {
         this.loadImage('img/heroes/Kazim/Ignifaxius.png')
     }
 
-    // Changes the pics, so the Ignifaxius will visibly fade out
-    runOut(shot) {
-        this.speed = 1;
+    /** Changes the pics, so the Ignifaxius will visibly fade out */
+    runOut(shot, counter) {
+        this.speed = 3;
         this.loadImage('img/heroes/Kazim/Ignifaxius_2.png')
-
-        setTimeout(() => {
-            this.loadImage('img/heroes/Kazim/Ignifaxius_3.png')
-        }, 180);
+        this.dmg = 8;
+        if (counter == 36) this.loadImage('img/heroes/Kazim/Ignifaxius_3.png'); this.dmg = 2;
     }
 }
