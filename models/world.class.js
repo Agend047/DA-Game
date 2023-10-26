@@ -141,7 +141,6 @@ class World {
     drawSprite(mo) {
         if (mo.isDead() && mo.deathAnimationPlayed) { this.currentFrame = this.frameRate - 1 }
         else { mo.updateFrames() }
-
         this.readyForMirror(mo);
 
         mo.drawSpritePic(this.ctx);

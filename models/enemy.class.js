@@ -62,6 +62,8 @@ class Enemy extends MovableObject {
      * and sets the 'playerNear' variable on false, so the enemy only attacks once, then walks on.
      */
     strike(attack) {
+        axe_swing.play();
+
         this.attacked = true;
         this.framesToNextAttack = this.relaxFrames;
         this.loadImageSprite(attack)
@@ -144,7 +146,7 @@ class Enemy extends MovableObject {
     eleriaKills() {
         if (!this.playerNear) {
             let soundArray = [bow_kill, bow_kill2];
-            let i = Math.floor(Math.random() * 2);
+            let i = Math.floor(Math.random());
             soundArray[i].play();
         } else {
             meele_kill_3.play();
