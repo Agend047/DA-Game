@@ -13,6 +13,7 @@ class MovableObject extends GameObject {
     showFull; //Used for attack animations, wich have to be shown completly without interruption
 
     gotHit = false; //If someone got git, this cancels other animations as feedback.
+    deathSoundPlayed = false; //Making sure, this noise will come only once
     deathAnimationPlayed = false; //Used, so death animations only play once!
 
 

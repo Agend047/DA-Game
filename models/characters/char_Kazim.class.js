@@ -65,11 +65,13 @@ class Kazim extends Character {
             frameRate: 4,
             frameBuffer: 2,
             showFull: true,
+            sound: kazim_hurt,
         },
         dead: {
             imageSrc: 'img/heroes/Kazim_new/Dead.png',
             frameRate: 4,
             frameBuffer: 5,
+            sound: kazim_death,
         },
     }
 

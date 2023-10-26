@@ -9,6 +9,7 @@ class Character extends MovableObject {
     height = 280;
     width = 180;
 
+
     meeleAtkCounter = 20; //For Chars with multiple meele attacks. After a meele can a different, stronger meele attack be used for some frames
 
     // AttackBox Meele Modificators:
@@ -65,7 +66,7 @@ class Character extends MovableObject {
         if (this.isDead()) {
             this.passAway();
         } else if (this.gotHit) {
-            this.loadImageSprite(this.animations.hurt)
+            this.hurt();
         } else {
             if (this.world.keyboard.SPACE || this.attacking) {
                 this.meeleAttack();
@@ -79,9 +80,17 @@ class Character extends MovableObject {
 
     /** Loads Death animation and starts the last ticks before the end. */
     passAway() {
+        runningSound.pause();
         if (!this.endStarted) { endGame(0); this.endStarted = true; }
         this.loadImageSprite(this.animations.dead);
+        if (!this.deathSoundPlayed) { this.animations.dead.sound.play(); this.deathSoundPlayed = true; }
+    }
 
+    /** shows the hurt-animation */
+    hurt() {
+        runningSound.pause();
+        this.loadImageSprite(this.animations.hurt);
+        this.animations.hurt.sound.play();
     }
 
 
@@ -90,6 +99,7 @@ class Character extends MovableObject {
      * If an Character has multiple Meele Attacks, attacks with basic first, and continues with a Combo. 
      */
     async meeleAttack() {
+        runningSound.pause();
         if (!this.attacking) {
             this.attacking = true;
             if (this.meeleAtkCounter <= 20 && this.animations.meele2) {
@@ -105,6 +115,7 @@ class Character extends MovableObject {
 
     /** Overlooking the Ranged attack of the Character. */
     async rangedAttack() {
+        runningSound.pause();
         this.world.keyboard.G = false;
         if (this.animations.range) {
             if (this.enoughAmmo() && this.attacking == false) {
@@ -127,11 +138,13 @@ class Character extends MovableObject {
         }
         if (this.world.keyboard.LEFT && this.world.keyboard.RIGHT) { this.loadImageSprite(this.animations.idle) }
         if (this.world.keyboard.UP) {
+            runningSound.pause();
             this.jump();
             this.loadImageSprite(this.animations.jump)
         }
         //Idle Animation, if nothing is pressed
         if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE && !this.world.keyboard.G) {
+            runningSound.pause();
             if (this.isAboveGround()) {
                 this.loadImageSprite(this.animations.jump); //while falling
             } else { this.loadImageSprite(this.animations.idle) }; //while standing

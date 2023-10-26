@@ -25,8 +25,7 @@ class Enemy extends MovableObject {
    */
     walkerAI() {
         if (this.isDead()) {
-            this.loadImageSprite(this.animations.dead)
-            if (this.canStillDrop && this.dropping) { this.drop() }
+            this.dieing()
         }
         else if (this.gotHit && this.hitCounter < 9) { this.knockBack() }
         else {
@@ -40,10 +39,17 @@ class Enemy extends MovableObject {
         }
     }
 
+
+    dieing() {
+        if (!this.deathSoundPlayed) { this.playDeathSound(); }
+        this.loadImageSprite(this.animations.dead);
+        if (this.canStillDrop && this.dropping) { this.drop() }
+    }
+
     /**
- * Shall build on a nice Knockback- effect for enemys, and the Hurt animation gets played.
- * If it was played a few frames, it should not be called until the enemy gets hit again.
- */
+     * Shall build on a nice Knockback- effect for enemys, and the Hurt animation gets played.
+     * If it was played a few frames, it should not be called until the enemy gets hit again.
+     */
     knockBack() {
         this.isPlayerLeft() ? this.pos_x += 1.5 : this.pos_x -= 1.5
         this.loadImageSprite(this.animations.hurt)
@@ -111,6 +117,44 @@ class Enemy extends MovableObject {
         }
     }
 
+    /** Choosing the sound to play. Every Char leads to a few different death sounds */
+    playDeathSound() {
+        if (playMusic) {
+            if (heroNumber == 0) {
+                this.accoKills();
+            }
+            if (heroNumber == 1) {
+                this.eleriaKills();
+            }
+            if (heroNumber == 2) {
+                this.kazimKills()
+            }
+        }
+        this.deathSoundPlayed = true;
+    }
+
+    /** Choosing a random Kill sound out of 3 for Acco */
+    accoKills() {
+        let soundArray = [meele_kill_1, meele_kill_2, meele_kill_3]
+        let i = Math.floor(Math.random() * 3);
+        soundArray[i].play();
+    }
+
+    /** Checking distance to decide, wich killsound to play. */
+    eleriaKills() {
+        if (!this.playerNear) {
+            let soundArray = [bow_kill, bow_kill2];
+            let i = Math.floor(Math.random() * 2);
+            soundArray[i].play();
+        } else {
+            meele_kill_3.play();
+        }
+    }
+
+    /**Kazim kills with fire. No exceptions. */
+    kazimKills() {
+        burning_kill.play();
+    }
 
 
     // BOSS AI
@@ -159,22 +203,34 @@ class Enemy extends MovableObject {
     bossAI() {
 
         if (this.isDead()) {
-            if (!this.endStarted) { endGame(1); this.endStarted = true; };
-            this.loadImageSprite(this.animations.dead)
+            this.bossDieing()
         }
         else if (this.gotHit && this.hitCounter < 4) { this.knockBack() }
         else {
-            this.isPlayerLeft() ? this.otherdirection = true : this.otherdirection = false;
-
+            this.directionCheck();
             if (this.playerNear) {
                 this.strike(this.animations.meele1)
             } else {
-                if (!world.character.isInRangeOf(this)) {
-                    this.otherdirection ? this.move() : this.moveOther()
-                } else {
-                    this.loadImageSprite(this.animations.idle)
-                }
+                this.bosmoving();
             }
+        }
+    }
+
+    bossDieing() {
+        if (!this.endStarted) { endGame(1); this.endStarted = true; };
+        this.dieing();
+    }
+
+    directionCheck() {
+        this.isPlayerLeft() ? this.otherdirection = true : this.otherdirection = false;
+
+    }
+
+    bosmoving() {
+        if (!world.character.isInRangeOf(this)) {
+            this.otherdirection ? this.move() : this.moveOther()
+        } else {
+            this.loadImageSprite(this.animations.idle)
         }
     }
 

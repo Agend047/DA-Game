@@ -31,18 +31,19 @@ let meele_kill_2;
 let meele_kill_3;
 let range_kill_1;
 let range_kill_2;
+
+let bow_kill;
+let bow_kill2;
+
+let burning_kill;
 let burning;
 
-
-
-
-
-
-
-
-
-
-
+let acco_death;
+let acco_hurt;
+let kazim_hurt;
+let kazim_death;
+let eleria_hurt;
+let eleria_death;
 
 
 const escapeEvent = new KeyboardEvent("keydown", { key: "Escape", keyCode: 27 });
@@ -78,7 +79,19 @@ function defineSounds() {
     meele_kill_3 = document.getElementById('meele_kill_3');
     range_kill_1 = document.getElementById('range_kill_1');
     range_kill_2 = document.getElementById('range_kill_2');
+
+    bow_kill = document.getElementById('bow_kill');
+    bow_kill2 = document.getElementById('bow_kill2');
+
+    burning_kill = document.getElementById('burning_kill');
     burning = document.getElementById('burning');
+
+    acco_death = document.getElementById('acco_death');
+    acco_hurt = document.getElementById('acco_hurt');
+    kazim_hurt = document.getElementById('kazim_hurt');
+    kazim_death = document.getElementById('kazim_death');
+    eleria_hurt = document.getElementById('eleria_hurt');
+    eleria_death = document.getElementById('eleria_death');
 }
 
 
@@ -101,7 +114,7 @@ function basicMusic() {
     if (playMusic) {
         ambiente.play();
         ambiente.loop = true;
-        drums.play();
+        // drums.play();
         drums.loop = true;
     }
     else {

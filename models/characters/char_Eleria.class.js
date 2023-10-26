@@ -64,11 +64,13 @@ class Eleria extends Character {
             frameRate: 3,
             frameBuffer: 2,
             showFull: true,
+            sound: eleria_hurt,
         },
         dead: {
             imageSrc: 'img/heroes/Eleria_new/Dead.png',
             frameRate: 3,
             frameBuffer: 5,
+            sound: eleria_death,
         },
     }
 

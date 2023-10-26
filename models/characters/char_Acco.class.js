@@ -70,11 +70,13 @@ class Acco extends Character {
             frameRate: 3,
             frameBuffer: 2,
             showFull: true,
+            sound: acco_hurt,
         },
         dead: {
             imageSrc: 'img/heroes/Acco/Dead.png',
             frameRate: 3,
             frameBuffer: 5,
+            sound: acco_death,
         },
     }
 
