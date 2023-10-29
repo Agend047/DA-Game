@@ -1,6 +1,5 @@
 class ShootableObject extends MovableObject {
 
-    // hitableEnemys = [];
     speed = 18;
     gravityAcceleration = 0.5
 
@@ -35,7 +34,8 @@ class ShootableObject extends MovableObject {
         ctx.stroke();
     }
 
-    /** This function controls the projectiles, fired by ranged heroes.
+    /** 
+     * This function controls the projectiles, fired by ranged heroes.
      * Sets a counter and basically does a delayed loop over the function.
      * Sets the direction for the projectile, and calls the end functions
      * Will delete the projectiles out of the 'ShootableObjects' array.
