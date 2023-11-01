@@ -243,7 +243,7 @@ function setFullScreen() {
     }
 }
 
-/** Enters fullscreen */
+/** Enters fullscreen on most Web Browsers */
 function enterFullscreen(main) {
     try {
         if (canvas.requestFullscreen) {
@@ -259,7 +259,7 @@ function enterFullscreen(main) {
     toggleOverlayFullscreen();
 }
 
-/** Exits fullscreen */
+/** Exits fullscreen on most Web Browsers*/
 function exitFullscreen(main) {
     try {
         if (document.exitFullscreen) {
