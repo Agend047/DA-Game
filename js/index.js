@@ -23,12 +23,28 @@ function init() {
     prepareTouchControls()
     giveTouchBtnsEvents();
     addResizeEvList();
+
+    setTimeout(function () {
+        let logo = document.getElementById('LOGO')
+        logo.classList.remove('Logo_visible');
+        logo.classList.add('Logo_hidden');
+        // logo.classList.add('d-none');
+        // logo.classList.add('d-none');
+    }, 2000);
 }
 
 
-
-
-
+/**
+ * Logo should remove itself after a few seconds. 
+ * For impatient people, this function will take it away immediatly
+ */
+function remove_logo_instant() {
+    let logo = document.getElementById('LOGO');
+    logo.classList.remove('Logo_visible');
+    logo.classList.add('Logo_hidden');
+    // logo.classList.add('d-none');
+    basicMusic();
+}
 
 
 
